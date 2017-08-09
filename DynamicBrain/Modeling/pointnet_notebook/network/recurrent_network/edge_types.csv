@@ -1,0 +1,9 @@
+edge_type_id target_query source_query weight_max distance_range target_sections delay params_file set_params_function synapse_model weight_function
+0 level_of_detail=='biophysical'&ei=='i' ei=='i' -10.0 "[0.0, 1e+20]" "['somatic', 'basal']" 2.0 GABA_InhToInh.json exp2syn static_synapse wmax
+1 level_of_detail=='intfire'&ei=='i' ei=='i' -50.0   2.0 instanteneousInh.json  static_synapse wmax
+2 level_of_detail=='biophysical'&ei=='e' ei=='i' -50.0 "[0.0, 50.0]" "['somatic', 'basal', 'apical']" 2.0 GABA_InhToExc.json exp2syn static_synapse wmax
+3 level_of_detail=='intfire'&ei=='e' ei=='i' -10.0   2.0 instanteneousInh.json  static_synapse wmax
+4 pop_name=='PV1' ei=='e' 100.0 "[0.0, 1e+20]" "['somatic', 'basal']" 2.0 AMPA_ExcToInh.json exp2syn static_synapse wmax
+5 pop_name=='LIF_inh' ei=='e' 100.0   2.0 instanteneousExc.json  static_synapse wmax
+6 pop_name=='Scnn1a' ei=='e' 100.0 "[30.0, 150.0]" "['basal', 'apical']" 2.0 AMPA_ExcToExc.json exp2syn static_synapse wmax
+7 pop_name=='LIF_exc' ei=='e' 100.0   2.0 instanteneousExc.json  static_synapse wmax

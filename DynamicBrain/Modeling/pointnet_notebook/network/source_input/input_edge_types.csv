@@ -1,0 +1,3 @@
+edge_type_id target_query source_query weight_max distance_range target_sections delay params_file set_params_function synapse_model weight_function
+7 pop_name=='Scnn1a' * 25.0 "[0.0, 150.0]" "['basal', 'apical']" 2.0 AMPA_ExcToExc.json exp2syn static_synapse wmax
+8 pop_name=='LIF_exc' * 50.0   2.0 instanteneousExc.json  static_synapse wmax

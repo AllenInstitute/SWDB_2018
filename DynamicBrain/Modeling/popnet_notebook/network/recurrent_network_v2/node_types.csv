@@ -1,0 +1,3 @@
+node_type_id pop_name params_file
+0 excitatory components_v2/pop_models/excitatory_pop.json
+filter_001 input_filter NA
