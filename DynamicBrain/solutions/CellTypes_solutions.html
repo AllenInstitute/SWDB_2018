@@ -11751,7 +11751,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../resources/cropped-SummerWorkshop_Header.png"></p>
+<p><img src="../../resources/cropped-SummerWorkshop_Header.png"></p>
 <p><h1 align="center">Cell Types Workshop SWDB 2017 </h1></p>
 <h3 align="center">Wednesday, August 23, 2017</h3>
 </div>
@@ -11780,7 +11780,7 @@ div#notebook {
 
 <span class="c1"># OS X</span>
 <span class="c1"># drive_path = &#39;/Volumes/Brain2016&#39;</span>
-<span class="n">drive_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/shawn/Desktop/FHL 2017/Cell Types Cache&#39;</span>
+<span class="n">drive_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/shawn/Desktop/FHL 2017/Cell Types Cache/&#39;</span>
 
 <span class="c1"># Windows (a good guess)</span>
 <span class="c1"># drive_path = &#39;e:/&#39;</span>
@@ -11921,17 +11921,12 @@ If you have not installed the `allensdk` python module yet, do so from a command
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<p><strong>Documentation:</strong>
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache">CellTypesCache</a>,
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_ephys_features">CellTypesCache.get_ephys_features()</a>
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_cells">CellTypesCache.get_cells()</a></p>
+<p><em>Note: you can find these by using the search tool on the main <a href="http://alleninstitute.github.io/AllenSDK/">AllenSDK page</a></em></p>
 
-<p>
-**Documentation:**
-[CellTypesCache](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache),
-[CellTypesCache.get_ephys_features()](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_ephys_features)
-[CellTypesCache.get_cells()](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_cells)</p>
-<p>
-*Note: you can find these by using the search tool on the main [AllenSDK page](http://alleninstitute.github.io/AllenSDK/)*
-</p>
-</div>
 </div>
 </div>
 </div>
@@ -11940,19 +11935,22 @@ If you have not installed the `allensdk` python module yet, do so from a command
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; "></p>
-<h2>1. Using pre-computed features: Htr3a-expressing interneurons</h2><p>
+<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<h2>1. Using pre-computed features: Htr3a-expressing interneurons</h2>
+
+<p>
 Let's say we're interested in looking at interneuron diversity in the mouse visual cortex. We know that interneurons can be divided into three major types based on the expression of specific molecular markers - some interneurons express parvalbumin (Pvalb), others express somatostatin (Sst), and most of the rest express the ionotropic serotonin receptor 5HT3a (Htr3a).
 </p>
 </div>
 </div>
 </div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../resources/Neocortical Interneurons.png"></p>
+<p><img src="../../resources/Neocortical Interneurons.png"></p>
 
 </div>
 </div>
@@ -11978,7 +11976,7 @@ We'll start by looking at pre-computed features of these cells. To access them, 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 1.1:**</p>
+<p><strong>Exercise 1.1:</strong></p>
 
 <p>Use the function `ctc.get_cells()` and specify the reporter_status to get all the cre reporter positive cells (we only want the cells actually labeled by the transgenic lines we're investigating). Store them in a variable named `cells`. How many cells are in the database? Does this match the number reported on the website? </p>
 
@@ -12023,14 +12021,18 @@ We'll start by looking at pre-computed features of these cells. To access them, 
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h2> Selecting specific cell populations </h2><p>Now we'd like to just select the cells for particular transgenic lines (i.e., Htr3a, Vip, and Ndnf). The full names of those driver lines are:</p>
-<ul>
-<li>Htr3a-Cre_NO152</li>
-<li>Vip-IRES-Cre</li>
-<li>Ndnf-IRES2-dgCre</li>
-</ul>
-<p>If we look at an entry in our <code>cells</code> list, we can see that there are several fields that are of use to us for this task: e.g. the 'transgenic_line' key allows us to select for Cre line, 'id' is the specimen_id for this cell that allows us to connect between datasets and with metadata, and 'dendrite_type' gives us information about the presence of spines which strongly covaries with excitatory/inhibitory neuron type.</p>
+<h2> Selecting specific cell populations </h2>
 
+Now we'd like to just select the cells for particular transgenic lines (i.e., Htr3a, Vip, and Ndnf). The full names of those driver lines are:
+<ul>
+<li> Htr3a-Cre_NO152 </li>
+<li> Vip-IRES-Cre </li>
+<li> Ndnf-IRES2-dgCre </li>
+</ul>
+
+<p>
+If we look at an entry in our `cells` list, we can see that there are several fields that are of use to us for this task: e.g. the 'transgenic_line' key allows us to select for Cre line, 'id' is the specimen_id for this cell that allows us to connect between datasets and with metadata, and 'dendrite_type' gives us information about the presence of spines which strongly covaries with excitatory/inhibitory neuron type.
+</p></div>
 </div>
 </div>
 </div>
@@ -12105,7 +12107,7 @@ Dendrite type: aspiny
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 1.2:**</p>
+<p><strong>Exercise 1.2:</strong></p>
 
 <p>From the `cells` list, select only the cells that are from the Htr3a-Cre_NO152 line and are not spiny. Store their specimen IDs in a new list called `htr3a_ids`. How many of these cells are there?</p>
 
@@ -12153,14 +12155,19 @@ Dendrite type: aspiny
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 <h3> Pandas DataFrame is useful for selecting and filtering data </h3>
-
-<p>
-**Documentation:**
-[pandas.DataFrame()](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html),
-
-[Intro to pandas data structures](https://pandas.pydata.org/pandas-docs/stable/dsintro.html)
-</p>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Documentation:</strong>
+<a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html">pandas.DataFrame()</a>,
+<a href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html">Intro to pandas data structures</a></p>
+
 </div>
 </div>
 </div>
@@ -12183,7 +12190,7 @@ Dendrite type: aspiny
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 1.3:**</p>
+<p><strong>Exercise 1.3:</strong></p>
 
 <p>Make a DataFrame (`df_cells`) from the `cells` list of dictionaries. How many rows and columns does this dataframe contain?</p>
 
@@ -12532,14 +12539,15 @@ Now we have a table (`df_tg_cells`) with all cells labeled by our three Cre line
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h3 id="Merge-df_tg_cells-with-ephys_features_df">Merge <code>df_tg_cells</code> with <code>ephys_features_df</code><a class="anchor-link" href="#Merge-df_tg_cells-with-ephys_features_df">&#182;</a></h3><p>Critical information:</p>
-<ul>
-<li>The merge operation will generate an expanded table (new columns) keyed to the specimen_id</li>
-<li>The 'id' column of <code>df_tg_cells</code> corresponds to 'specimen_id' column of <code>ephys_features_df</code></li>
-<li>how = 'left' will include only cells in left dataframe</li>
-<li>Following merge, each row (i.e. cell) now includes ephys features as additional columns</li>
-</ul>
+<h2> Merge `df_tg_cells` with `ephys_features_df` </h2>
 
+<p>Critical information: 
+<ul> 
+<li>The merge operation will generate an expanded table (new columns) keyed to the specimen_id </li>
+<li> The 'id' column of `df_tg_cells` corresponds to 'specimen_id' column of `ephys_features_df` </li>
+<li> how = 'left' will include only cells in left dataframe </li>
+<li> Following merge, each row (i.e. cell) now includes ephys features as additional columns</li> </p>
+</div>
 </div>
 </div>
 </div>
@@ -12548,13 +12556,9 @@ Now we have a table (`df_tg_cells`) with all cells labeled by our three Cre line
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<p><strong>Documentation:</strong>
+<a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.merge.html">pandas.DataFrame.merge()</a></p>
 
-<p>
-**Documentation:**
-[pandas.DataFrame.merge()](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.merge.html)
-</p>
-</div>
 </div>
 </div>
 </div>
@@ -12775,9 +12779,13 @@ Name: tg_label, dtype: object</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h3 id="Examining-an-electrophysiological-feature">Examining an electrophysiological feature<a class="anchor-link" href="#Examining-an-electrophysiological-feature">&#182;</a></h3><p>Let's start by looking at something simple, like the input resistance (found in column <code>ri</code>). This reflects how much a cell will change its membrane potential for a given amount of current of current coming into the cell - cells with higher input resistances will experience a greater change in the membrane potential.</p>
-<p>Since we have the features in a <code>DataFrame</code>, we can use the pandas plotting function to visualize the data in a histogram.</p>
+<h3> Examining an electrophysiological feature </h3>
 
+<p>
+Let's start by looking at something simple, like the input resistance (found in column `ri`). This reflects how much a cell will change its membrane potential for a given amount of current of current coming into the cell - cells with higher input resistances will experience a greater change in the membrane potential.
+
+Since we have the features in a `DataFrame`, we can use the pandas plotting function to visualize the data in a histogram. </p>
+</div>
 </div>
 </div>
 </div>
@@ -12801,7 +12809,7 @@ Name: tg_label, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11b1b2110&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11ac8ca50&gt;</pre>
 </div>
 
 </div>
@@ -12896,13 +12904,9 @@ FAwCSWqcQSBJjTMIJKlxBoEkNc4gkKTGGQSS1DiDQJIa9/+TU6lg2LeFBQAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<p><strong>Documentation:</strong>
+<a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.plot.html">pandas.Series.plot()</a></p>
 
-<p>
-**Documentation:**
-[pandas.Series.plot()](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.plot.html)
-</p>
-</div>
 </div>
 </div>
 </div>
@@ -12913,10 +12917,16 @@ FAwCSWqcQSBJjTMIJKlxBoEkNc4gkKTGGQSS1DiDQJIa9/+TU6lg2LeFBQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h3 id="Viewing-individual-cells">Viewing individual cells<a class="anchor-link" href="#Viewing-individual-cells">&#182;</a></h3><p>The distribution looks multimodal - there is a peak around 100 MOhms and another around 250 MOhms.</p>
-<p>Let's split up those two peaks and look at views of some individual cells. On the website, we can summarize some of the electrophysiological and morphological properties of the cells with small thumbnail representations. These thumbnails are accessible via the website, as long as you have the cell's specimen ID.</p>
-<p>Not all cells have a morphological reconstruction; those that don't can't have a thumbnail. So we will need to only look at cells that have a reconstruction for this task.</p>
+<h3> Viewing individual cells </h3>
 
+<p>
+The distribution looks multimodal - there is a peak around 100 MOhms and another around 250 MOhms. </p>
+
+<p> Let's split up those two peaks and look at views of some individual cells. On the website, we can summarize some of the electrophysiological and morphological properties of the cells with small thumbnail representations. These thumbnails are accessible via the website, as long as you have the cell's specimen ID. </p>
+
+<p>Not all cells have a morphological reconstruction; those that don't can't have a thumbnail. So we will need to only look at cells that have a reconstruction for this task. </p>
+
+</div>
 </div>
 </div>
 </div>
@@ -13003,8 +13013,8 @@ FAwCSWqcQSBJjTMIJKlxBoEkNc4gkKTGGQSS1DiDQJIa9/+TU6lg2LeFBQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<p>The reconstruction thumbnails show the reconstructed axons in blue and the dendrites in red. Not all neurons have their axons reconstructed, so a lack of blue doesn't usually mean the axon is actually small - it just means the data were not available. The morphology is shown to fill the thumbnail, and the histogram on the right shows where those processes fall in the full cortical depth (top is near the pia).</p>
-
+The reconstruction thumbnails show the reconstructed axons in blue and the dendrites in red. Not all neurons have their axons reconstructed, so a lack of blue doesn't usually mean the axon is actually small - it just means the data were not available. The morphology is shown to fill the thumbnail, and the histogram on the right shows where those processes fall in the full cortical depth (top is near the pia).
+</div>
 </div>
 </div>
 </div>
@@ -13014,7 +13024,7 @@ FAwCSWqcQSBJjTMIJKlxBoEkNc4gkKTGGQSS1DiDQJIa9/+TU6lg2LeFBQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 1.7:**</p>
+<p>**Exercise 1.6:**</p>
 
 <p>Get the IDs of the Htr3a cells that both (1) have an input resistance below 150 MOhm and (2) have a morphological reconstruction. How many cells meet these criteria? Show the ephys and morphology thumbnails of those cells.
 </p>
@@ -13276,8 +13286,11 @@ FAwCSWqcQSBJjTMIJKlxBoEkNc4gkKTGGQSS1DiDQJIa9/+TU6lg2LeFBQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h3 id="Comparing-cell-populations">Comparing cell populations<a class="anchor-link" href="#Comparing-cell-populations">&#182;</a></h3><p>Let's see if the two peaks in the Htr3a input resistance distribution are consistent with the Vip+ and Ndnf+ subpopulations of Htr3a+ interneurons.</p>
+<h3> Comparing cell populations </h3>
 
+<p>Let's see if the two peaks in the Htr3a input resistance distribution are consistent with the Vip+ and Ndnf+ subpopulations of Htr3a+ interneurons.</p>
+
+</div>
 </div>
 </div>
 </div>
@@ -13287,7 +13300,7 @@ FAwCSWqcQSBJjTMIJKlxBoEkNc4gkKTGGQSS1DiDQJIa9/+TU6lg2LeFBQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 1.8:**</p>
+<p>**Exercise 1.7:**</p>
 
 <p>Compare the input resistance histograms of the Htr3a, Vip, and Ndnf cells. What relationship do you see? Can you think of ways of further investigating or refining this (very preliminary) analysis?
 </p>
@@ -13536,8 +13549,10 @@ YEiSWrFgSJJasWBIklr5/wGUdzemwyawfQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h3 id="Exploring-additional-precomputed-features">Exploring additional precomputed features<a class="anchor-link" href="#Exploring-additional-precomputed-features">&#182;</a></h3><p>The Cell Types database includes ~50 precomuted electrophysiological features for each cell. Some of these features are correlated with one another and this can be seen by making pairwise scatter plots.</p>
+<h3> Exploring additional precomputed features </h3>
 
+<p>The Cell Types database includes ~50 precomuted electrophysiological features for each cell. Some of these features are correlated with one another and this can be seen by making pairwise scatter plots.</p>
+</div>
 </div>
 </div>
 </div>
@@ -13598,8 +13613,8 @@ YEiSWrFgSJJasWBIklr5/wGUdzemwyawfQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<p>Plot two features againts one another</p>
-
+Plot two features againts one another
+</div>
 </div>
 </div>
 </div>
@@ -13625,7 +13640,7 @@ YEiSWrFgSJJasWBIklr5/wGUdzemwyawfQAAAABJRU5ErkJggg==
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x12045e810&gt;</pre>
+<pre>&lt;matplotlib.text.Text at 0x11ffa08d0&gt;</pre>
 </div>
 
 </div>
@@ -13797,8 +13812,9 @@ jlPXf5PZAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<p>Use <strong>seaborn</strong> package to easily make a grid of pairwise feature plots</p>
+Use <strong>seaborn</strong> package to easily make a grid of pairwise feature plots
 
+</div>
 </div>
 </div>
 </div>
@@ -13846,7 +13862,7 @@ jlPXf5PZAAAAAElFTkSuQmCC
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x122164550&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x121bbb710&gt;</pre>
 </div>
 
 </div>
@@ -16641,7 +16657,7 @@ AAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 1.9:**</p>
+<p><strong>Exercise 1.8:</strong></p>
 
 <p>Make a new dataframe that contains cell data for the entire database (hint: merge `df_cells` with `ephys_features_df`). Make a scatter plot of features with 'spiny' and 'aspiny' cells shown in different colors. There are ~50 precomputed features to choose from--as starting point plot pairwise combinations of these features:
 <ul>
@@ -16690,7 +16706,7 @@ AAAASUVORK5CYII=
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x123e78110&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x1238f6110&gt;</pre>
 </div>
 
 </div>
@@ -20966,10 +20982,13 @@ jDHGGGOsweBBMGOMMcYYY4yxBoMHwYwxxhhjjDHGGoz/A9CjqcP14pDpAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; "></p>
-<h2>2. Analyzing electrophysiology sweeps</h2><p>
+<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<h2>2. Analyzing electrophysiology sweeps</h2>
+
+<p>
 Now we'll look at a different class of interneurons - the somatostatin-positive (Sst) cells. As we've seen, there are many features pre-calculated in the Allen Cell Types Database, but it may not have everything we're interested in looking at from the original data. For example, let's look at two Sst cells where we think we see a difference in the shape of the membrane potential response in between action potentials.
 </p>
+</div>
 </div>
 </div>
 </div>
@@ -21074,13 +21093,10 @@ We may not have a feature that illustrates this difference in the "sharpness" of
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<p><strong>Documentation:</strong>
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache">CellTypesCache</a>,
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_ephys_data">CellTypesCache.get_ephys_data()</a></p>
 
-<p>
-**Documentation:**
-[CellTypesCache](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache),
-[CellTypesCache.get_ephys_data()](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_ephys_data)
-</p>
 </div>
 </div>
 </div>
@@ -21122,11 +21138,9 @@ Returning to the example, we now have an object called `data_set` that provides 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>**Documentation:**
-[NwbDataSet](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.nwb_data_set.NwbDataSet), [NwbDataSet.get_sweep()](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.nwb_data_set.NwbDataSet.get_sweep)
-</p>
-</div>
+<p><strong>Documentation:</strong>
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.nwb_data_set.NwbDataSet">NwbDataSet</a>, <a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.nwb_data_set.NwbDataSet.get_sweep">NwbDataSet.get_sweep()</a></p>
+
 </div>
 </div>
 </div>
@@ -21309,7 +21323,7 @@ Finally, we can plot the data to see what it looks like.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.text.Text at 0x1285bbd90&gt;, &lt;matplotlib.text.Text at 0x12837f210&gt;]</pre>
+<pre>[&lt;matplotlib.text.Text at 0x12803ad90&gt;, &lt;matplotlib.text.Text at 0x127dfe210&gt;]</pre>
 </div>
 
 </div>
@@ -21639,10 +21653,9 @@ Avg spike width: 0.88 ms
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-**Documentation:**
-[EphysSweepFeatureExtractor](http://alleninstitute.github.io/AllenSDK/allensdk.ephys.html#allensdk.ephys.ephys_extractor.EphysSweepFeatureExtractor)
-</div>
+<p><strong>Documentation:</strong>
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.ephys.html#allensdk.ephys.ephys_extractor.EphysSweepFeatureExtractor">EphysSweepFeatureExtractor</a></p>
+
 </div>
 </div>
 </div>
@@ -21894,13 +21907,9 @@ Spike times and numbers of spikes are actually something that have already been 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<p><strong>Documentation:</strong>
+<a href="http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_ephys_sweeps">CellTypesCache.get_ephys_sweeps()</a></p>
 
-<p>
-**Documentation:**
-[CellTypesCache.get_ephys_sweeps()](http://alleninstitute.github.io/AllenSDK/allensdk.core.html#allensdk.core.cell_types_cache.CellTypesCache.get_ephys_sweeps)
-</p>
-</div>
 </div>
 </div>
 </div>
@@ -22037,7 +22046,7 @@ Spike times and numbers of spikes are actually something that have already been 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x11cc91e50&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x11c739d50&gt;]</pre>
 </div>
 
 </div>
@@ -22168,7 +22177,7 @@ GCHCAAAYIcIAABghwgAAGCHCAAAYIcIAABghwgAAGPk/81YmB6jgo+YAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 2.6:**</p>
+<p>**Exercise 2.5:**</p>
 
 <p>Now, do the same thing for every Sst cell, and plot them all on the same plot. Use transparency (`alpha`) to help with overlaying so much data.
 </div>
@@ -22679,7 +22688,7 @@ IYQQQsP+C/yBCiQM9MHZAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 2.7:**</p>
+<p>**Exercise 2.6:**</p>
 
 <p>Create a `dict` called `sweep_matches` and populate it with the sweep_number of the long square sweep that has a firing rate closest to 10 spikes/sec (use the specimen ID as the key).</p>
 <p>However, don't include any sweeps that have less than 3 spikes (so for each sweep have at least 2 ISI events to average).</p></div>
@@ -22727,13 +22736,9 @@ IYQQQsP+C/yBCiQM9MHZAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<p><strong>Documentation:</strong>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.absolute.html">numpy.abs()</a>, <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmin.html">numpy.argmin()</a></p>
 
-<p>
-**Documentation:**
-[numpy.abs()](https://docs.scipy.org/doc/numpy/reference/generated/numpy.absolute.html), [numpy.argmin()](https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmin.html)
-</p>
-</div>
 </div>
 </div>
 </div>
@@ -22826,14 +22831,10 @@ Here's a function that will calculate the average ISI. Look it over carefully an
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<p><strong>Documentation:</strong>
+<a href="https://docs.python.org/2/library/functions.html#zip">zip()</a>, <a href="https://docs.scipy.org/doc/scipy-0.19.0/reference/generated/scipy.stats.binned_statistic.html">scipy.stats.binned_statistic()</a>,
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html">numpy.vstack()</a></p>
 
-<p>
-**Documentation:**
-[zip()](https://docs.python.org/2/library/functions.html#zip), [scipy.stats.binned_statistic()](https://docs.scipy.org/doc/scipy-0.19.0/reference/generated/scipy.stats.binned_statistic.html),
-[numpy.vstack()](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html)
-</p>
-</div>
 </div>
 </div>
 </div>
@@ -22843,7 +22844,7 @@ Here's a function that will calculate the average ISI. Look it over carefully an
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 2.8:**</p>
+<p>**Exercise 2.7:**</p>
 
 <p>Use the above function to populate a `dict` called `isi_traces` (keyed on specimen IDs) with the average ISI from the sweeps in `sweep_matches`. Plot them on top of each other (use transparency to help with overplotting).</p></div>
 </div>
@@ -24261,7 +24262,7 @@ AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 2.10:**</p>
+<p>**Exercise 2.8:**</p>
 
 <p>You may be able to see some differences in the ISI shape, but, again, aligning the data may improve your ability to see patterns. Plot these traces again, but normalize the voltage so that they all start at 0 and end at 1.</p></div>
 </div>
@@ -27425,7 +27426,7 @@ RNTQmNgSERERERFRQ2NiS0RERERERA2NiS0RERERERE1tP8PF+fQAfUMKTQAAAAASUVORK5CYII=
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x12bb9ca10&gt;</pre>
+<pre>&lt;matplotlib.text.Text at 0x12b58ec10&gt;</pre>
 </div>
 
 </div>
