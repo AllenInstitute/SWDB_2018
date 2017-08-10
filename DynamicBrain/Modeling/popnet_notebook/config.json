@@ -1,0 +1,46 @@
+{
+
+  "run": {
+    "duration": 3.0,
+    "dt": 0.0002,
+	"overwrite_output_dir": true,
+	"connect_internal": true,
+	"connect_external": {"filter": true},
+    "block": false,
+    "blocksize": 1000.0
+  }, 
+
+  "external": {
+	"filter": {
+		"nodes":		"$NETWORK_DIR/source_input/input_nodes.csv",
+		"spike_trains":	"$NETWORK_DIR/source_input/poisson_input_spk_train.nwb",
+        "edge_types":   "$NETWORK_DIR/source_input/input_edge_types.csv",
+		"node_types": 	"$NETWORK_DIR/source_input/input_node_types.csv",
+		"trial":		"trial_1"
+	}
+  },
+
+  "internal": {
+	"node_types": 		"$NETWORK_DIR/recurrent_network/node_types.csv",
+	"edge_types":   	"$NETWORK_DIR/recurrent_network/edge_types.csv",
+	"edges": 		    "$NETWORK_DIR/recurrent_network/edges.h5"
+  },
+
+  "output": {
+    "show_plots":	false,
+    "rates_file":   "$OUTPUT_DIR/spike_rates.txt",
+    "log_file":		"$OUTPUT_DIR/logging.txt"	
+  },
+
+  "components": {
+    "models_dir":       "$MODELS_DIR/pop_models",
+	"synapses_dir":		"$MODELS_DIR/synaptic_models"
+  },
+
+  "manifest": {
+	"$BASE_DIR": 	    "${configdir}",
+    "$NETWORK_DIR":     "$BASE_DIR/network",
+    "$MODELS_DIR":      "$BASE_DIR/components",
+    "$OUTPUT_DIR":      "$BASE_DIR/output"
+  }
+}
