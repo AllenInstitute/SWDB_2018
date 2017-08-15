@@ -12,7 +12,6 @@
 
   "external": {
 	"filter": {
-		"nodes":		"$NETWORK_DIR/source_input/input_nodes.csv",
 		"spike_trains":	"$NETWORK_DIR/source_input/poisson_input_spk_train.nwb",
         "edge_types":   "$NETWORK_DIR/source_input/input_edge_types.csv",
 		"node_types": 	"$NETWORK_DIR/source_input/input_node_types.csv",
