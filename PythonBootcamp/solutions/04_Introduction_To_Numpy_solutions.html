@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>04_Introduction_To_Numpy_solutions</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>04_Introduction_To_Numpy_solutions</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11,8 +13,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1107,6 +1109,7 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2535,6 +2538,7 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3025,6 +3029,7 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8755,9 +8760,6 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
-[dir="rtl"] #ipython_notebook {
-  float: right !important;
-}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8960,14 +8962,8 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
-[dir="rtl"] #tabs li {
-  float: right;
-}
 ul#tabs {
   margin-bottom: 4px;
-}
-[dir="rtl"] ul#tabs {
-  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8990,16 +8986,6 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
-}
-[dir="rtl"] .list_toolbar .tree-buttons {
-  float: left !important;
-}
-[dir="rtl"] .list_toolbar .pull-right {
-  padding-top: 1px;
-  float: left !important;
-}
-[dir="rtl"] .list_toolbar .pull-left {
-  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9136,9 +9122,6 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
-[dir="rtl"] #tree-selector a {
-  float: right;
-}
 #button-select-all {
   min-width: 50px;
 }
@@ -9228,9 +9211,6 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
-[dir="rtl"] #new-menu {
-  text-align: right;
-}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9275,9 +9255,6 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
-}
-[dir="rtl"] #running .col-sm-8 {
-  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9574,7 +9551,6 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
-  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9595,6 +9571,11 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
+}
+@-moz-document url-prefix() {
+  div.inner_cell {
+    overflow-x: hidden;
+  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11265,7 +11246,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 21ex;
+  width: 20ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11577,7 +11558,6 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
-  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11591,9 +11571,6 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
-}
-.terminal-app .terminal .xterm-rows {
-  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11654,10 +11631,8 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11668,11 +11643,9 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11780,7 +11753,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="../support_files/cropped-SummerWorkshop_Header.png"></p>
 <p><h1 align="center">Python Bootcamp</h1></p>
-<h3 align="center">August 20-21, 2016</h3>
+<h3 align="center">August 19-20, 2017</h3>
 </div>
 </div>
 </div>
@@ -11865,7 +11838,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html
 
 <p>As an example, let's try constructing a 2D array out of nested Python lists, and compare this approach to using NumPy arrays. 
 
-<p>I will build an "array" of random numbers that is 200 columns x 10k rows:
+<p>I will build an "array" of random numbers that is 200 columns x 50k rows:
 </div>
 </div>
 </div>
@@ -11902,9 +11875,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[1]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11959,9 +11930,7 @@ Now I want to calculate the mean value of every column:
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[4.50372, 4.5096, 4.4966, 4.5019, 4.50772]
 </pre>
@@ -12035,9 +12004,7 @@ This code works, but it is:<br>
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 0.49871914  0.50115232  0.5021556   0.49881424  0.4977451 ]
 </pre>
@@ -12083,9 +12050,7 @@ https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.mean.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12115,9 +12080,7 @@ https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.mean.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12147,9 +12110,7 @@ https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.mean.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12180,9 +12141,7 @@ https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.mean.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[8]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12223,9 +12182,7 @@ https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.mean.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[9]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12292,9 +12249,7 @@ All ndarray attributes: https://docs.scipy.org/doc/numpy/reference/generated/num
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[10]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12345,9 +12300,7 @@ All ndarray attributes: https://docs.scipy.org/doc/numpy/reference/generated/num
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[1 2]
  [3 4]
@@ -12379,9 +12332,7 @@ All ndarray attributes: https://docs.scipy.org/doc/numpy/reference/generated/num
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12426,18 +12377,14 @@ Use `np.array` to create a 3-dimensional array with the shape (2, 4, 3)
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(2L, 4L, 3L)
 </pre>
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12488,9 +12435,7 @@ Use `np.array` to create a 3-dimensional array with the shape (2, 4, 3)
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[0 0 0 0 0 0 0 0 0 0]
  [0 0 0 0 0 0 0 0 0 0]
@@ -12534,9 +12479,7 @@ shape: (5L, 10L) dtype: uint16
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 5  6  7  8  9 10]
 </pre>
@@ -12581,9 +12524,7 @@ shape: (5L, 10L) dtype: uint16
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[  0   0   0   0   0   0   0   0   0   0]
  [  0   0   0   0   0   1   0   0   0   0]
@@ -12622,9 +12563,7 @@ shape: (5L, 10L) dtype: uint16
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -12729,9 +12668,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.array-creation.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[ 1  2  3  4  5]
  [ 6  7  8  9 10]
@@ -12762,9 +12699,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.array-creation.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>14
 </pre>
@@ -12793,9 +12728,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.array-creation.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[ 1  2  3  4  5]
  [ 6  7 -1  9 10]
@@ -12849,9 +12782,7 @@ In the cell below, we create a small array of random integers.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[2 6 6 1 5 3 6 0 2 5]
 [3 7 7 2 6 4 7 1 3 6]
@@ -12911,9 +12842,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[0 1 2 3 4 5 6 7]
 [2 3 4 5 6 7 8 9]
@@ -12958,9 +12887,7 @@ It is also possible to modify an existing array in-place, rather than creating a
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[0 1 2 3 4 5 6 7]
 </pre>
@@ -13003,7 +12930,7 @@ are:
 Suggested strategy:
 <ul>
 <li>Use `np.arange` to generate the array of x values
-<li>Compute (2^x - 1) by using simple arithemtic operators like above
+<li>Compute (2^x - 1) by using simple arithmetic operators like above
 <li>For this exercise, do not use for-loops or `fromfunction()`
 </ul>
 
@@ -13028,9 +12955,7 @@ Suggested strategy:
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[   0    1    3    7   15   31   63  127  255  511 1023]
 </pre>
@@ -13072,9 +12997,7 @@ Suggested strategy:
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 0  1  4  9 16 25 36 49]
 </pre>
@@ -13104,9 +13027,7 @@ Suggested strategy:
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[10 20]
  [60 80]]
@@ -13126,11 +13047,8 @@ Suggested strategy:
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 Note: in the above example, the arrays are multiplied *elementwise*; this is not a dot-product!
 
-<p>This is a frequent point of confusion for MATLAB users. Whereas MATLAB began life as a linear algebra system, NumPy was designed as a more general-purpose numerical computation system. For those interested in using NumPy for linear algebra, read about *numpy.matrix*, which provides a special type of *ndarrray* for this purpose.<br><br>
+<p>This is a frequent point of confusion for MATLAB users. Whereas MATLAB began life as a linear algebra system, NumPy was designed as a more general-purpose numerical computation system. <br><br>
 
-<div class="alert alert-block alert-warning">
-https://docs.scipy.org/doc/numpy/reference/generated/numpy.matrix.html
-</div>
 </div>
 </div>
 </div>
@@ -13169,9 +13087,7 @@ https://docs.scipy.org/doc/numpy/reference/generated/numpy.matrix.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>ratio = [ 4.   2.4  0.5]
 ratio = [ 4.   2.4  inf]
@@ -13179,9 +13095,7 @@ ratio = [ 4.   2.4  inf]
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>C:\ProgramData\Anaconda2\lib\site-packages\ipykernel_launcher.py:7: RuntimeWarning: divide by zero encountered in divide
   import sys
@@ -13224,9 +13138,7 @@ ratio = [ 4.   2.4  inf]
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
@@ -13278,9 +13190,7 @@ ratio = [ 4.   2.4  inf]
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[  2.71828183e+00   3.98247844e+07   5.83461743e+14   8.54813429e+21
    1.25236317e+29   1.83480214e+36   2.68811714e+43]
@@ -13333,9 +13243,7 @@ Show a plot of a sine wave.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -13700,9 +13608,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.math.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
 </pre>
@@ -13730,9 +13636,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.math.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 5  6  7  8  9 10 11 12 13 14]
 </pre>
@@ -13760,9 +13664,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.math.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[0 1 2 3 4 5 6]
 </pre>
@@ -13790,9 +13692,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.math.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[11 12 13 14 15 16 17 18 19]
 </pre>
@@ -13820,9 +13720,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.math.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[15 16 17 18 19]
 </pre>
@@ -13919,9 +13817,7 @@ When we **index** an axis, that axis is no longer present in the result. Put ano
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(40L, 10L)
 </pre>
@@ -13965,9 +13861,7 @@ When we **index** an axis, that axis is no longer present in the result. Put ano
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 0  1  2  3  4  5  6 -1 -1 -1 -1 -1 12 13 14 15 16 17]
 </pre>
@@ -13996,9 +13890,7 @@ When we **index** an axis, that axis is no longer present in the result. Put ano
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[  0   1   2   3   4   5   6 107 108 109 110 111  12  13  14  15  16  17]
 </pre>
@@ -14027,9 +13919,7 @@ When we **index** an axis, that axis is no longer present in the result. Put ano
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[   0    1    2    3    4    5    6 -107 -108 -109 -110 -111   12   13   14
    15   16   17]
@@ -14084,9 +13974,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[False False False False False False  True  True  True  True]
 </pre>
@@ -14114,9 +14002,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ True  True  True False False False False False  True  True]
 </pre>
@@ -14166,9 +14052,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 0.  1.  2.  3.  4.  5.  6.  7.  8.  9.]
 [ True  True False False False False False  True  True  True]
@@ -14197,9 +14081,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 0.  1.  7.  8.  9.]
 </pre>
@@ -14228,9 +14110,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ nan  nan   2.   3.   4.   5.   6.  nan  nan  nan]
 </pre>
@@ -14262,9 +14142,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[ 2.  3.  4.  5.  6.]
 4.0
@@ -14315,9 +14193,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[  0.56521739   1.375               inf   2.0952381   10.5          4.93478261
    0.63157895   0.56666667]
@@ -14326,9 +14202,7 @@ https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>C:\ProgramData\Anaconda2\lib\site-packages\ipykernel_launcher.py:3: RuntimeWarning: divide by zero encountered in divide
   This is separate from the ipykernel package so we can avoid doing imports until
@@ -14400,9 +14274,7 @@ https://docs.scipy.org/doc/numpy/user/basics.indexing.html#boolean-or-mask-index
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(673L, 11L)
 </pre>
@@ -14446,9 +14318,7 @@ and the rest contain electrode data recorded from 10 consecutive trials.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -15350,9 +15220,7 @@ Cf8fmThacS9QQkMAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>min: -27.97 max: 19.391
 mean: 6.70334175334 stdev: 6.38701069461
@@ -15398,9 +15266,7 @@ mean: 6.70334175334 stdev: 6.38701069461
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Mean of each recording: [  7.24741456  13.31140862  13.53353046   0.20036404   2.43981724
    7.96416642   5.298789     4.18689153   1.33420505  11.51683061]
@@ -15410,9 +15276,7 @@ Average values across all 10 recordings:
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -15721,9 +15585,7 @@ GGNxigMAY4zFKQ4AjDEWpzgAMMZYnOIAwBhjcer/A/q21aRij6baAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Median value of all samples up to 10ms: 9.384
 Sum (area under curve) for each recording: [ 4877.51   8958.578  9108.066   134.845  1641.997  5359.884  3566.085
@@ -15755,9 +15617,7 @@ Sum (area under curve) for each recording: [ 4877.51   8958.578  9108.066   134.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Minimum (peak) value of each recording occurs at indices [420 363 109 212 365 164 362 263 413 366]
 Minimum (peak) value of average recording occurs at t = 0.1452
@@ -15765,6 +15625,25 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Save your hard work!</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;ephys_data.npy&quot;</span><span class="p">,</span> <span class="n">ephys_data</span><span class="p">)</span>
+
+<span class="c1"># You could restore this array later on using np.load()</span>
+<span class="n">reloaded_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;ephys_data.npy&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">reloaded_data</span> <span class="o">==</span> <span class="n">ephys_data</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Data was saved and verified!&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
@@ -15834,9 +15713,7 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[56]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[56]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15867,9 +15744,7 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>C:\ProgramData\Anaconda2\lib\site-packages\ipykernel_launcher.py:2: RuntimeWarning: overflow encountered in long_scalars
   
@@ -15912,9 +15787,7 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[  3   6   9  12  15  18  21  24  27  30  33  36  39  42  45  48  51  54
   57  60  63  66  69  72  75  78  81  84  87  90  93  96  99 102 105 108
@@ -15961,9 +15834,7 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[   3.    6.    9.   12.   15.   18.   21.   24.   27.   30.   33.   36.
    39.   42.   45.   48.   51.   54.   57.   60.   63.   66.   69.   72.
@@ -16013,9 +15884,7 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[   3.     6.     9.    12.    15.    18.    21.    24.    27.    30.    33.
    36.    39.    42.    45.    48.    51.    54.    57.    60.    63.    66.
@@ -16066,9 +15935,7 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>3.0051
 </pre>
@@ -16110,9 +15977,7 @@ Minimum (peak) value of average recording occurs at t = 0.1452
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>index: 70 ; value: 213.5
 </pre>
@@ -16168,9 +16033,7 @@ powerful tool for locating features within our data.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[ True False False  True False]
  [False False  True False False]]
@@ -16213,9 +16076,7 @@ powerful tool for locating features within our data.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[64]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -16286,9 +16147,7 @@ https://docs.scipy.org/doc/numpy/reference/routines.sort.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -16852,9 +16711,7 @@ xfFC7ziOU3H+ASWkn5++yumSAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Center: [ 49.27388535  75.66242038]
 </pre>
@@ -16932,18 +16789,14 @@ the signal hidden in this region.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>This data is noisy! Where is the cell?
 </pre>
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -18422,9 +18275,7 @@ RU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -20841,9 +20692,7 @@ PncAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -21322,9 +21171,7 @@ TkSuQmCC
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Data was saved and verified!
 </pre>
@@ -21397,9 +21244,7 @@ http://docs.h5py.org/en/latest/quick.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[101 105 102 103 102 106 106 100]
 </pre>
@@ -21459,9 +21304,7 @@ http://docs.h5py.org/en/latest/quick.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -22045,9 +21888,7 @@ Calcluate the average value of the pixels both inside and outside the cell body.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Average value inside soma: 24.9681528662
 Average value outside soma: 181.450434703
@@ -22114,9 +21955,7 @@ https://docs.scipy.org/doc/numpy/user/basics.indexing.html#index-arrays
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[  0   1   2   3   4 100 101 102 103 104]
 </pre>
@@ -22145,9 +21984,7 @@ https://docs.scipy.org/doc/numpy/user/basics.indexing.html#index-arrays
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[  0   1   2   3   4]
  [100 101 102 103 104]]
@@ -22181,9 +22018,7 @@ https://docs.scipy.org/doc/numpy/user/basics.indexing.html#index-arrays
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[  0   1   2   3   4]
  [100 101 102 103 104]
@@ -22260,18 +22095,14 @@ https://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Raw data:
 </pre>
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -23181,18 +23012,14 @@ Cf8fmThacS9QQkMAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Baseline-subtracted data:
 </pre>
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -23957,9 +23784,7 @@ transformed positions.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[2 5 1 7 8 2 5 1 7 8]
  [3 6 2 6 7 3 6 2 6 7]
@@ -23990,9 +23815,7 @@ transformed positions.
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>We feel super smart!
 </pre>
@@ -24006,8 +23829,4 @@ transformed positions.
     </div>
   </div>
 </body>
-
- 
-
-
 </html>
