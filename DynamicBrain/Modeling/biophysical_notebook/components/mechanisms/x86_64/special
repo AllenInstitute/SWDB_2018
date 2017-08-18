@@ -10,4 +10,4 @@ if test "" = "yes" ; then
 else
 	NRNIV="${NRNBIN}nrniv"
 fi
-"${NRNIV}" -dll "/home/yazanb/allensdk/doc_template/examples/nb/friday_harbor/components/mechanisms/x86_64/.libs/libnrnmech.so" "$@"
+"${NRNIV}" -dll "/home/forrestc/SWDB_2017/DynamicBrain/Modeling/biophysical_notebook/components/mechanisms/x86_64/.libs/libnrnmech.so" "$@"

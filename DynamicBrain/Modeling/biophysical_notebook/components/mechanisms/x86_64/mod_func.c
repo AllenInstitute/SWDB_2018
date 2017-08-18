@@ -25,23 +25,23 @@ void modl_reg(){
   if (!nrn_nobanner_) if (nrnmpi_myid < 1) {
     fprintf(stderr, "Additional mechanisms from files\n");
 
-    fprintf(stderr," ./modfiles//CaDynamics.mod");
-    fprintf(stderr," ./modfiles//Ca_HVA.mod");
-    fprintf(stderr," ./modfiles//Ca_LVA.mod");
-    fprintf(stderr," ./modfiles//Ih.mod");
-    fprintf(stderr," ./modfiles//Im.mod");
-    fprintf(stderr," ./modfiles//Im_v2.mod");
-    fprintf(stderr," ./modfiles//K_P.mod");
-    fprintf(stderr," ./modfiles//K_T.mod");
-    fprintf(stderr," ./modfiles//Kd.mod");
-    fprintf(stderr," ./modfiles//Kv2like.mod");
-    fprintf(stderr," ./modfiles//Kv3_1.mod");
-    fprintf(stderr," ./modfiles//NaTa.mod");
-    fprintf(stderr," ./modfiles//NaTs.mod");
-    fprintf(stderr," ./modfiles//NaV.mod");
-    fprintf(stderr," ./modfiles//Nap.mod");
-    fprintf(stderr," ./modfiles//SK.mod");
-    fprintf(stderr," ./modfiles//vecevent.mod");
+    fprintf(stderr," modfiles/CaDynamics.mod");
+    fprintf(stderr," modfiles/Ca_HVA.mod");
+    fprintf(stderr," modfiles/Ca_LVA.mod");
+    fprintf(stderr," modfiles/Ih.mod");
+    fprintf(stderr," modfiles/Im.mod");
+    fprintf(stderr," modfiles/Im_v2.mod");
+    fprintf(stderr," modfiles/K_P.mod");
+    fprintf(stderr," modfiles/K_T.mod");
+    fprintf(stderr," modfiles/Kd.mod");
+    fprintf(stderr," modfiles/Kv2like.mod");
+    fprintf(stderr," modfiles/Kv3_1.mod");
+    fprintf(stderr," modfiles/NaTa.mod");
+    fprintf(stderr," modfiles/NaTs.mod");
+    fprintf(stderr," modfiles/NaV.mod");
+    fprintf(stderr," modfiles/Nap.mod");
+    fprintf(stderr," modfiles/SK.mod");
+    fprintf(stderr," modfiles/vecevent.mod");
     fprintf(stderr, "\n");
   }
   _CaDynamics_reg();

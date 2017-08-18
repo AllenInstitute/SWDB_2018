@@ -187,7 +187,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
  	hoc_register_cvode(_mechtype, _ode_count, _ode_map, _ode_spec, _ode_matsol);
  	hoc_register_tolerance(_mechtype, _hoc_state_tol, &_atollist);
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 Kv3_1 /home/yazanb/allensdk/doc_template/examples/nb/friday_harbor/components/mechanisms/x86_64/Kv3_1.mod\n");
+ 	ivoc_help("help ?1 Kv3_1 /home/forrestc/SWDB_2017/DynamicBrain/Modeling/biophysical_notebook/components/mechanisms/x86_64/Kv3_1.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }

@@ -1,8 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>population_modeling</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>population_modeling_solutions</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -12,8 +13,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1108,6 +1109,7 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2536,6 +2538,7 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3026,6 +3029,7 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8756,9 +8760,6 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
-[dir="rtl"] #ipython_notebook {
-  float: right !important;
-}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8961,14 +8962,8 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
-[dir="rtl"] #tabs li {
-  float: right;
-}
 ul#tabs {
   margin-bottom: 4px;
-}
-[dir="rtl"] ul#tabs {
-  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8991,16 +8986,6 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
-}
-[dir="rtl"] .list_toolbar .tree-buttons {
-  float: left !important;
-}
-[dir="rtl"] .list_toolbar .pull-right {
-  padding-top: 1px;
-  float: left !important;
-}
-[dir="rtl"] .list_toolbar .pull-left {
-  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9137,9 +9122,6 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
-[dir="rtl"] #tree-selector a {
-  float: right;
-}
 #button-select-all {
   min-width: 50px;
 }
@@ -9229,9 +9211,6 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
-[dir="rtl"] #new-menu {
-  text-align: right;
-}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9276,9 +9255,6 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
-}
-[dir="rtl"] #running .col-sm-8 {
-  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9575,7 +9551,6 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
-  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9596,6 +9571,11 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
+}
+@-moz-document url-prefix() {
+  div.inner_cell {
+    overflow-x: hidden;
+  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11266,7 +11246,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 21ex;
+  width: 20ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11578,7 +11558,6 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
-  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11592,9 +11571,6 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
-}
-.terminal-app .terminal .xterm-rows {
-  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11655,10 +11631,8 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11669,11 +11643,9 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11727,7 +11699,9 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11748,7 +11722,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11772,19 +11746,20 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="../../../resources/cropped-SummerWorkshop_Header.png"></p>
 <p><h1 align="center">Python Bootcamp and Summer Workshop on the Dynamic Brain</h1></p>
-<h3 align="center">August 19-September 3, 2017</h3>
+<h3 align="center">Wednesday, August 23, 2017</h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span> <span class="nn">pprint</span>
@@ -11800,7 +11775,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11812,16 +11788,18 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;img src="schematics_png/DiPDE_ei_net.png" alt = Drawing style = "width: 500px;"&gt;</p>
+<p>&lt;img src="../../Modeling/popnet_notebook/schematics_png/DiPDE_ei_net.png" alt = Drawing style = "width: 500px;"&gt;</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11840,7 +11818,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Create a folder called network. </span>
@@ -11856,7 +11834,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11866,7 +11845,8 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11878,18 +11858,19 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;img src="schematics_png/ei_pop.png" alt = Drawing style = "width: 500px;"&gt;</p>
+<p>&lt;img src="../../Modeling/popnet_notebook/schematics_png/ei_pop.png" alt = Drawing style = "width: 500px;"&gt;</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Import the NxNetwork module from modelingsdk. This module allows us to create a network object</span>
@@ -11907,7 +11888,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Add &#39;E&#39; node to &#39;net&#39;</span>
@@ -11919,7 +11900,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11932,7 +11914,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Import necessary modules</span>
@@ -11952,32 +11934,9 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{u&#39;approx_order&#39;: None,
- u&#39;dv&#39;: 0.0001,
- u&#39;record&#39;: True,
- u&#39;tau_m&#39;: 0.0429,
- u&#39;update_method&#39;: u&#39;gmres&#39;,
- u&#39;v_max&#39;: 0.02,
- u&#39;v_min&#39;: -0.05}
-</pre>
 </div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11994,20 +11953,21 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
 <h3> Exercise 1.1: </h3>
 
-<p>Follow the step above to add an 'I' node (inhibitory population) to the network. You can set the node_type_id to 1 and replace 'excitatory' with 'inhibitory' for the other two fields.</div>
+<p>Follow the steps above to add an 'I' node (inhibitory population) to the network. You can set the node_type_id to 1 and replace 'excitatory' with 'inhibitory' for the other two fields.</div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Add &#39;I&#39; node to &#39;net&#39;</span>
@@ -12019,7 +11979,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12031,7 +11992,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Provide filename that will contain information about the types of nodes:</span>
@@ -12049,7 +12010,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let&#39;s display what is contained in the node_types file.</span>
@@ -12061,54 +12022,9 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[8]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pop_name</th>
-      <th>params_file</th>
-    </tr>
-    <tr>
-      <th>node_type_id</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>excitatory</td>
-      <td>excitatory_pop.json</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>inhibitory</td>
-      <td>inhibitory_pop.json</td>
-    </tr>
-  </tbody>
-</table>
 </div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12119,18 +12035,19 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;img src="schematics_png/ei_ext_pop.png" alt = Drawing style = "width: 500px;"&gt;</p>
+<p>&lt;img src="../../Modeling/popnet_notebook/schematics_png/ei_ext_pop.png" alt = Drawing style = "width: 500px;"&gt;</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Create input network object</span>
@@ -12156,7 +12073,8 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12164,6 +12082,7 @@ div#notebook {
 
 <p> The steps used above are the same as those used for creating the E and I nodes.
 <p>The only difference is that we have introduced two additional parameters 'ei' and 'level_of_detail in creating this node. 
+
 <p>Setting ei = 'e' specifies that the input is excitatory. 
 <p>Setting level_of_detail = 'filter' 
 specifies that the external input arises from filter level models. 
@@ -12171,7 +12090,8 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12184,7 +12104,7 @@ specifies that the external input arises from filter level models.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">input_node_types_DF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="n">input_models_file</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
@@ -12195,52 +12115,9 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[10]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>level_of_detail</th>
-      <th>ei</th>
-      <th>pop_name</th>
-    </tr>
-    <tr>
-      <th>node_type_id</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>filter_001</th>
-      <td>filter</td>
-      <td>e</td>
-      <td>input_filter</td>
-    </tr>
-  </tbody>
-</table>
 </div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12251,18 +12128,19 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;img src="schematics_png/ei_ext_pop_conn1.png" alt = Drawing style = "width: 500px;"&gt;</p>
+<p>&lt;img src="../../Modeling/popnet_notebook/schematics_png/ei_ext_pop_conn1.png" alt = Drawing style = "width: 500px;"&gt;</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">Ext_input</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">source</span> <span class="o">=</span> <span class="n">Ext_input</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">pop_name</span> <span class="o">=</span> <span class="s1">&#39;input_filter&#39;</span><span class="p">),</span>
@@ -12280,7 +12158,8 @@ specifies that the external input arises from filter level models.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12297,7 +12176,8 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12310,7 +12190,7 @@ specifies that the external input arises from filter level models.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">Ext_input</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
@@ -12321,19 +12201,20 @@ specifies that the external input arises from filter level models.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h2> Save connection to csv file </h2></div>
+<h2> Save connection to csv file </h2> </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Specify filename to save to</span>
@@ -12351,61 +12232,9 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[13]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>target_query</th>
-      <th>source_query</th>
-      <th>weight</th>
-      <th>delay</th>
-      <th>nsyns</th>
-      <th>params_file</th>
-    </tr>
-    <tr>
-      <th>edge_type_id</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>pop_name=='excitatory'</td>
-      <td>pop_name=='input_filter'</td>
-      <td>0.0025</td>
-      <td>0.002</td>
-      <td>10</td>
-      <td>InpToExc.json</td>
-    </tr>
-  </tbody>
-</table>
 </div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12416,18 +12245,19 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;img src="schematics_png/ei_ext_pop_conn1and2.png" alt = Drawing style = "width: 500px;"&gt;</p>
+<p>&lt;img src="../../Modeling/popnet_notebook/schematics_png/ei_ext_pop_conn1and2.png" alt = Drawing style = "width: 500px;"&gt;</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#connect E to I in net</span>
@@ -12457,71 +12287,20 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[14]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>target_query</th>
-      <th>source_query</th>
-      <th>weight</th>
-      <th>delay</th>
-      <th>nsyns</th>
-      <th>params_file</th>
-    </tr>
-    <tr>
-      <th>edge_type_id</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>pop_name=='inhibitory'</td>
-      <td>pop_name=='excitatory'</td>
-      <td>0.005</td>
-      <td>0.002</td>
-      <td>20</td>
-      <td>ExcToInh.json</td>
-    </tr>
-  </tbody>
-</table>
 </div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h2> 5) Run simulation </h2> </div>
+<h2> 5) Run simulation </h2></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12538,7 +12317,7 @@ specifies that the external input arises from filter level models.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Import the utility config module from modelingsdk. This module integrates and puts together</span>
@@ -12554,51 +12333,10 @@ specifies that the external input arises from filter level models.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{u&#39;components&#39;: {u&#39;models_dir&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/components/pop_models&#39;,
-                 u&#39;synapses_dir&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/components/synaptic_models&#39;},
- u&#39;external&#39;: {u&#39;filter&#39;: {u&#39;edge_types&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/network/source_input/input_edge_types.csv&#39;,
-                           u&#39;node_types&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/network/source_input/input_node_types.csv&#39;,
-                           u&#39;spike_trains&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/network/source_input/poisson_input_spk_train.nwb&#39;,
-                           u&#39;trial&#39;: u&#39;trial_1&#39;}},
- u&#39;internal&#39;: {u&#39;edge_types&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/network/recurrent_network/edge_types.csv&#39;,
-               u&#39;edges&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/network/recurrent_network/edges.h5&#39;,
-               u&#39;node_types&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/network/recurrent_network/node_types.csv&#39;},
- u&#39;manifest&#39;: {u&#39;$BASE_DIR&#39;: u&#39;${configdir}&#39;,
-               u&#39;$MODELS_DIR&#39;: u&#39;$BASE_DIR/components&#39;,
-               u&#39;$NETWORK_DIR&#39;: u&#39;$BASE_DIR/network&#39;,
-               u&#39;$OUTPUT_DIR&#39;: u&#39;$BASE_DIR/output&#39;},
- u&#39;output&#39;: {u&#39;log_file&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/output/logging.txt&#39;,
-             u&#39;rates_file&#39;: u&#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/output/spike_rates.txt&#39;,
-             u&#39;show_plots&#39;: False},
- &#39;path&#39;: &#39;/Volumes/Brain2017/SWDB_2017/DynamicBrain/Modeling/popnet_notebook/config.json&#39;,
- u&#39;run&#39;: {u&#39;block&#39;: False,
-          u&#39;blocksize&#39;: 1000.0,
-          u&#39;connect_external&#39;: {u&#39;filter&#39;: True},
-          u&#39;connect_internal&#39;: True,
-          u&#39;dt&#39;: 0.0002,
-          u&#39;duration&#39;: 3.0,
-          u&#39;overwrite_output_dir&#39;: True}}
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Import the Graph module from modelingsdk. This module creates a full-fledged graph, in</span>
@@ -12619,7 +12357,8 @@ specifies that the external input arises from filter level models.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12631,7 +12370,7 @@ specifies that the external input arises from filter level models.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Import the Network module from the popnet simulator in modelingsdk. This module creates a</span>
@@ -12642,46 +12381,29 @@ specifies that the external input arises from filter level models.
 <span class="n">full_net</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="n">configure</span><span class="p">,</span><span class="n">graph</span><span class="p">)</span>
 <span class="n">full_net</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 <span class="n">full_net</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1">#print ff_net.connections</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>External Population input_filter firing at a rate of 10.0 Hz.
-running simulation...
-done simulation.
-</pre>
 </div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 
-<h2> Analyze firing rate outputs of the E and I populations </h2> </div>
+<h2> Analyze firing rate outputs of the E and I populations </h2></div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">modelingsdk.analyzer.visualization.spikes</span> <span class="kn">import</span> <span class="n">plot_rates_popnet</span>
@@ -12695,176 +12417,9 @@ done simulation.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-fZv5gZUAAAAASUVORK5CYII=
-"
->
 </div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12878,7 +12433,7 @@ fZv5gZUAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Change duration of simulation from 3 seconds to 0.5 seconds</span>
@@ -12890,7 +12445,8 @@ fZv5gZUAAAAASUVORK5CYII=
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12902,7 +12458,7 @@ fZv5gZUAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Get the default value of the input firing rate</span>
@@ -12926,31 +12482,10 @@ fZv5gZUAAAAASUVORK5CYII=
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10.0
-25.0
-0.0429
-0.02
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Build network and run simulation using new config parameters </span>
@@ -12964,30 +12499,10 @@ fZv5gZUAAAAASUVORK5CYII=
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>External Population input_filter firing at a rate of 25.0 Hz.
-running simulation...
-done simulation.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Analyze outputs for new config</span>
@@ -13001,186 +12516,9 @@ done simulation.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAEPCAYAAABCyrPIAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
-AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VOX5xvHvk7BvAqIg+yLiBiriipbghnWvFZei1lat
-rVpxKYitCrXVVrtRW7Ht1dZatS611p/WurZGBK2Ayia4hCUgARQBUUAI5Pn9MRMIgSRnMnPmzJy5
-P9c1V86cOcszx5Db9z3La+6OiIhIUdQFiIhIblAgiIgIoEAQEZEkBYKIiAAKBBERSVIgiIgIEHIg
-mNmfzGylmc2uMe8uM5tvZjPN7B9m1i7MGkREJJiwWwj3ASNqzXsBOMDdDwY+AG4KuQYREQkg1EBw
-9ynAmlrzXnL3quTb/wHdw6xBRESCifocwjeBZyOuQUREiDAQzOwHQKW7/y2qGkREZLsmUezUzC4B
-TgGOa2A5PWhJRKQR3N1SXScbLQRLvhJvzE4GxgBnuPumhlZ2d73cGT9+fOQ15MpLx0LHQsei/ldj
-hX3Z6d+A14B9zGyJmX0D+A3QBnjRzN4ys0lh1iAiIsGE2mXk7l/bxez7wtyniEjv3r0pLy+Puoys
-6dWrF4sXL057O5GcQ5DUlZSURF1CztCx2E7HYruax6K8vDytrpN8Y5by6YJdbyeXD5qZeS7Xl01V
-VbBmDXz8MaxbB5s3J16VlYlXUdGuX8XF26fNtv+sOd2YedWvfJSvdUN+155N3btbwQXChx9u/77J
-75/yb4taCDlo40aYMgVefhlmzYL582HpUmjbFjp1gnbtoHlzaNYs8WrSBNwToVHztXXrjtPu25er
-Pd2YefkoX+uG/K49Tp5++mk6dOjAMcccs8P8kSNH8ve//32n5RYsWECnTp049dRTt302duxY7rrr
-rp3WScfhh6e/DQVCDpkzB+6+Gx5/HPbfH44/Hr71LdhvP+jTB5o2jbpCkfwQZktq9erVLFmyhD//
-+c/069ePoqIibrrpJlatWsWtt97KzJkz+f3vf8/q1aspLi4G4OGHH6a0tJQ999yTMWPGsGjRIqZO
-ncq8efO44447+Pa3v821117LbrvtxqBBg7j88ss58MADufjiiwHo06cPI0eO5JJLLuF3v/sdLVq0
-2KmuZcvS//4KhBywahXccAM89xyMHg3z5sFee0VdlUi8pPJHsqHWmJnx5S9/mZEjRzJq1CgAmjVr
-xm233cZTTz3FK6+8skO//ogRI7jooos499xzcXfMjKFDh3LAAQfw/e9/n3vuuYdLL72UYcOGce65
-53L55ZfTrVs3xo4dS1VVFZdccgmHHXYYe+211y7DIFMUCBErLYVRo+D88+GDDxLdQSKSeZnscnN3
-WrduvW0aoF3yH2/z5s1Zs2YNZjufx6gOidrzq0Oi5jLV2ysqKmLw4MFcffXV3HPPPZn7ErugQIjQ
-44/DlVfCgw/CSSdFXY2IBLWrq3pqzqv9x/35559n1qxZDBkyBDPbNr9p06aMHz+e0aNHc+211/LE
-E08wfPjwnbZ3/vnn88orr9CrV6/QvhPoKqPIPPccXHIJPP88HHRQ1NWIxMuu/u88X61YsYIxY8Yw
-evRohgwZsstlan/f5PuUzyQoECIwbx6UlMCTT8LRR0ddjUj8xCkQgshUIET9+OuCs3lz4pzBHXco
-DEQktygQsuzHP4aePeHSS6OuRERkR+oyyqLychg8GGbPhm7doq5GJL7UZaQuo5w3bhx897sKA5FC
-sXz5ciZOnEh5eTljxozZ5TL1fZZtuuw0S+bPh//+F/74x6grEZF0LFmyhF/84he4O/369WP27Nnc
-cccdfO973+OBBx5g7NixbN26lZ49e3LWWWexbNkypkyZwmuvvcakSZMoKSnhoYceYuXKlVx22WUs
-WLBg22cjRoxgwoQJtGzZktNPP51BgwYxatQozjjjDMyM4cOHM2TIEM477zweffTRjH83BUKW/Oxn
-cPXVkLyXRUSyzH4YvAfFx9fd3TRp0iRatWpFy5YtmTt3LscddxynnXYazzzzDPPnz6d58+b86Ec/
-AhL/929mHHvsscyaNYsrr7ySsrIyNm3aRJcuXXjwwQcZO3bsts/GjBnD7bffTs+ePTn33HP5+c9/
-zgEHHMDYsWNZt24d48aNY8OGDaE95VaBkAUVFYlLTMvKoq5EpHDV90c+pe24c+GFF3LggQcC8JOf
-/IQ99tiDzz77DHenqGjnnviaffx33333tkdSTJgwgaKiol2e76jeTvUdy+3ataNNmzZMnDiRBx98
-MCPfpTYFQhb8+c9w3nnQsWPUlYhIuq666iq+//3v07VrV9q0acPmzZt57LHHuOyyy3jooYfYsGED
-N954Iz169OD0008HoEuXLixYsICJEydy3HHH8dOf/pTOnTsD0LlzZ8rKypg4cSJXXHEFN998M61b
-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
-SSsAAAAASUVORK5CYII=
-"
->
 </div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13199,7 +12537,7 @@ SSsAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#connect I to E in net. You can specify edge params to be (id = 2, weight = -2 mV, delay = 5 ms</span>
@@ -13230,72 +12568,10 @@ SSsAAAAASUVORK5CYII=
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[23]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>target_query</th>
-      <th>source_query</th>
-      <th>weight</th>
-      <th>delay</th>
-      <th>nsyns</th>
-      <th>params_file</th>
-    </tr>
-    <tr>
-      <th>edge_type_id</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>pop_name=='inhibitory'</td>
-      <td>pop_name=='excitatory'</td>
-      <td>0.005</td>
-      <td>0.002</td>
-      <td>20</td>
-      <td>ExcToInh.json</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>pop_name=='excitatory'</td>
-      <td>pop_name=='inhibitory'</td>
-      <td>-0.002</td>
-      <td>0.005</td>
-      <td>20</td>
-      <td>InhToExc.json</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Read in the config file and set run duration to 0.5 s</span>
@@ -13329,256 +12605,9 @@ SSsAAAAASUVORK5CYII=
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>External Population input_filter firing at a rate of 30.0 Hz.
-running simulation...
-done simulation.
-</pre>
 </div>
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAEPCAYAAABCyrPIAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
-AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl8VeW97/HPLxBCwhBGmSdBFEFUxKEONWjr0ONUh2q1
-daq9TtR6VKhtz1XUDraenjr0cGuvQ61Tbe2kVY9oJXrRqtQJUERBICQio0mAAAnJ7/6xdpKdZI/Z
-2Xsn2d/367VfWWvtJ8969hL3L89s7o6IiEhetgsgIiKdgwKCiIgACggiIhKigCAiIoACgoiIhCgg
-iIgIkOaAYGb3m9kGM1vS6vp3zGy5mS01s9vTWQYREUlMzzTn/yBwD/C7xgtmVgKcChzg7nvMbEia
-yyAiIglIaw3B3RcBn7e6fCVwu7vvCaXZnM4yiIhIYrLRhzAZ+KKZvW5mC81sZhbKICIiraS7ySja
-PQe6+xFmdijwB2DvLJRDRETCZCMgrAP+DODui82swcwGu/uW1gnNTAstiYi0g7tbsr+TiSYjC70a
-/RU4DsDMJgP5kYJBI3fXy52bb74562XoLC89Cz0LPYvYr/ZKaw3BzB4DSoDBZlYG3Aw8ADxoZkuB
-3cCF6SyDiIgkJq0Bwd3Pj/LWN9N5XxHJbePHj2ft2rXZLkbGjBs3jjVr1qScTzb6EDqNRYuCn0cf
-nd1yJKKkpCTbReg09Cya6Vk0C38Wa9euTanppKsxS7q7IHI+nfmhmZmns3xm0L8/VFWl7RYikgVm
-lnMBIfzzhs47Zadyp7Z9e7ZLICJdydNPP82ixuaFMOecc07EdA899BDPPPNMi/fmzp0b8XeyLWeb
-jHbvbj52D2oLIiLxbN26lbKyMh544AEmTpxIXl4e3//+99m8eTM33XQT7777Lvfeey9bt26lR48e
-ADz++OOUlpay1157MWfOHFavXs2rr77KBx98wE9+8hOuuOIKrr32WoqLi5k+fTrf/va3mTZtGhde
-GIy5mTBhAueccw4XX3wxv/71r+ndu3daPlvO1hDKy2HcOOjbFyors10aEUk3s8Rf8fMyTj75ZH74
-wx+ybNkyAHr16sWtt97KZZddxssvv9yiXf/EE0/kjjvuYPHixbg7ZsZRRx3F1KlT+cEPfsDjjz/O
-t771Le655x5eeOEFAEaNGsXcuXO54YYbePrpp1mzZg0jRoxIWzCAHA4ImzbBsGHBa8OGbJdGRNLN
-PfFX/LycPn36NB0D9O/fH4CCggJ2h5ogWvdjNAaJ1tcbg0R4msb88vLymDFjBrNnz+aKK65oz0dP
-WM4GhKoqKC6GvfaCjRuzXRoR6UoijeoJv9b6y/3555/nhhtuYObMmZhZ0/X8/Hxuvvlmzj//fO67
-7z6uvfZaZs2a1Sa/8847j/z8fMaNG5e2zwQ5PMroiSfgySehrg4uugi++tW03EZEsqA7jTL67LPP
-mDNnDt/97neZOTPyWqAdNcooZzuVq6pgwADYtQu2bct2aUREIhs+fDgPP/xwRu6V0wGhuBjy86G6
-OtulERHJvpwNCJWVQUDo2VM1BBERyOGAUFUVjDDKy1NAEBGBHB9lNGAA9OunJiMRSY/169dz5513
-snbtWubMmRMxTaz3Mi1nawiNTUYNDaohiEjiysrK+MUvfoG7M3HiRJYsWcJPfvITbrjhBh5++GHm
-zp1LfX09Y8eO5YwzzqCiooJFixbx2muvMX/+fEpKSnj00UfZsGEDl112GatWrWp678QTT2TevHkU
-FhZy6qmnMn36dC644AJOO+00zIxZs2Yxc+ZMzj33XJ544okO/2w5GxB27AhmKe/Zo4AgkgvslsRH
-YfrN0Yeszp8/n6KiIgoLC1m2bBnHHXccp5xyCs888wzLly+noKCA2267DQj++jczjjnmGN577z2u
-uuoqVq5cye7duxk+fDiPPPIIc+fObXpvzpw5/PjHP2bs2LF87Wtf4z//8z+ZOnUqc+fOpbq6mhtv
-vJGampq0rXKbswGhpgaKiqC+Xk1GIrkg1pd8Uvm4841vfINp06YB8NOf/pShQ4eybds23J28vLYt
-8eHzBO6++27mzp1LQ0MD8+bNIy8vL+KcicZ8Gmcs9+/fn759+3LnnXfyyCOPdMhnaS3nA4KZaggi
-krirr76aH/zgB4wcOZK+fftSW1vLH/7wBy677DIeffRRampq+N73vseYMWM49dRTgWAuwapVq7jz
-zjs57rjjuP322xk2bBgAw4YNY+XKldx5551cfvnl/Md//Ad9+vTh61//eoslLQDOOussfv/731NU
-VJSWz5azM5UnTYLnnoPaWjjnHPjgg7TcRkSyoDvNVG60fPlybr31Vn7+858zZsyYFu911EzlnA0I
-I0fC4sXBMtjHHw+rV6flNiKSBd0xIMTSJTbIMbP7zWyDmS2J8N71ZtZgZoPSWYZoGpuMioqCYxGR
-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
-+4d7AAAAAElFTkSuQmCC
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13587,7 +12616,7 @@ o2WfQKNXgIPCzu8I3XMJ8Jq7LwldnwU8k8RHEEkrDTsVSQMz+yXBENeXorzfCygFjnb3hkyWTSQa
 <p>1. Explore the directory structure created from this notebook that represents the network  
 <p>2. Explore the directory components that was created for you and contains more cell types  
 <p>3. Create a network with one E node and one (two) external population(s) providing excitatory (and/or inhibitory) inputs. Recurrently connect the E population to itself and simulate the network. Change the delay parameter for one of the edges and see if you are able to get oscillatory behavior.
-<p>4. So far, we have been working with a single synaptic weight. Try exploring network topologies with different distributions of synaptic weights (for example, Gaussian with a given mean and variance) and compare changes in output firing rates
+<p>4. So far, we have been working with a single synaptic weight. Try exploring network topologies with different distributions of synaptic weights (for example, Gaussian with a given mean and variance) and and compare changes in output firing rates
 </div>
 </div>
 </div>
@@ -13595,8 +12624,4 @@ o2WfQKNXgIPCzu8I3XMJ8Jq7LwldnwU8k8RHEEkrDTsVSQMz+yXBENeXorzfCygFjnb3hkyWTSQa
     </div>
   </div>
 </body>
-
- 
-
-
 </html>
