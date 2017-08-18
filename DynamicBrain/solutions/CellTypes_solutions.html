@@ -8456,15 +8456,15 @@ label {
 }
 /* Flexible box model classes */
 /* Taken from Alex Russell http://infrequently.org/2009/08/css-3-progress/ */
-/* This file is a compatability layer.  It allows the usage of flexible box 
+/* This file is a compatability layer.  It allows the usage of flexible box
 model layouts accross multiple browsers, including older browsers.  The newest,
 universal implementation of the flexible box model is used when available (see
-`Modern browsers` comments below).  Browsers that are known to implement this 
+`Modern browsers` comments below).  Browsers that are known to implement this
 new spec completely include:
 
     Firefox 28.0+
     Chrome 29.0+
-    Internet Explorer 11+ 
+    Internet Explorer 11+
     Opera 17.0+
 
 Browsers not listed, including Safari, are supported via the styling under the
@@ -11214,7 +11214,7 @@ div#pager .ui-resizable-handle {
   background: #f7f7f7;
   border-top: 1px solid #cfcfcf;
   border-bottom: 1px solid #cfcfcf;
-  /* This injects handle bars (a short, wide = symbol) for 
+  /* This injects handle bars (a short, wide = symbol) for
         the resize handle. */
 }
 div#pager .ui-resizable-handle::after {
@@ -11649,7 +11649,7 @@ ul.typeahead-list > li > a {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
-    
+
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
 .ansi-black-fg { color: #3E424D; }
 .ansi-black-bg { background-color: #3E424D; }
@@ -11705,14 +11705,14 @@ div#notebook {
   div.cell {
     display: block;
     page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
   }
-  div.output { 
+  div.output_wrapper {
     display: block;
-    page-break-inside: avoid; 
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
   }
 }
 </style>
@@ -11930,7 +11930,7 @@ Let's say we're interested in looking at interneuron diversity in the mouse visu
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
 <p>
-We'll start by looking at the Htr3a-expressing interneurons, which have two major subpopulations - those that express vasointestinal peptide (Vip), and those that don't. Many of the non-Vip cells express neuron derived neurotrophic factor (Ndnf). In the Cell Types Database, we have cells that are labeled by transgenic lines driven by Htr3a-Cre, as well as cells with reporter expression driven by Vip-Cre and Ndnf-Cre. We can look at the properties of those cells to see if there are characteristic differences among these populations. 
+We'll start by looking at the Htr3a-expressing interneurons, which have two major subpopulations - those that express vasointestinal peptide (Vip), and those that don't. Many of the non-Vip cells express neuron derived neurotrophic factor (Ndnf). In the Cell Types Database, we have cells that are labeled by transgenic lines driven by Htr3a-Cre, as well as cells with reporter expression driven by Vip-Cre and Ndnf-Cre. We can look at the properties of those cells to see if there are characteristic differences among these populations.
 </p>
 <p>
 Let's look at pre-computed features of these cells. To access them, we'll use SDK components that interact with the database via its API.</p>
@@ -12419,7 +12419,7 @@ Now we have a table (`df_tg_cells`) with all cells labeled by our three Cre line
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ephys_features_df</span> <span class="o">=</span> <span class="n">ctc</span><span class="o">.</span><span class="n">get_ephys_features</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ephys_features_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">ephys_features_dict</span><span class="p">)</span>
 <span class="n">ephys_features_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
@@ -12532,8 +12532,8 @@ Now we have a table (`df_tg_cells`) with all cells labeled by our three Cre line
 
 <h2> Merge `df_tg_cells` with `ephys_features_df` </h2>
 
-<p>Critical information: 
-<ul> 
+<p>Critical information:
+<ul>
 <li>The merge operation will generate an expanded table (new columns) keyed to the specimen_id </li>
 <li> The 'id' column of `df_tg_cells` corresponds to 'specimen_id' column of `ephys_features_df` </li>
 <li> how = 'left' will include only cells in left dataframe </li>
@@ -13306,7 +13306,7 @@ The reconstruction thumbnails show the reconstructed axons in blue and the dendr
     <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">tg_label</span><span class="o">==</span><span class="n">p</span><span class="p">][</span><span class="s2">&quot;ri&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hist&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-    
+
 <span class="c1"># Vip looks like the higher peak. Ndnf cells are likely lower.</span>
 <span class="c1"># Other ideas - look at other features, check the ephys thumbnails of Vip, Ndnf cells, etc.</span>
 </pre></div>
@@ -22264,10 +22264,10 @@ wLD/A5JMay+D1XguAAAAAElFTkSuQmCC
     <span class="c1"># We are rounding because the floating point values can be weird</span>
     <span class="c1"># and we know that the amplitudes are integer-valued</span>
     <span class="n">amps</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;stimulus_absolute_amplitude&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ls_sweeps</span><span class="p">]</span>
-    
+
     <span class="c1"># I don&#39;t know why this would be true but it seems like it</span>
     <span class="c1"># happens for some cell on the hard drive from last year</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">amps</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">amps</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">continue</span>
 
     <span class="n">amps</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">amps</span><span class="p">)</span>
@@ -22275,7 +22275,7 @@ wLD/A5JMay+D1XguAAAAAElFTkSuQmCC
     <span class="n">n_spikes</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;num_spikes&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ls_sweeps</span><span class="p">]</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">amps</span><span class="p">,</span> <span class="n">n_spikes</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-    
+
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">165</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;delta stimulus amplitude&#39;</span><span class="p">)</span>
@@ -22775,11 +22775,11 @@ AAAASUVORK5CYII=
                  <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;stimulus_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Long Square&quot;</span>
                  <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;num_spikes&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
                  <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;stimulus_absolute_amplitude&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
-    
+
     <span class="c1"># Again, some problem cell on the hard drive</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ls_sweeps</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">continue</span>
-    
+
     <span class="n">spike_rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;num_spikes&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ls_sweeps</span><span class="p">])</span>
     <span class="n">spike_rate_delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">spike_rates</span> <span class="o">-</span> <span class="n">target_rate</span><span class="p">)</span>
     <span class="n">match_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">spike_rate_delta</span><span class="p">)</span>
@@ -22845,38 +22845,38 @@ Here's a function that will calculate the average ISI. Look it over carefully an
 <span class="sd">        Averaged interspike interval membrane potential</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sweep</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_sweep</span><span class="p">(</span><span class="n">sweep_num</span><span class="p">)</span>
-    
+
     <span class="c1"># Extract the data from the sweep</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">sweep</span><span class="p">[</span><span class="s2">&quot;response&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="c1"># to mV</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">/</span> <span class="n">sweep</span><span class="p">[</span><span class="s2">&quot;sampling_rate&quot;</span><span class="p">]</span> <span class="c1"># in seconds</span>
-    
+
     <span class="c1"># For Long Squares, the stimulus begins at 1.02 s and ends at 2.02 s</span>
     <span class="n">ext</span> <span class="o">=</span> <span class="n">EphysSweepFeatureExtractor</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">2.02</span><span class="p">)</span>
-    
+
     <span class="c1"># TODO: there&#39;s a bug in the SDK extractor we need to track down</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">ext</span><span class="o">.</span><span class="n">process_spikes</span><span class="p">()</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
-    
+
     <span class="c1"># Get the starts and ends of the spikes</span>
     <span class="n">threshold_indexes</span> <span class="o">=</span> <span class="n">ext</span><span class="o">.</span><span class="n">spike_feature</span><span class="p">(</span><span class="s2">&quot;threshold_index&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">fast_trough_indexes</span> <span class="o">=</span> <span class="n">ext</span><span class="o">.</span><span class="n">spike_feature</span><span class="p">(</span><span class="s2">&quot;fast_trough_index&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
     <span class="c1"># We&#39;ll store the arrays in a list so we can average them afterwards</span>
-    <span class="n">isis</span> <span class="o">=</span> <span class="p">[]</span> 
-    
+    <span class="n">isis</span> <span class="o">=</span> <span class="p">[]</span>
+
     <span class="c1"># Get the end of a spike and the start of the next one spike</span>
     <span class="c1"># Note the offsets in indexing of the fast_trough_indexes and threshold_indexes</span>
     <span class="c1"># We&#39;re using zip() to pair up the appropriate values</span>
     <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fast_trough_indexes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">threshold_indexes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
         <span class="n">v_slice</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
         <span class="n">t_slice</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
-        
+
         <span class="c1"># We use scipy.stats.binned_statistic() to resample to n_points</span>
         <span class="n">binned</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binned_statistic</span><span class="p">(</span><span class="n">t_slice</span><span class="p">,</span> <span class="n">v_slice</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">n_points</span><span class="p">)</span>
         <span class="n">isis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">binned</span><span class="p">)</span>
-    
+
     <span class="c1"># We put the different ISIs on top of each other with np.vstack()</span>
     <span class="c1"># then average down the column with mean(axis=0)</span>
     <span class="n">avg_isi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">isis</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -22925,7 +22925,7 @@ Here's a function that will calculate the average ISI. Look it over carefully an
     <span class="n">avg_isi</span> <span class="o">=</span> <span class="n">average_isi_trajectory</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">sweep_num</span><span class="p">,</span><span class="n">n_points</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">avg_isi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">isi_traces</span><span class="p">[</span><span class="n">specimen_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">avg_isi</span>
-    
+
 <span class="k">for</span> <span class="n">avg_isi</span> <span class="ow">in</span> <span class="n">isi_traces</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">avg_isi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
@@ -24341,7 +24341,7 @@ xB7g/wP/yVg1oX30lwAAAABJRU5ErkJggg==
     <span class="n">norm_avg_isi</span> <span class="o">=</span> <span class="p">(</span><span class="n">avg_isi</span> <span class="o">-</span> <span class="n">avg_isi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">avg_isi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg_isi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">n_avg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">norm_avg_isi</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm_avg_isi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-    
+
 <span class="n">n_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">n_avg</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
@@ -27901,7 +27901,7 @@ jAZ/pZRSKsj8D6IYbQPujjwzAAAAAElFTkSuQmCC
 <li> Engineer new features or feature combinations from the raw data and see how they affect classification results. (For example, additional quantitative measures of evoked firing with sustained depolarization).
 <li> Investigate correlations between ephys features and morphological features (for the latter, create your own as necessary).
 <li> Look at whether truncation of apical dendrites is linked to differences in any ephys features
-<li> Investigate whether electrophysiological cell features systematically vary across the anterior-posterior or medial-lateral dimensions of the primary visual cortex. 
+<li> Investigate whether electrophysiological cell features systematically vary across the anterior-posterior or medial-lateral dimensions of the primary visual cortex.
 <li> Characterize the temporal precision and reliability of spiking responses to repeated sweeps of the noise stimulus. How consistent are evoked spike trains within vs between cells? Determine whether different cell populations (e.g. different Cre lines) vary consistently in their reliability/precision.  Do any electrophysiological or morphological features correlate with the temporal reliability of spiking.
 <li> Our electrophysiology recordings are 30 minutes long. We apply stringent versions of the most common cited quality control parameters in the neuroscience literature (based on access resistance, bias current, etc). But these are largely used for historical reasons, and there still could be measurable changes in the cell’s extracted features within the 30 minutes of recording (drift or perhaps variability). Determine whether features extracted from the beginning vs later in the recording are, and whether certain Cre lines are more sensitive to this problem than others.
 <li> Calculate “dendrite density clouds” after orienting and averaging morphologies
