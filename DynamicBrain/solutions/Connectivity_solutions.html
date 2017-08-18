@@ -7725,12 +7725,22 @@ Name: structure_name, dtype: object</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">plot_mean_values</span><span class="p">(</span><span class="n">un</span><span class="p">,</span> <span class="n">structure_names</span><span class="p">,</span> <span class="n">measures</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">include_stdev</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;A helper function for making shared-axis plots from structure unionize data</span>
+    <span class="sd">&#39;&#39;&#39;A helper function for making shared-axis bar plots from structure unionize data</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    un : pd.DataFrame</span>
-<span class="sd">    </span>
+<span class="sd">        A table of unionizes. It must have a &#39;structure_name&#39; column.</span>
+<span class="sd">    structure_names : list of str</span>
+<span class="sd">        include only data from these structures</span>
+<span class="sd">    measures : list of str</span>
+<span class="sd">        Each specifies a kind of data (unionize column). One plot will be generated per measure.</span>
+<span class="sd">    colors : list of str, optional</span>
+<span class="sd">        The color of the bars in each plot. If None (default), all of them will be dark blue.</span>
+<span class="sd">    include_stdev : bool</span>
+<span class="sd">        If true (default false), standard-deviation based error bars will be added to the plots.</span>
+<span class="sd">    plot_height : numeric, optiona</span>
+<span class="sd">        Height of each subplot in inches (your experience may vary). Default is 4.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">nplots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">measures</span><span class="p">)</span>
