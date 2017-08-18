@@ -2,4 +2,3 @@
 *.nwb
 *.ipynb_checkpoints/
 .idea/
-**/x86_64
