@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>03_Intro_To_Scientific_Computing_solutions</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>05_Custom_Modules_and_Version_Control_solutions</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11790,37 +11790,15 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<center><h1>Importing Modules</h1></center>
+<center><h1>Custom Modules and Version Control</h1></center>
 
-<p>When you first start up a Python interpreter (or a new Jupyter notebook), there is only a limited set of commands and objects available for you to work with. To extend this functionality, there is a vast collection of tools that extend the functionality of Python, but that must be explicitly <i>imported</i> to make them available.
+<p>We have seen that new functinoality in Python can be encapsulated as a <i>module</i>, and that we can import modules into our own code. In this section we will create a new Python module. 
 
-<p>This is in contrast to tools like MATLAB, Igor, and R, which implicitly provide access to a larger array of functionality. This is a reflection of the fact that Python is a general-purpose language; whereas MATLAB assumes the user is interested in linear algebra, Python tries to make no assumptions about what functionality we will need.
+- Important because encapsulating functions makes them <i>reusable</i>. We will use this mechanism to develop tools that we can share with each other during the course.
 
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+- We would also like to be able to <i>collaborate</i> on these tools, so at the same time we will look at some of the basics of using git to track changes to our module. This will lay the foundation for collaborative workflows with git that will be dicussed later in the course.
 
-<p>Python itself comes with a large number of handy standard libraries that can be imported and used:  
-&nbsp;&nbsp;&nbsp;&nbsp;https://docs.python.org/2.7/library/  
-
-<p>However, the real power of Python for <i>scientific computing</i> comes from the wealth of open-source, community driven packages that are available. Many of these popular external packages com bundled with the Anaconda Python distribution. Here's a full list of the packages that come with Anaconda: 
-&nbsp;&nbsp;&nbsp;&nbsp;https://docs.continuum.io/anaconda/pkg-docs  
-
-<p>To help prepare you for the Summer Workshop on the Dynamic Brain, we are going to focus on four commonly used and extremely powerful scientific computing libraries:
-<ul>
-<li>Numpy - Matrix manipulation and optimized mathematical functions (http://www.numpy.org/)
-<li>Scipy - A suite of powerful scientific modules that extends on Numpy's functionality (http://docs.scipy.org/doc/scipy/reference/)
-<li>Matplotlib - A python 2D plotting library which produces publication quality figures (http://matplotlib.org/)
-<li>Pandas - A high-performance library for data manipulation and analysis (http://pandas.pydata.org/)
-</ul>
-
+- Jupyter is not (currently) a good tool for developing modules or for learning about git, so we will do most of our work with a text editor and a command prompt for this section.
 
 </div>
 </div>
@@ -11832,34 +11810,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<h2>Packages and Modules</h2>
-
-<p>Before we get into the details of these packages, we need some definitions:
-
-<p><b>Module:</b> 
-<ol>
-<li>A file that contains the code defining a set of python functions, classes, and data.
-<li>A type of Python object that contains a set of python functions, classes, and data. Modules are loaded by Python using the `import` statement, and the functionality contained in the module is accessed as attributes of the module object.
-</ol>
-
-<p><b>Package:</b>
-<ol>
-<li>A special type of module (object) that contains submodules and/or subpackages, providing a hierarchical organization for modules. Packages, just like modules, are loaded using the `import` statement.
-<li>A container of one or more related Python modules that can be installed together (for example, numpy is a package containing many submodules. It can be downloaded, installed, and imported.) The name "library" is sometimes used interchangeably with package.
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-
-<p>Let's start by importing numpy. This is one of the most important libraries in the scientific Python stack; we will explore it in detail in the next section.
-
+Let's begin by making a simple module. For now, it will contain just one function we can use to downsample time-series data.
 </div>
 </div>
 </div>
@@ -11869,7 +11820,26 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># here is the code we&#39;d like to include in the module:</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">downsample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reduce the number of samples in an array by averaging together</span>
+<span class="sd">    n samples at a time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">data</span>
+    <span class="n">new_len</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">//</span> <span class="n">n</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_len</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">axis</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">sl</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="bp">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span>
+    <span class="n">sl</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_len</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">sl</span><span class="p">)]</span>
+    <span class="n">d1</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">d2</span>
 </pre></div>
 
 </div>
@@ -11883,12 +11853,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>This statement did two things:
-<ol>
-<li>Created a new module object by loading the "numpy" module
-<li>Assigned the name "numpy" to this new object
-</ol>
-
+Just so we understand what this function does, let's generate a noisy time-series signal and plot it:
 </div>
 </div>
 </div>
@@ -11898,7 +11863,12 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">numpy</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11910,12 +11880,241 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt"></div>
 
 
 
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;module &#39;numpy&#39; from &#39;/home/luke/.local/lib/python2.7/site-packages/numpy/__init__.pyc&#39;&gt;</pre>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
@@ -11930,8 +12129,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>The functionality contained within this module are accessed as <i>attributes</i>:
-
+And this is what the same signal looks like after it has been downsampled. Note that the downsampled signal has many fewer samples, and the overall noise is much smaller.
 </div>
 </div>
 </div>
@@ -11941,7 +12139,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ds_data</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[::</span><span class="mi">200</span><span class="p">],</span> <span class="n">ds_data</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11953,12 +12152,295 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt"></div>
 
 
 
-<div class="output_text output_subarea output_execute_result">
-<pre>3.141592653589793</pre>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
@@ -11973,8 +12455,25 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+Just to reiterate: We have created a useful function, and now we would like to encapsulate it into a module so that
 
-<p>Numpy is a large library. Let's use the ```dir``` function, which you learned earlier, to view all of the available methods.
+<ul>
+<li>We can re-use this function in many different places without copying it, and
+<li>We can share this function with other people.
+</ul>
+
+<br>
+<hr>
+
+Here's how to turn this code into a module:
+<ol>
+<li>Open a code editor (pycharm, sublime, etc.) and paste in the definition of `downsample()` given above, including the `import numpy` statement.
+<li>Save the file as `my_module.py` in the same location as this notebook.
+</ol>
+<br>
+You're done!<br>
+
+Now let's see if it works:
 
 </div>
 </div>
@@ -11985,48 +12484,26 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">numpy</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import the new definition of `downsample` from your module</span>
+<span class="kn">from</span> <span class="nn">my_module</span> <span class="kn">import</span> <span class="n">downsample</span>
+
+<span class="c1"># If you get &quot;ImportError: No module named my_module&quot;, then make sure</span>
+<span class="c1"># the .py file was saved in the correct location.</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;ALLOW_THREADS&#39;, &#39;AxisError&#39;, &#39;BUFSIZE&#39;, &#39;CLIP&#39;, &#39;ComplexWarning&#39;, &#39;DataSource&#39;, &#39;ERR_CALL&#39;, &#39;ERR_DEFAULT&#39;, &#39;ERR_IGNORE&#39;, &#39;ERR_LOG&#39;, &#39;ERR_PRINT&#39;, &#39;ERR_RAISE&#39;, &#39;ERR_WARN&#39;, &#39;FLOATING_POINT_SUPPORT&#39;, &#39;FPE_DIVIDEBYZERO&#39;, &#39;FPE_INVALID&#39;, &#39;FPE_OVERFLOW&#39;, &#39;FPE_UNDERFLOW&#39;, &#39;False_&#39;, &#39;Inf&#39;, &#39;Infinity&#39;, &#39;MAXDIMS&#39;, &#39;MAY_SHARE_BOUNDS&#39;, &#39;MAY_SHARE_EXACT&#39;, &#39;MachAr&#39;, &#39;ModuleDeprecationWarning&#39;, &#39;NAN&#39;, &#39;NINF&#39;, &#39;NZERO&#39;, &#39;NaN&#39;, &#39;PINF&#39;, &#39;PZERO&#39;, &#39;PackageLoader&#39;, &#39;RAISE&#39;, &#39;RankWarning&#39;, &#39;SHIFT_DIVIDEBYZERO&#39;, &#39;SHIFT_INVALID&#39;, &#39;SHIFT_OVERFLOW&#39;, &#39;SHIFT_UNDERFLOW&#39;, &#39;ScalarType&#39;, &#39;Tester&#39;, &#39;TooHardError&#39;, &#39;True_&#39;, &#39;UFUNC_BUFSIZE_DEFAULT&#39;, &#39;UFUNC_PYVALS_NAME&#39;, &#39;VisibleDeprecationWarning&#39;, &#39;WRAP&#39;, &#39;_NoValue&#39;, &#39;__NUMPY_SETUP__&#39;, &#39;__all__&#39;, &#39;__builtins__&#39;, &#39;__config__&#39;, &#39;__doc__&#39;, &#39;__file__&#39;, &#39;__git_revision__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__path__&#39;, &#39;__version__&#39;, &#39;_distributor_init&#39;, &#39;_globals&#39;, &#39;_import_tools&#39;, &#39;_mat&#39;, &#39;abs&#39;, &#39;absolute&#39;, &#39;absolute_import&#39;, &#39;add&#39;, &#39;add_docstring&#39;, &#39;add_newdoc&#39;, &#39;add_newdoc_ufunc&#39;, &#39;add_newdocs&#39;, &#39;alen&#39;, &#39;all&#39;, &#39;allclose&#39;, &#39;alltrue&#39;, &#39;amax&#39;, &#39;amin&#39;, &#39;angle&#39;, &#39;any&#39;, &#39;append&#39;, &#39;apply_along_axis&#39;, &#39;apply_over_axes&#39;, &#39;arange&#39;, &#39;arccos&#39;, &#39;arccosh&#39;, &#39;arcsin&#39;, &#39;arcsinh&#39;, &#39;arctan&#39;, &#39;arctan2&#39;, &#39;arctanh&#39;, &#39;argmax&#39;, &#39;argmin&#39;, &#39;argpartition&#39;, &#39;argsort&#39;, &#39;argwhere&#39;, &#39;around&#39;, &#39;array&#39;, &#39;array2string&#39;, &#39;array_equal&#39;, &#39;array_equiv&#39;, &#39;array_repr&#39;, &#39;array_split&#39;, &#39;array_str&#39;, &#39;asanyarray&#39;, &#39;asarray&#39;, &#39;asarray_chkfinite&#39;, &#39;ascontiguousarray&#39;, &#39;asfarray&#39;, &#39;asfortranarray&#39;, &#39;asmatrix&#39;, &#39;asscalar&#39;, &#39;atleast_1d&#39;, &#39;atleast_2d&#39;, &#39;atleast_3d&#39;, &#39;average&#39;, &#39;bartlett&#39;, &#39;base_repr&#39;, &#39;bench&#39;, &#39;binary_repr&#39;, &#39;bincount&#39;, &#39;bitwise_and&#39;, &#39;bitwise_not&#39;, &#39;bitwise_or&#39;, &#39;bitwise_xor&#39;, &#39;blackman&#39;, &#39;block&#39;, &#39;bmat&#39;, &#39;bool&#39;, &#39;bool8&#39;, &#39;bool_&#39;, &#39;broadcast&#39;, &#39;broadcast_arrays&#39;, &#39;broadcast_to&#39;, &#39;busday_count&#39;, &#39;busday_offset&#39;, &#39;busdaycalendar&#39;, &#39;byte&#39;, &#39;byte_bounds&#39;, &#39;bytes_&#39;, &#39;c_&#39;, &#39;can_cast&#39;, &#39;cast&#39;, &#39;cbrt&#39;, &#39;cdouble&#39;, &#39;ceil&#39;, &#39;cfloat&#39;, &#39;char&#39;, &#39;character&#39;, &#39;chararray&#39;, &#39;choose&#39;, &#39;clip&#39;, &#39;clongdouble&#39;, &#39;clongfloat&#39;, &#39;column_stack&#39;, &#39;common_type&#39;, &#39;compare_chararrays&#39;, &#39;compat&#39;, &#39;complex&#39;, &#39;complex128&#39;, &#39;complex256&#39;, &#39;complex64&#39;, &#39;complex_&#39;, &#39;complexfloating&#39;, &#39;compress&#39;, &#39;concatenate&#39;, &#39;conj&#39;, &#39;conjugate&#39;, &#39;convolve&#39;, &#39;copy&#39;, &#39;copysign&#39;, &#39;copyto&#39;, &#39;core&#39;, &#39;corrcoef&#39;, &#39;correlate&#39;, &#39;cos&#39;, &#39;cosh&#39;, &#39;count_nonzero&#39;, &#39;cov&#39;, &#39;cross&#39;, &#39;csingle&#39;, &#39;ctypeslib&#39;, &#39;cumprod&#39;, &#39;cumproduct&#39;, &#39;cumsum&#39;, &#39;datetime64&#39;, &#39;datetime_as_string&#39;, &#39;datetime_data&#39;, &#39;deg2rad&#39;, &#39;degrees&#39;, &#39;delete&#39;, &#39;deprecate&#39;, &#39;deprecate_with_doc&#39;, &#39;diag&#39;, &#39;diag_indices&#39;, &#39;diag_indices_from&#39;, &#39;diagflat&#39;, &#39;diagonal&#39;, &#39;diff&#39;, &#39;digitize&#39;, &#39;disp&#39;, &#39;divide&#39;, &#39;division&#39;, &#39;divmod&#39;, &#39;dot&#39;, &#39;double&#39;, &#39;dsplit&#39;, &#39;dstack&#39;, &#39;dtype&#39;, &#39;e&#39;, &#39;ediff1d&#39;, &#39;einsum&#39;, &#39;einsum_path&#39;, &#39;emath&#39;, &#39;empty&#39;, &#39;empty_like&#39;, &#39;equal&#39;, &#39;errstate&#39;, &#39;euler_gamma&#39;, &#39;exp&#39;, &#39;exp2&#39;, &#39;expand_dims&#39;, &#39;expm1&#39;, &#39;extract&#39;, &#39;eye&#39;, &#39;fabs&#39;, &#39;fastCopyAndTranspose&#39;, &#39;fft&#39;, &#39;fill_diagonal&#39;, &#39;find_common_type&#39;, &#39;finfo&#39;, &#39;fix&#39;, &#39;flatiter&#39;, &#39;flatnonzero&#39;, &#39;flexible&#39;, &#39;flip&#39;, &#39;fliplr&#39;, &#39;flipud&#39;, &#39;float&#39;, &#39;float128&#39;, &#39;float16&#39;, &#39;float32&#39;, &#39;float64&#39;, &#39;float_&#39;, &#39;float_power&#39;, &#39;floating&#39;, &#39;floor&#39;, &#39;floor_divide&#39;, &#39;fmax&#39;, &#39;fmin&#39;, &#39;fmod&#39;, &#39;format_parser&#39;, &#39;frexp&#39;, &#39;frombuffer&#39;, &#39;fromfile&#39;, &#39;fromfunction&#39;, &#39;fromiter&#39;, &#39;frompyfunc&#39;, &#39;fromregex&#39;, &#39;fromstring&#39;, &#39;full&#39;, &#39;full_like&#39;, &#39;fv&#39;, &#39;generic&#39;, &#39;genfromtxt&#39;, &#39;geomspace&#39;, &#39;get_array_wrap&#39;, &#39;get_include&#39;, &#39;get_printoptions&#39;, &#39;getbuffer&#39;, &#39;getbufsize&#39;, &#39;geterr&#39;, &#39;geterrcall&#39;, &#39;geterrobj&#39;, &#39;gradient&#39;, &#39;greater&#39;, &#39;greater_equal&#39;, &#39;half&#39;, &#39;hamming&#39;, &#39;hanning&#39;, &#39;heaviside&#39;, &#39;histogram&#39;, &#39;histogram2d&#39;, &#39;histogramdd&#39;, &#39;hsplit&#39;, &#39;hstack&#39;, &#39;hypot&#39;, &#39;i0&#39;, &#39;identity&#39;, &#39;iinfo&#39;, &#39;imag&#39;, &#39;in1d&#39;, &#39;index_exp&#39;, &#39;indices&#39;, &#39;inexact&#39;, &#39;inf&#39;, &#39;info&#39;, &#39;infty&#39;, &#39;inner&#39;, &#39;insert&#39;, &#39;int&#39;, &#39;int0&#39;, &#39;int16&#39;, &#39;int32&#39;, &#39;int64&#39;, &#39;int8&#39;, &#39;int_&#39;, &#39;int_asbuffer&#39;, &#39;intc&#39;, &#39;integer&#39;, &#39;interp&#39;, &#39;intersect1d&#39;, &#39;intp&#39;, &#39;invert&#39;, &#39;ipmt&#39;, &#39;irr&#39;, &#39;is_busday&#39;, &#39;isclose&#39;, &#39;iscomplex&#39;, &#39;iscomplexobj&#39;, &#39;isfinite&#39;, &#39;isfortran&#39;, &#39;isin&#39;, &#39;isinf&#39;, &#39;isnan&#39;, &#39;isnat&#39;, &#39;isneginf&#39;, &#39;isposinf&#39;, &#39;isreal&#39;, &#39;isrealobj&#39;, &#39;isscalar&#39;, &#39;issctype&#39;, &#39;issubclass_&#39;, &#39;issubdtype&#39;, &#39;issubsctype&#39;, &#39;iterable&#39;, &#39;ix_&#39;, &#39;kaiser&#39;, &#39;kron&#39;, &#39;ldexp&#39;, &#39;left_shift&#39;, &#39;less&#39;, &#39;less_equal&#39;, &#39;lexsort&#39;, &#39;lib&#39;, &#39;linalg&#39;, &#39;linspace&#39;, &#39;little_endian&#39;, &#39;load&#39;, &#39;loads&#39;, &#39;loadtxt&#39;, &#39;log&#39;, &#39;log10&#39;, &#39;log1p&#39;, &#39;log2&#39;, &#39;logaddexp&#39;, &#39;logaddexp2&#39;, &#39;logical_and&#39;, &#39;logical_not&#39;, &#39;logical_or&#39;, &#39;logical_xor&#39;, &#39;logspace&#39;, &#39;long&#39;, &#39;longcomplex&#39;, &#39;longdouble&#39;, &#39;longfloat&#39;, &#39;longlong&#39;, &#39;lookfor&#39;, &#39;ma&#39;, &#39;mafromtxt&#39;, &#39;mask_indices&#39;, &#39;mat&#39;, &#39;math&#39;, &#39;matmul&#39;, &#39;matrix&#39;, &#39;matrixlib&#39;, &#39;max&#39;, &#39;maximum&#39;, &#39;maximum_sctype&#39;, &#39;may_share_memory&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;memmap&#39;, &#39;meshgrid&#39;, &#39;mgrid&#39;, &#39;min&#39;, &#39;min_scalar_type&#39;, &#39;minimum&#39;, &#39;mintypecode&#39;, &#39;mirr&#39;, &#39;mod&#39;, &#39;modf&#39;, &#39;moveaxis&#39;, &#39;msort&#39;, &#39;multiply&#39;, &#39;nan&#39;, &#39;nan_to_num&#39;, &#39;nanargmax&#39;, &#39;nanargmin&#39;, &#39;nancumprod&#39;, &#39;nancumsum&#39;, &#39;nanmax&#39;, &#39;nanmean&#39;, &#39;nanmedian&#39;, &#39;nanmin&#39;, &#39;nanpercentile&#39;, &#39;nanprod&#39;, &#39;nanstd&#39;, &#39;nansum&#39;, &#39;nanvar&#39;, &#39;nbytes&#39;, &#39;ndarray&#39;, &#39;ndenumerate&#39;, &#39;ndfromtxt&#39;, &#39;ndim&#39;, &#39;ndindex&#39;, &#39;nditer&#39;, &#39;negative&#39;, &#39;nested_iters&#39;, &#39;newaxis&#39;, &#39;newbuffer&#39;, &#39;nextafter&#39;, &#39;nonzero&#39;, &#39;not_equal&#39;, &#39;nper&#39;, &#39;npv&#39;, &#39;numarray&#39;, &#39;number&#39;, &#39;obj2sctype&#39;, &#39;object&#39;, &#39;object0&#39;, &#39;object_&#39;, &#39;ogrid&#39;, &#39;oldnumeric&#39;, &#39;ones&#39;, &#39;ones_like&#39;, &#39;outer&#39;, &#39;packbits&#39;, &#39;pad&#39;, &#39;partition&#39;, &#39;percentile&#39;, &#39;pi&#39;, &#39;piecewise&#39;, &#39;pkgload&#39;, &#39;place&#39;, &#39;pmt&#39;, &#39;poly&#39;, &#39;poly1d&#39;, &#39;polyadd&#39;, &#39;polyder&#39;, &#39;polydiv&#39;, &#39;polyfit&#39;, &#39;polyint&#39;, &#39;polymul&#39;, &#39;polynomial&#39;, &#39;polysub&#39;, &#39;polyval&#39;, &#39;positive&#39;, &#39;power&#39;, &#39;ppmt&#39;, &#39;print_function&#39;, &#39;prod&#39;, &#39;product&#39;, &#39;promote_types&#39;, &#39;ptp&#39;, &#39;put&#39;, &#39;putmask&#39;, &#39;pv&#39;, &#39;r_&#39;, &#39;rad2deg&#39;, &#39;radians&#39;, &#39;random&#39;, &#39;rank&#39;, &#39;rate&#39;, &#39;ravel&#39;, &#39;ravel_multi_index&#39;, &#39;real&#39;, &#39;real_if_close&#39;, &#39;rec&#39;, &#39;recarray&#39;, &#39;recfromcsv&#39;, &#39;recfromtxt&#39;, &#39;reciprocal&#39;, &#39;record&#39;, &#39;remainder&#39;, &#39;repeat&#39;, &#39;require&#39;, &#39;reshape&#39;, &#39;resize&#39;, &#39;result_type&#39;, &#39;right_shift&#39;, &#39;rint&#39;, &#39;roll&#39;, &#39;rollaxis&#39;, &#39;roots&#39;, &#39;rot90&#39;, &#39;round&#39;, &#39;round_&#39;, &#39;row_stack&#39;, &#39;s_&#39;, &#39;safe_eval&#39;, &#39;save&#39;, &#39;savetxt&#39;, &#39;savez&#39;, &#39;savez_compressed&#39;, &#39;sctype2char&#39;, &#39;sctypeDict&#39;, &#39;sctypeNA&#39;, &#39;sctypes&#39;, &#39;searchsorted&#39;, &#39;select&#39;, &#39;set_numeric_ops&#39;, &#39;set_printoptions&#39;, &#39;set_string_function&#39;, &#39;setbufsize&#39;, &#39;setdiff1d&#39;, &#39;seterr&#39;, &#39;seterrcall&#39;, &#39;seterrobj&#39;, &#39;setxor1d&#39;, &#39;shape&#39;, &#39;shares_memory&#39;, &#39;short&#39;, &#39;show_config&#39;, &#39;sign&#39;, &#39;signbit&#39;, &#39;signedinteger&#39;, &#39;sin&#39;, &#39;sinc&#39;, &#39;single&#39;, &#39;singlecomplex&#39;, &#39;sinh&#39;, &#39;size&#39;, &#39;sometrue&#39;, &#39;sort&#39;, &#39;sort_complex&#39;, &#39;source&#39;, &#39;spacing&#39;, &#39;split&#39;, &#39;sqrt&#39;, &#39;square&#39;, &#39;squeeze&#39;, &#39;stack&#39;, &#39;std&#39;, &#39;str&#39;, &#39;str_&#39;, &#39;string0&#39;, &#39;string_&#39;, &#39;subtract&#39;, &#39;sum&#39;, &#39;swapaxes&#39;, &#39;sys&#39;, &#39;take&#39;, &#39;tan&#39;, &#39;tanh&#39;, &#39;tensordot&#39;, &#39;test&#39;, &#39;testing&#39;, &#39;tile&#39;, &#39;timedelta64&#39;, &#39;trace&#39;, &#39;tracemalloc_domain&#39;, &#39;transpose&#39;, &#39;trapz&#39;, &#39;tri&#39;, &#39;tril&#39;, &#39;tril_indices&#39;, &#39;tril_indices_from&#39;, &#39;trim_zeros&#39;, &#39;triu&#39;, &#39;triu_indices&#39;, &#39;triu_indices_from&#39;, &#39;true_divide&#39;, &#39;trunc&#39;, &#39;typeDict&#39;, &#39;typeNA&#39;, &#39;typecodes&#39;, &#39;typename&#39;, &#39;ubyte&#39;, &#39;ufunc&#39;, &#39;uint&#39;, &#39;uint0&#39;, &#39;uint16&#39;, &#39;uint32&#39;, &#39;uint64&#39;, &#39;uint8&#39;, &#39;uintc&#39;, &#39;uintp&#39;, &#39;ulonglong&#39;, &#39;unicode&#39;, &#39;unicode0&#39;, &#39;unicode_&#39;, &#39;union1d&#39;, &#39;unique&#39;, &#39;unpackbits&#39;, &#39;unravel_index&#39;, &#39;unsignedinteger&#39;, &#39;unwrap&#39;, &#39;ushort&#39;, &#39;vander&#39;, &#39;var&#39;, &#39;vdot&#39;, &#39;vectorize&#39;, &#39;version&#39;, &#39;void&#39;, &#39;void0&#39;, &#39;vsplit&#39;, &#39;vstack&#39;, &#39;warnings&#39;, &#39;where&#39;, &#39;who&#39;, &#39;zeros&#39;, &#39;zeros_like&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>We can also use the ```dir``` command without an argument to see what's in our notebook's global 'namespace':
-
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">())</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># test again:</span>
+<span class="n">ds_data</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[::</span><span class="mi">200</span><span class="p">],</span> <span class="n">ds_data</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -12040,10 +12517,295 @@ div#notebook {
 <div class="output_area">
 <div class="prompt"></div>
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;In&#39;, &#39;Out&#39;, &#39;_&#39;, &#39;_2&#39;, &#39;_3&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;_dh&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i2&#39;, &#39;_i3&#39;, &#39;_i4&#39;, &#39;_i5&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;_sh&#39;, &#39;atexit&#39;, &#39;exit&#39;, &#39;get_ipython&#39;, &#39;historyPath&#39;, &#39;numpy&#39;, &#39;os&#39;, &#39;quit&#39;, &#39;readline&#39;, &#39;rlcompleter&#39;, &#39;save_history&#39;]
-</pre>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
+
 </div>
 
 </div>
@@ -12056,22 +12818,26 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>Most of these are behind-the-scenes variables that your kernel is using to keep track of command history or other low-level attributes.
+Good so far, but there are some issues with this approach:
 
-<p>At this point, the only variable we've actually declared is ```numpy```
+<ul>
+<li>Often we will want to encapsulate multiple files and make them appear as a single module.
+<li>If we distribute this code, we will at least want to include a README to explain what it's about, so I'd really like my module to live inside its own folder.
+</ul>
 
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>**Importing specific functions from a module**
-<p>Another importing option is to import the specific functions that you need from a libary
+<br>
+<hr>
+So now we are going to turn this module into a <i>package</i>, which is really just a collection of modules inside a folder, along with some Python glue.
+<ol>
+<li>Make a new folder, in the same location as this notebook, called `my_package`
+<li>Move `my_module.py` into this new folder
+<li>Create an empty text file called `__init__.py` inside `my_package`. (note the double underscores)
+</ol>
+<br>
+The `__init__.py` file is a hint to Python that tells it "this folder is a package that can be imported".
+
+<hr>
+Now let's try importing from the new package:
 
 </div>
 </div>
@@ -12082,7 +12848,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">pi</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">my_package.my_module</span> <span class="kn">import</span> <span class="n">downsample</span>
 </pre></div>
 
 </div>
@@ -12090,24 +12856,14 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>Note that, if we now look at the global namespace using ```dir```, the two names that we've just imported are now visible, which means that they're globally accessible.
-
-</div>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">())</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># test again:</span>
+<span class="n">ds_data</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[::</span><span class="mi">200</span><span class="p">],</span> <span class="n">ds_data</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -12121,22 +12877,324 @@ div#notebook {
 <div class="output_area">
 <div class="prompt"></div>
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;In&#39;, &#39;Out&#39;, &#39;_&#39;, &#39;_2&#39;, &#39;_3&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;_dh&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i2&#39;, &#39;_i3&#39;, &#39;_i4&#39;, &#39;_i5&#39;, &#39;_i6&#39;, &#39;_i7&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;_sh&#39;, &#39;atexit&#39;, &#39;cos&#39;, &#39;exit&#39;, &#39;get_ipython&#39;, &#39;historyPath&#39;, &#39;numpy&#39;, &#39;os&#39;, &#39;pi&#39;, &#39;quit&#39;, &#39;readline&#39;, &#39;rlcompleter&#39;, &#39;save_history&#39;]
-</pre>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
+
 </div>
 
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<h3>A note about namespaces</h3>
+
+<p>Each python <i>file</i> that you work with has its own isolated namespace. That means we could write `x=1` inside the module, and `x=2` inside this notebook, and the two names will <i>not</i> collide; each `x` variable lives in a different namespace. `import` statements are how we create a reference from one module's namespace into another.
+
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">my_package.my_module</span>
+
+<span class="c1"># my_package contains a namespace with the variable &quot;my_module&quot;</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">my_package</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12153,7 +13211,13 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>-1.0</pre>
+<pre>[&#39;__builtins__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__path__&#39;,
+ &#39;my_module&#39;]</pre>
 </div>
 
 </div>
@@ -12161,46 +13225,41 @@ div#notebook {
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>**Importing all attributes into the global namespace - A word of caution:**
-<p>It is possible to import all objects from a module:
-<pre>
-    from numpy import *
-</pre>
-
-<p>THIS IS GENERALLY DISCOURAGED. It makes a mess of your namespace, it makes it difficult to tell where any given name was defined, and it increases the likelihood of name conflicts.
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>**This is a common way to import:**
-<p>Packages can be renamed on import and standard shorthand notation has developed for various packages. For instance, Numpy is commonly imported as ```np```. Following this convention is not required, but doing so makes it makes it easier to share code.
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># my_module contains its own namespace where the &quot;downsample&quot; function is defined and numpy has been imported</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">my_package</span><span class="o">.</span><span class="n">my_module</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;__builtins__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;downsample&#39;,
+ &#39;np&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12210,7 +13269,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># The notebook we are working in contains its own namespace, which includes the name &quot;my_package&quot;,</span>
+<span class="c1"># amongst others.</span>
+<span class="nb">dir</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12222,12 +13283,58 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt"></div>
+<div class="prompt output_prompt">Out[10]:</div>
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.77245385091
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;In&#39;,
+ &#39;Out&#39;,
+ &#39;_&#39;,
+ &#39;_8&#39;,
+ &#39;_9&#39;,
+ &#39;__&#39;,
+ &#39;___&#39;,
+ &#39;__builtin__&#39;,
+ &#39;__builtins__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;_dh&#39;,
+ &#39;_i&#39;,
+ &#39;_i1&#39;,
+ &#39;_i10&#39;,
+ &#39;_i2&#39;,
+ &#39;_i3&#39;,
+ &#39;_i4&#39;,
+ &#39;_i5&#39;,
+ &#39;_i6&#39;,
+ &#39;_i7&#39;,
+ &#39;_i8&#39;,
+ &#39;_i9&#39;,
+ &#39;_ih&#39;,
+ &#39;_ii&#39;,
+ &#39;_iii&#39;,
+ &#39;_oh&#39;,
+ &#39;_sh&#39;,
+ &#39;atexit&#39;,
+ &#39;data&#39;,
+ &#39;downsample&#39;,
+ &#39;ds_data&#39;,
+ &#39;exit&#39;,
+ &#39;get_ipython&#39;,
+ &#39;historyPath&#39;,
+ &#39;my_package&#39;,
+ &#39;np&#39;,
+ &#39;os&#39;,
+ &#39;plt&#39;,
+ &#39;quit&#39;,
+ &#39;readline&#39;,
+ &#39;rlcompleter&#39;,
+ &#39;save_history&#39;,
+ &#39;t&#39;]</pre>
 </div>
+
 </div>
 
 </div>
@@ -12240,529 +13347,318 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<h2>Installing new modules</h2>
+<h2>Working with git</h2>
+<br>
+Now that we have a working package, let's start talking about version control. We are going to use `git` to record a history of all changes to all files in this package. This will enable us to do several important things:
 
-<p>Python comes with a large set of useful packages pre-installed, and Anaconda builds on those with an even larger set of computational tools. But every once in a while, we may need to install something new.
-
-<p>The most common place for developers to publish new packages is on the Python Package Index (pypi.python.org), and the easiest way to install these packages is with the `pip` command. 
-
-<p>Open a command prompt:
 <ul>
-<li>On Windows, ...
-<li>On OSX, ...
+<li>Compare the differences between versions of the code
+<li>Temporarily run other versions of the code, or revert back to an earlier version if we encounter problems
+<li>Publish our code on websites like github or bitbucket
+<li>Collaborate with others by automatically merging their changes with ours
 </ul>
 
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+<h3>First: some one-time configuration</h3>
+<br>
+This is needed only once per _machine_ that you work on. Tell git who you are:
 
-<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">$ </span><span style="color: #FFF; font-weight: bold;">pip install allensdk</span>
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">$ </span><span style="color: #FFF; font-weight: bold;">git configure --global user.name "Your Full Name"</span>
 
-Collecting allensdk
-  Downloading allensdk-0.13.2.tar.bz2 (377kB)
-    100% |████████████████████████████████| 378kB 1.5MB/s 
-. . .
-Successfully installed allensdk-0.13.2
-</div><p>We have just installed a set of tools published by the Allen Institute that will allow us to access its released data. The <code>pip</code> command automatically downloads and installs the package from pypi.python.org, as well as any other packages that it depends on.</p>
-<p>Let's make sure the package is importable:</p>
+<span style="color: #8DA; font-weight: bold;">$ </span><span style="color: #FFF; font-weight: bold;">git configure --global user.email your_email@domain.com</span> 
+</div><p>Git will use this information to annotate your commits with the correct authorship information. It is <b>not</b> used to log in to any services (like github).</p>
+<p>Next, tell git what editor you would like to use when writing commit messages. The default editor is <i>vim</i>. If you are not already comfortable using vim, pick one of the following:</p>
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">$ </span><span style="color: #FFF; font-weight: bold;">git configure --global core.editor notepad</span>   (for windows)
+
+<span style="color: #8DA; font-weight: bold;">$ </span><span style="color: #FFF; font-weight: bold;">git configure --global core.editor "open -W -n"</span>   (for OSX)
+
+<span style="color: #8DA; font-weight: bold;">$ </span><span style="color: #FFF; font-weight: bold;">git configure --global core.editor "subl -n -w"</span>   (if you like sublime)
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Definitions:</h2><p><p><b>Commit (n)</b> A snapshot of the state of all files in your project at one point in time. A commit includes some metadata:</p>
+<ul>
+<li>Author
+<li>Creation date
+<li>A short description (written by the developer)
+<li>A unique ID (SHA hash)
+<li>Parent ID(s)
+</ul><p><p><b>Commit (v)</b> To create a new commit.</p>
+<p><p><b>Repository (n)</b> A folder that contains all of the files associated with a project and the history of changes made to each file. A git repository contains a <code>.git</code> subfolder that stores all data about the history of commits and the configuration of the repository.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+<h3>Creating a new git repository</h3>
+<br>
+From a command prompt, navigate to the location of your new package:
+
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package$ </span><span style="color: #FFF; font-weight: bold;">cd [some path]/PythonBootcamp/my_package</span>
+</div><p>Note: we are using the command prompt for this tutorial, but it is possible to execute all of the same actions using GUI tools like SourceTree.</p>
 <div> <!-- NOTE: this div is a workaround for a jupyter HTML export bug --> </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">allensdk</span>
-<span class="n">allensdk</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+Create a new git repository here and list the contents of the folder:
 
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git init</span>
+Initialized empty Git repository in .../PythonBootcamp/my_package/.git/
+
+<span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package$ </span><span style="color: #FFF; font-weight: bold;">ls -al</span>
+total 24
+drwxrwxr-x 3 luke luke 4096 Jul 25 17:06 .
+drwxrwxr-x 4 luke luke 4096 Jul 25 17:05 ..
+drwxrwxr-x 7 luke luke 4096 Jul 25 17:06 .git
+-rw-rw-r-- 1 luke luke    0 Jul 25 14:58 \__init\__.py
+-rw-rw-r-- 1 luke luke  109 Jul 25 14:58 \__init\__.pyc
+-rw-rw-r-- 1 luke luke  455 Jul 25 14:45 my_module.py
+-rw-rw-r-- 1 luke luke  716 Jul 25 14:58 my_module.pyc
+</div><p>We can see that running <code>git init</code> has created a new subfolder called <code>.git</code>. This is where git will store all of our version tracking information. This command only needs to be run once when you first create a new repository.</p>
+<div> <!-- NOTE: this div is a workaround for a jupyter HTML export bug --> </div>
 </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;module &#39;allensdk&#39; from &#39;/home/luke/anaconda2/lib/python2.7/site-packages/allensdk/__init__.pyc&#39;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<h2>Module import paths</h2>
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+Now use `git status` to ask git about the current state of the repository. This is a command that we will run over and over:
 
-<p>When you imported numpy and allensdk above, you didn't need to specify the location of the module files. How did Python know where to find them?
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git status</span>
+On branch master
 
-<p>Python keeps a list of locations on your filesystem where installed packages may reside. When we ask Python to import a new module, it checks each location in the list for either a module or a package with the name you specified.
+Initial commit
 
-<p>We can access this list from the `sys` module, which is part of the Python standard library:
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+<span style="color: red;">
+        \__init\__.py
+        \__init\__.pyc
+        my_module.py
+        my_module.pyc
+</span>
+nothing added to commit but untracked files present (use "git add" to track)
+</div><p>There is a lot of information here, but for now let's focus on the "Untracked files" section. This tells us that there are a few files here that git has <em>not</em> begun tracking in this repository.</p>
+<div> <!-- NOTE: this div is a workaround for a jupyter HTML export bug --> </div>
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;&#39;,
- &#39;/home/luke/work/acq4&#39;,
- &#39;/home/luke/work/vispy/vispy&#39;,
- &#39;/home/luke/work/pyqtgraph&#39;,
- &#39;/home/luke/anaconda2/lib/python27.zip&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/plat-linux2&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/lib-tk&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/lib-old&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/lib-dynload&#39;,
- &#39;/home/luke/.local/lib/python2.7/site-packages&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/site-packages&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/site-packages/Sphinx-1.5.6-py2.7.egg&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/site-packages/setuptools-27.2.0-py2.7.egg&#39;,
- &#39;/home/luke/anaconda2/lib/python2.7/site-packages/IPython/extensions&#39;,
- &#39;/home/luke/.ipython&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>When we install new packages, their files must be added to one of the entries in `sys.path`; otherwise, they will not be importable. (We could also modify `sys.path` to include the new location of the package, but this is generally discouraged.)
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+Let's ask git to begin tracking our two .py files:
 
-<p>Let's see what happens when we try to import a module that cannot be found:
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git add \__init\__.py my_module.py</span>
+
+<span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git status</span>
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+<span style='color: green'>
+        new file:   \__init\__.py
+        new file:   my_module.py
+</span>
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+<span style='color: red'>
+        \__init\__.pyc
+        my_module.pyc
+</span>
+</div><p>Now we can see that the files we added are listed under "Changes to be committed" instead of "Untracked files". We are ready to create our first commit. After running this command, you should be presented with a text editor containing information about the changes that are being committed. Write a short message explaining the purpose of this commit at the top of the file ("initial commit" is common for the first commit), then save and exit the editor.</p>
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git commit</span>
+[master (root-commit) 2ddcf4c] Initial commit
+ 2 files changed, 18 insertions(+)
+ create mode 100644 \__init\__.py
+ create mode 100644 my_module.py
+</div><p>Run <code>git status</code> again to verify that there are no more "Changes to be committed" and our two .py files are no longer listed under "Untracked files".</p>
+<p>You have just created a commit. This is a snapshot of the current state of the files in the repository (just our two .py files). At any time, we will be able to return to this snapshot if we want.</p>
+<div> <!-- NOTE: this div is a workaround for a jupyter HTML export bug --> </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">not_a_real_module</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+<h3>Adding more commits</h3>
+<br>
+We will now go through the motions of editing and committing code changes a few times. The basic workflow will be:
 
-</div>
-</div>
-</div>
+<ol>
+<li>Make changes
+<li>`git status`
+<li>`git diff`
+<li>`git add`
+<li>`git commit`
+</ol>
 
-<div class="output_wrapper">
-<div class="output">
+In your code editor, go back to `my_module.py` and add some more detail to the docstring:
 
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-13-3349da4cbe52&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> not_a_real_module
-
-<span class="ansi-red-fg">ImportError</span>: No module named not_a_real_module</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>The error above is a common source of frustration for Python beginners, and it happens most frequently when there are multiple Python environments installed on a machine. When we install new packages, it is important to be aware of <i>which environment</i> the package is being installed into. Find the actual installed location of the module files, and verify that these are indeed in your `sys.path`. 
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 3.1:**
-<p>Find the location of the allensdk module on your disk and verify that it is in `sys.path`.
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<h2>Using the OS module for dealing with paths, filenames and other miscellaneous operating system functions</h2>
-
-<p>Directories (folders) and files on your hard drives(s) are organized in a tree structure. Nodes are directories and files, while edges indicate containment. As you navigate from directory to directory, you trace out a path through this tree. Paths can be represented as strings like this in Linux and Mac:
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;`path = "/folder_a/folder_b/file.name"`
-
-<p>And like this on Windows:
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;`path = "C:\\folder_a\\folder_b\\file.name"`
-
-<p>We use these path strings when instructing Python to read and write files.
-
-<p>Dealing with paths will be substantially easier if you first import the <code>os</code> module:
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 3.2:**
-<p>`os.path.join` is a simple function that joins together multiple folder names using either a forward slash `/` or backslash `\` depending on the operating system. 
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>os.path.join('Users', 'my_username', 'my_data_folder')</code>
-
-<p>This is a convenient way to generate path names in code that you want to be portable.
-
-<p>Replace the names above with real folder names to a path on your system and see what is output:
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">name_1</span><span class="o">=</span><span class="s1">&#39;users&#39;</span>
-<span class="n">name_2</span><span class="o">=</span><span class="s1">&#39;me&#39;</span>
-<span class="n">name_3</span><span class="o">=</span><span class="s1">&#39;desktop&#39;</span>
-<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name_1</span><span class="p">,</span> <span class="n">name_2</span><span class="p">,</span> <span class="n">name_3</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>users/me/desktop
+Parameters
+----------
+data : array
+    The input array to be downsampled.
+n : int
+    Downsampling factor; this is the number of raw samples that will be averaged
+    together for each new sample.
+axis : int
+    The array axis that should be downsampled (default=0).
 </pre>
-</div>
-</div>
 
-</div>
-</div>
+Now we'd like to commit this change. First let's see what git thinks of the situation:
 
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git status</span>
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+<span style="color:red">
+        modified:   my_module.py
+</span>
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+<span style="color:red">
+        \__init\__.pyc
+        my_module.pyc
+</span>
+no changes added to commit (use "git add" and/or "git commit -a")
+
+<span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git diff</span>
+<span style="color:white">diff --git a/my_module.py b/my_module.py
+index 622a7d6..bf75c82 100644
+--- a/my_module.py
++++ b/my_module.py</span>
+<span style="color:cyan">@@ -3,6 +3,16 @@</span> import numpy as np
+ def downsample(data, n, axis=0):
+     """Reduce the number of samples in an array by averaging together
+     n samples at a time.
+<span style="color:green">+    
++    Parameters
++    ----------
++    data : array
++        The input array to be downsampled.
++    n : int
++        Downsampling factor; this is the number of raw samples that will be averaged
++        together for each new sample.
++    axis : int
++        The array axis that should be downsampled (default=0).</span>
+     """
+     if n <= 1:
+         return data
+
+</div><p>We can see by running <code>git status</code> that git can tell we have modified <code>my_module.py</code>. We have also introduced a new command here, <code>git diff</code>, which shows us exactly what has changed since the last commit.</p>
+<p>If you are satisfied that these changes are ready, then create the next commit:</p>
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git add my_module.py</span>
+
+<span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git commit</span>
+</div><p>Note that we used <code>git add</code> to "stage" the file's changes to be included in the next commit. As a shorthand, we could also have run:</p>
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git commit my_module.py</span>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>Another couple of handy functions are ```getcwd``` and ```listdir```
+<div>
+<h3>Git good practice #1: Make clean commits.</h3>
+<br>
+_Staging_ gives us finer control over which changes are included in each commit. First we tell git which changes will be included in the next commit, and then we commit all staged changes at once. In this simple example, it may seem like an unnecessary extra step. If git already knows which files have changed, why not just commit all changes automatically?
+
+<p>When working with any version control system, it is helpful for each code snapshot to introduce changes that are _complete_ and _related_. Ideally, each new commit should add one new feature, or bugfix, or concept, and the commit should not contain unfinished ideas. Why is this good practice? Sometimes we need to go back through the history of changes to find where a bug was introduced, or to revert a set of changes, or even just to understand the structure of the commit history (which can become quite complex).
+
+<p>But many of us don't program that way--we like to plow through the code, making many unrelated changes here and there. In practice, it is very easy (and common) to lose track of which files you have changed in between commits. Perhaps you added some temporary debugging code that you forgot to remove, or started a new file but forgot to ask git to track it, or forgot about an unfinished piece of code. 
+
+<p><b>Get into the habit of checking the state of your repository before each commit.</b> Run `git status` and `git diff` regularly and review your work before you commit it--errors will be much easier to catch and resolve at this stage, while you still remember why you made these changes. Make an effort to organize your changes into logical, complete commits.
+
+<p><b>BUT:</b> at the same time, balance this with the need to develop quickly; sometimes the extra organization really isn't worth the extra effort, especially when you are prototyping a new project (my commit frequency varies between once per day and several times per hour, depending on the task). Over time you will learn what works for you.
+
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;current directory:&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;files in current directory:&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+<h3>A little more commit practice</h3>
+<br>
+Let's make a few more changes:
 
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>current directory:
-/home/luke/work/allen_inst/SWDB_2017/PythonBootcamp/solutions
-
-
-files in current directory:
+<ul>
+<li>Add more documentation to the `downsample()` docstring:
+<pre>
+  ```
+  Returns
+  -------
+  array
+      An array in which each item is the average of *n* items
+      from the input *data* array.
+  ```
 </pre>
-</div>
-</div>
+<li>Create a `README` file describing the package
+<li>Create a `.gitignore` file that contains just the text: `*.pyc`
+</ul>
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
+<p>Now use `git status` and `git diff` to review the changes. Notice that creating the `.gitignore` file causes the pyc files to be omitted when running `git status`.
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;05_Custom_Modules_and_Version_Control_solutions.html&#39;,
- &#39;08_Image_data_solutions.html&#39;,
- &#39;05_Custom_Modules_and_Version_Control_solutions.ipynb&#39;,
- &#39;06_Introduction_To_Pandas_solutions.ipynb&#39;,
- &#39;03_Intro_To_Scientific_Computing_solutions.ipynb&#39;,
- &#39;my_module.py&#39;,
- &#39;02_Basic_Python_II_Control_Flow_and_Functions_solutions.html&#39;,
- &#39;05_Introduction_To_Matplotlib_solutions.html&#39;,
- &#39;06_Introduction_To_Pandas_solutions.html&#39;,
- &#39;05_Introduction_To_Matplotlib_solutions.ipynb&#39;,
- &#39;.ipynb_checkpoints&#39;,
- &#39;09_bike_crossing_solutions.html&#39;,
- &#39;my_module.pyc&#39;,
- &#39;my_package&#39;,
- &#39;my_data.npy&#39;,
- &#39;01_Basic_Python_I_Object_and_Data_Structures_solutions.html&#39;,
- &#39;03_Intro_To_Scientific_Computing_solutions.html&#39;,
- &#39;04_Introduction_To_Numpy_solutions.ipynb&#39;,
- &#39;09_bike_crossing_solutions.ipynb&#39;,
- &#39;01_Basic_Python_I_Object_and_Data_Structures_solutions.ipynb&#39;,
- &#39;08_Image_data_solutions.ipynb&#39;,
- &#39;04_Introduction_To_Numpy_solutions.html&#39;,
- &#39;02_Basic_Python_II_Control_Flow_and_Functions_solutions.ipynb&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<p>To find out if a path actually exists on your drive, use:
-<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>os.path.exists(path)</code>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 3.3:**
-<p>Create a folder called ```TempFolder``` somewhere on your local drive
+<p>Commit each of your changes, one at a time. Repeat the cycle:
 <ol>
-<li>Generate the full path using the ```os.path.join``` function
-<li>Use the ```os.path.exists``` function to ensure that the folder doesn't already exist (confirm that it returns False)
-<li>Create the directory using ```os.mkdir```
-<li>Confirm that it now exists using the ```os.path.exists``` function again
-<li>Navigate to the folder using your file explorer to confirm that it's there
+<li>git status
+<li>git diff
+<li>git add
+<li>git commit
 </ol>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">new_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;support_files&#39;</span><span class="p">,</span> <span class="s1">&#39;TempFolder&#39;</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">new_path</span><span class="p">))</span>
-
-<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">new_path</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>False
-True
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<left><h1>Print function import</h1></left>
-<p>The syntax for the ```print``` statement changed between Python 2 and Python 3. To avoid future confusion, we've elected to use the future syntax here. To explicitly set the print function into its future state, do this:
-
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;some text&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(&#39;some text&#39;, 2)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;some text&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>some text 2
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
-<left><h1>A Brief Introduction to Scipy</h1></left>
-<p>The Scipy library has a lot of useful functions for signal processing, linear algebra, statistical testing, etc. Given its breadth, and its overlap with Numpy, we've elected not to cover it in detail here.
-
+<div> <!-- NOTE: this div is a workaround for a jupyter HTML export bug --> </div>
 </div>
 </div>
 </div>
@@ -12772,34 +13668,38 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border-left: 3px solid #000; padding: 1px; padding-left: 10px; background: #F0FAFF; ">
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+<h3>Backtracking</h3>
+<br>
 
-<p>**The Scipy library has ~20 subpackages**
-<p>each subpackage contains a lot of useful functions<p>
+One of the reasons we use version control is so that we can keep track of our changes, dig through the change history, and sometimes throw out new changes that we don't want to keep. There are many differnet reasons we could explore, and many different ways to do this, but let's just focus on two common ones:
 
+<h4>1) I have made a mistake and would like to revert a file back to the state it was in at my most recent commit.</h4>
+
+<p>This is pretty common: perhaps you made some changes that you would like to abandon, or accidentally deleted a file, and you just want to restore the last committed state of that file. Start by making a change to my_module.py and saving the file. Run `git diff` to see what has changed.
+
+<p>Now discard all changes to that file using the `git checkout` command:
+
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git checkout my_module.py</span>
+</div><p><p>Presto! Your file is back to its original state. A good code editor will monitor your code file and automatically refresh whenever git makes a change.</p>
+<div> <!-- NOTE: this div is a workaround for a jupyter HTML export bug --> </div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Definitions:</h2><p><p><b>Checkout (v)</b> To <i>replace</i> the contents of the files that are currently present in the repository with the contents previously stored in a commit. This can be used to affect individual files or the entire contents of the repository at once (by checking out a commit or branch instead of a single file).</p>
+<p><p><b>Tag (n)</b> A named pointer to a commit. This is typically used to permanently mark a specific commit in a repository such as a release version, or a version referenced in a publication. Checking out a tag usign <code>git checkout tagname</code> is the same as checking out the commit that is referenced by the tag.</p>
+<p><p><b>Branch (n)</b></p>
 <ol>
-<li><b>Clustering package</b> (scipy.cluster)
-<li>Constants (scipy.constants)
-<li><b>Discrete Fourier transforms</b> (scipy.fftpack)
-<li>Integration and ODEs (scipy.integrate)
-<li>Interpolation (scipy.interpolate)
-<li>Input and output (scipy.io)
-<li><b>Linear algebra</b> (scipy.linalg)
-<li>Miscellaneous routines (scipy.misc)
-<li><b>Multi-dimensional image processing</b> (scipy.ndimage)
-<li>Orthogonal distance regression (scipy.odr)
-<li>Optimization and root finding (scipy.optimize)
-<li><b>Signal processing</b> (scipy.signal)
-<li>Sparse matrices (scipy.sparse)
-<li>Sparse linear algebra (scipy.sparse.linalg)
-<li>Compressed Sparse Graph Routines (scipy.sparse.csgraph)
-<li>Spatial algorithms and data structures (scipy.spatial)
-<li>Special functions (scipy.special)
-<li><b>Statistical functions</b> (scipy.stats)
-<li>Statistical functions for masked arrays (scipy.stats.mstats)
-<li>C/C++ integration (scipy.weave)
-</ol>
-</div>
+<li>A chain of related commits. This is <b>not</b> the definition understood by git.
+<li>A named pointer to a specific commit. Unlike tags, branches have special property that, when they are checked out using `git checkout branchname`, creating a new commit will cause the branch to be updated to point to the new commit. In this way, branches usually point to the most recent commit in any chain of commits.
+</ol><p><p><b>Branch (v)</b> To create a new branch using <code>git branch</code>.</p>
+
 </div>
 </div>
 </div>
@@ -12808,12 +13708,61 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="background: #DFF0D8; border-radius: 3px; padding: 10px;">
-<p>**Exercise 3.4:**
-<p>Spend a few minutes exploring the scipy documnention here:
-<p>&nbsp;&nbsp;&nbsp;&nbsp;http://docs.scipy.org/doc/scipy/reference/
+<div style="border-left: 3px solid #000; border-top: 1px solid #DDD; padding: 20px; padding-left: 10px; background: #F0FAFF; ">
+<h4>2) I'm deep in developing a new feature. Right now all of my code is broken and I just want to run an older version of my code, and then return to developing my feature.</h4>
 
+<p>Here's how we will handle this:
+<ol>
+<li>Commit all of our pending changes, if we are at a good stopping place. If not, use `git stash` to make a <i>temporary</i> commit that we can come back to and finish later.
+<li><i>Check out</i> an old commit where things were working well
+<li>Check out our latest commit, use `git stash pop` to restore the changes we were working on, and continue working
+</ol>
 
+<p>Start by making some changes to my_module.py that will prevent it from running. You are deep in thought, but a colleague has just approached and asked for a demo of your code (which is currently broken). 
+
+<p>Stash your changes with `git stash` 
+
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git stash</span>
+Saved working directory and index state WIP on master: 31f49fb Add more documentation
+HEAD is now at 31f49fb Add more documentation
+</div><p><p>Running git stash has taken all of your work in progress (including anything staged) and turned it into a temporary commit. Look back at your code editor; you should find that the changes you began are now gone. If this makes you nervous, remember: <i>git</i> is in control of your code, not your editor.</p>
+<p><p>Now that the working tree is clean (there are no uncommitted changes lying around), we are free to "check out" any previous commit to see what the code looked like at that time. In gitk, click on the initial commit and look at the SHA value. This is a long hexadecimal number that we can use as a unique identifier for this particular commit. Use the <code>git checkout</code> command to roll back the current state of the repository to our first commit:</p>
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git checkout f6dfa278</span>   (write in the first few digits of your SHA)
+Note: checking out 'f6dfa278'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at f6dfa27... Initial commit
+</div><p>Now:</p>
+<ul>
+<li>Press F5 in gitk to see what has changed: "master" still points to the same place, and our stash is still in place, but the initial commit line is highlighted in bold to indicate that it is currently checked out.
+<li>Look at your code editor and note that our docstring changes are gone.
+<li>Run `ls` from the command line and note that the README and .gitignore files are gone.
+</ul><p><p>From here, we can demo the code as it functioned when it was first committed. When we are ready to resume developing, we check out the latest commit, and then unstash the changes we were working on:</p>
+<div style='color: #CCC; background-color: #000; font-family: monospace; white-space: pre; padding: 15px; margin: 10px; margin-left: 30px'><span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package ((HEAD detached at f6dfa27))$ </span><span style="color: #FFF; font-weight: bold;">git checkout master</span>
+Previous HEAD position was f6dfa27... Initial commit
+Switched to branch 'master'
+
+<span style="color: #8DA; font-weight: bold;">PythonBootcamp/my_package (master)$ </span><span style="color: #FFF; font-weight: bold;">git stash pop</span>
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+<span style="color:red">
+        modified:   my_module.py
+</span>
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (f0dce4f101f17bf602e0b002ab10bd20877817e1)
+</div><p><p>Note: when we checked out the initial commit using its SHA ID, we were given a warning that "You are in 'detached HEAD' state." and the prompt changed from (master) to ((HEAD detached at f6dfa27)). What's going on here? We said earlier that when a branch (like master) is checked out, it automatically updates to point to the last commit you have made. A branch is the pointer that keeps track of your progress. When you check out a commit (using its SHA ID or tag name), there is no longer any automated mechanism that tracks this progress for you. You can still make commits, but there will be no branch pointing to those commits to remind you of what your were working on.</p>
+<p><p>The practical takeaway is: if you don't have a branch checked out (if your HEAD is detached), you probably should not change any files or make new commits, because these commits will not have a branch name associated with them and are likely to be lost.</p>
+<div> <!-- NOTE: this div is a workaround for a jupyter HTML export bug --> </div>
 </div>
 </div>
 </div>
