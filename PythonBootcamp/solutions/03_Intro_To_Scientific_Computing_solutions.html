@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>03_Intro_To_Scientific_Computing_solutions</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>03_Intro_To_Scientific_Computing_solutions</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11,8 +13,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1107,6 +1109,7 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2535,6 +2538,7 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3025,6 +3029,7 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
+  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8755,9 +8760,6 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
-[dir="rtl"] #ipython_notebook {
-  float: right !important;
-}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8960,14 +8962,8 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
-[dir="rtl"] #tabs li {
-  float: right;
-}
 ul#tabs {
   margin-bottom: 4px;
-}
-[dir="rtl"] ul#tabs {
-  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8990,16 +8986,6 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
-}
-[dir="rtl"] .list_toolbar .tree-buttons {
-  float: left !important;
-}
-[dir="rtl"] .list_toolbar .pull-right {
-  padding-top: 1px;
-  float: left !important;
-}
-[dir="rtl"] .list_toolbar .pull-left {
-  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9136,9 +9122,6 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
-[dir="rtl"] #tree-selector a {
-  float: right;
-}
 #button-select-all {
   min-width: 50px;
 }
@@ -9228,9 +9211,6 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
-[dir="rtl"] #new-menu {
-  text-align: right;
-}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9275,9 +9255,6 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
-}
-[dir="rtl"] #running .col-sm-8 {
-  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9574,7 +9551,6 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
-  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9595,6 +9571,11 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
+}
+@-moz-document url-prefix() {
+  div.inner_cell {
+    overflow-x: hidden;
+  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11265,7 +11246,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 21ex;
+  width: 20ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11577,7 +11558,6 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
-  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11591,9 +11571,6 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
-}
-.terminal-app .terminal .xterm-rows {
-  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11654,10 +11631,8 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11668,11 +11643,9 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11780,7 +11753,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="../support_files/cropped-SummerWorkshop_Header.png"></p>
 <p><h1 align="center">Python Bootcamp</h1></p>
-<h3 align="center">August 20-21, 2016</h3>
+<h3 align="center">August 19-20, 2017</h3>
 </div>
 </div>
 </div>
@@ -11909,9 +11882,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[2]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11952,9 +11923,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[3]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11996,9 +11965,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[&#39;ALLOW_THREADS&#39;, &#39;AxisError&#39;, &#39;BUFSIZE&#39;, &#39;CLIP&#39;, &#39;ComplexWarning&#39;, &#39;DataSource&#39;, &#39;ERR_CALL&#39;, &#39;ERR_DEFAULT&#39;, &#39;ERR_IGNORE&#39;, &#39;ERR_LOG&#39;, &#39;ERR_PRINT&#39;, &#39;ERR_RAISE&#39;, &#39;ERR_WARN&#39;, &#39;FLOATING_POINT_SUPPORT&#39;, &#39;FPE_DIVIDEBYZERO&#39;, &#39;FPE_INVALID&#39;, &#39;FPE_OVERFLOW&#39;, &#39;FPE_UNDERFLOW&#39;, &#39;False_&#39;, &#39;Inf&#39;, &#39;Infinity&#39;, &#39;MAXDIMS&#39;, &#39;MAY_SHARE_BOUNDS&#39;, &#39;MAY_SHARE_EXACT&#39;, &#39;MachAr&#39;, &#39;ModuleDeprecationWarning&#39;, &#39;NAN&#39;, &#39;NINF&#39;, &#39;NZERO&#39;, &#39;NaN&#39;, &#39;PINF&#39;, &#39;PZERO&#39;, &#39;PackageLoader&#39;, &#39;RAISE&#39;, &#39;RankWarning&#39;, &#39;SHIFT_DIVIDEBYZERO&#39;, &#39;SHIFT_INVALID&#39;, &#39;SHIFT_OVERFLOW&#39;, &#39;SHIFT_UNDERFLOW&#39;, &#39;ScalarType&#39;, &#39;Tester&#39;, &#39;TooHardError&#39;, &#39;True_&#39;, &#39;UFUNC_BUFSIZE_DEFAULT&#39;, &#39;UFUNC_PYVALS_NAME&#39;, &#39;VisibleDeprecationWarning&#39;, &#39;WRAP&#39;, &#39;_NoValue&#39;, &#39;__NUMPY_SETUP__&#39;, &#39;__all__&#39;, &#39;__builtins__&#39;, &#39;__config__&#39;, &#39;__doc__&#39;, &#39;__file__&#39;, &#39;__git_revision__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__path__&#39;, &#39;__version__&#39;, &#39;_distributor_init&#39;, &#39;_globals&#39;, &#39;_import_tools&#39;, &#39;_mat&#39;, &#39;abs&#39;, &#39;absolute&#39;, &#39;absolute_import&#39;, &#39;add&#39;, &#39;add_docstring&#39;, &#39;add_newdoc&#39;, &#39;add_newdoc_ufunc&#39;, &#39;add_newdocs&#39;, &#39;alen&#39;, &#39;all&#39;, &#39;allclose&#39;, &#39;alltrue&#39;, &#39;amax&#39;, &#39;amin&#39;, &#39;angle&#39;, &#39;any&#39;, &#39;append&#39;, &#39;apply_along_axis&#39;, &#39;apply_over_axes&#39;, &#39;arange&#39;, &#39;arccos&#39;, &#39;arccosh&#39;, &#39;arcsin&#39;, &#39;arcsinh&#39;, &#39;arctan&#39;, &#39;arctan2&#39;, &#39;arctanh&#39;, &#39;argmax&#39;, &#39;argmin&#39;, &#39;argpartition&#39;, &#39;argsort&#39;, &#39;argwhere&#39;, &#39;around&#39;, &#39;array&#39;, &#39;array2string&#39;, &#39;array_equal&#39;, &#39;array_equiv&#39;, &#39;array_repr&#39;, &#39;array_split&#39;, &#39;array_str&#39;, &#39;asanyarray&#39;, &#39;asarray&#39;, &#39;asarray_chkfinite&#39;, &#39;ascontiguousarray&#39;, &#39;asfarray&#39;, &#39;asfortranarray&#39;, &#39;asmatrix&#39;, &#39;asscalar&#39;, &#39;atleast_1d&#39;, &#39;atleast_2d&#39;, &#39;atleast_3d&#39;, &#39;average&#39;, &#39;bartlett&#39;, &#39;base_repr&#39;, &#39;bench&#39;, &#39;binary_repr&#39;, &#39;bincount&#39;, &#39;bitwise_and&#39;, &#39;bitwise_not&#39;, &#39;bitwise_or&#39;, &#39;bitwise_xor&#39;, &#39;blackman&#39;, &#39;block&#39;, &#39;bmat&#39;, &#39;bool&#39;, &#39;bool8&#39;, &#39;bool_&#39;, &#39;broadcast&#39;, &#39;broadcast_arrays&#39;, &#39;broadcast_to&#39;, &#39;busday_count&#39;, &#39;busday_offset&#39;, &#39;busdaycalendar&#39;, &#39;byte&#39;, &#39;byte_bounds&#39;, &#39;bytes_&#39;, &#39;c_&#39;, &#39;can_cast&#39;, &#39;cast&#39;, &#39;cbrt&#39;, &#39;cdouble&#39;, &#39;ceil&#39;, &#39;cfloat&#39;, &#39;char&#39;, &#39;character&#39;, &#39;chararray&#39;, &#39;choose&#39;, &#39;clip&#39;, &#39;clongdouble&#39;, &#39;clongfloat&#39;, &#39;column_stack&#39;, &#39;common_type&#39;, &#39;compare_chararrays&#39;, &#39;compat&#39;, &#39;complex&#39;, &#39;complex128&#39;, &#39;complex256&#39;, &#39;complex64&#39;, &#39;complex_&#39;, &#39;complexfloating&#39;, &#39;compress&#39;, &#39;concatenate&#39;, &#39;conj&#39;, &#39;conjugate&#39;, &#39;convolve&#39;, &#39;copy&#39;, &#39;copysign&#39;, &#39;copyto&#39;, &#39;core&#39;, &#39;corrcoef&#39;, &#39;correlate&#39;, &#39;cos&#39;, &#39;cosh&#39;, &#39;count_nonzero&#39;, &#39;cov&#39;, &#39;cross&#39;, &#39;csingle&#39;, &#39;ctypeslib&#39;, &#39;cumprod&#39;, &#39;cumproduct&#39;, &#39;cumsum&#39;, &#39;datetime64&#39;, &#39;datetime_as_string&#39;, &#39;datetime_data&#39;, &#39;deg2rad&#39;, &#39;degrees&#39;, &#39;delete&#39;, &#39;deprecate&#39;, &#39;deprecate_with_doc&#39;, &#39;diag&#39;, &#39;diag_indices&#39;, &#39;diag_indices_from&#39;, &#39;diagflat&#39;, &#39;diagonal&#39;, &#39;diff&#39;, &#39;digitize&#39;, &#39;disp&#39;, &#39;divide&#39;, &#39;division&#39;, &#39;divmod&#39;, &#39;dot&#39;, &#39;double&#39;, &#39;dsplit&#39;, &#39;dstack&#39;, &#39;dtype&#39;, &#39;e&#39;, &#39;ediff1d&#39;, &#39;einsum&#39;, &#39;einsum_path&#39;, &#39;emath&#39;, &#39;empty&#39;, &#39;empty_like&#39;, &#39;equal&#39;, &#39;errstate&#39;, &#39;euler_gamma&#39;, &#39;exp&#39;, &#39;exp2&#39;, &#39;expand_dims&#39;, &#39;expm1&#39;, &#39;extract&#39;, &#39;eye&#39;, &#39;fabs&#39;, &#39;fastCopyAndTranspose&#39;, &#39;fft&#39;, &#39;fill_diagonal&#39;, &#39;find_common_type&#39;, &#39;finfo&#39;, &#39;fix&#39;, &#39;flatiter&#39;, &#39;flatnonzero&#39;, &#39;flexible&#39;, &#39;flip&#39;, &#39;fliplr&#39;, &#39;flipud&#39;, &#39;float&#39;, &#39;float128&#39;, &#39;float16&#39;, &#39;float32&#39;, &#39;float64&#39;, &#39;float_&#39;, &#39;float_power&#39;, &#39;floating&#39;, &#39;floor&#39;, &#39;floor_divide&#39;, &#39;fmax&#39;, &#39;fmin&#39;, &#39;fmod&#39;, &#39;format_parser&#39;, &#39;frexp&#39;, &#39;frombuffer&#39;, &#39;fromfile&#39;, &#39;fromfunction&#39;, &#39;fromiter&#39;, &#39;frompyfunc&#39;, &#39;fromregex&#39;, &#39;fromstring&#39;, &#39;full&#39;, &#39;full_like&#39;, &#39;fv&#39;, &#39;generic&#39;, &#39;genfromtxt&#39;, &#39;geomspace&#39;, &#39;get_array_wrap&#39;, &#39;get_include&#39;, &#39;get_printoptions&#39;, &#39;getbuffer&#39;, &#39;getbufsize&#39;, &#39;geterr&#39;, &#39;geterrcall&#39;, &#39;geterrobj&#39;, &#39;gradient&#39;, &#39;greater&#39;, &#39;greater_equal&#39;, &#39;half&#39;, &#39;hamming&#39;, &#39;hanning&#39;, &#39;heaviside&#39;, &#39;histogram&#39;, &#39;histogram2d&#39;, &#39;histogramdd&#39;, &#39;hsplit&#39;, &#39;hstack&#39;, &#39;hypot&#39;, &#39;i0&#39;, &#39;identity&#39;, &#39;iinfo&#39;, &#39;imag&#39;, &#39;in1d&#39;, &#39;index_exp&#39;, &#39;indices&#39;, &#39;inexact&#39;, &#39;inf&#39;, &#39;info&#39;, &#39;infty&#39;, &#39;inner&#39;, &#39;insert&#39;, &#39;int&#39;, &#39;int0&#39;, &#39;int16&#39;, &#39;int32&#39;, &#39;int64&#39;, &#39;int8&#39;, &#39;int_&#39;, &#39;int_asbuffer&#39;, &#39;intc&#39;, &#39;integer&#39;, &#39;interp&#39;, &#39;intersect1d&#39;, &#39;intp&#39;, &#39;invert&#39;, &#39;ipmt&#39;, &#39;irr&#39;, &#39;is_busday&#39;, &#39;isclose&#39;, &#39;iscomplex&#39;, &#39;iscomplexobj&#39;, &#39;isfinite&#39;, &#39;isfortran&#39;, &#39;isin&#39;, &#39;isinf&#39;, &#39;isnan&#39;, &#39;isnat&#39;, &#39;isneginf&#39;, &#39;isposinf&#39;, &#39;isreal&#39;, &#39;isrealobj&#39;, &#39;isscalar&#39;, &#39;issctype&#39;, &#39;issubclass_&#39;, &#39;issubdtype&#39;, &#39;issubsctype&#39;, &#39;iterable&#39;, &#39;ix_&#39;, &#39;kaiser&#39;, &#39;kron&#39;, &#39;ldexp&#39;, &#39;left_shift&#39;, &#39;less&#39;, &#39;less_equal&#39;, &#39;lexsort&#39;, &#39;lib&#39;, &#39;linalg&#39;, &#39;linspace&#39;, &#39;little_endian&#39;, &#39;load&#39;, &#39;loads&#39;, &#39;loadtxt&#39;, &#39;log&#39;, &#39;log10&#39;, &#39;log1p&#39;, &#39;log2&#39;, &#39;logaddexp&#39;, &#39;logaddexp2&#39;, &#39;logical_and&#39;, &#39;logical_not&#39;, &#39;logical_or&#39;, &#39;logical_xor&#39;, &#39;logspace&#39;, &#39;long&#39;, &#39;longcomplex&#39;, &#39;longdouble&#39;, &#39;longfloat&#39;, &#39;longlong&#39;, &#39;lookfor&#39;, &#39;ma&#39;, &#39;mafromtxt&#39;, &#39;mask_indices&#39;, &#39;mat&#39;, &#39;math&#39;, &#39;matmul&#39;, &#39;matrix&#39;, &#39;matrixlib&#39;, &#39;max&#39;, &#39;maximum&#39;, &#39;maximum_sctype&#39;, &#39;may_share_memory&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;memmap&#39;, &#39;meshgrid&#39;, &#39;mgrid&#39;, &#39;min&#39;, &#39;min_scalar_type&#39;, &#39;minimum&#39;, &#39;mintypecode&#39;, &#39;mirr&#39;, &#39;mod&#39;, &#39;modf&#39;, &#39;moveaxis&#39;, &#39;msort&#39;, &#39;multiply&#39;, &#39;nan&#39;, &#39;nan_to_num&#39;, &#39;nanargmax&#39;, &#39;nanargmin&#39;, &#39;nancumprod&#39;, &#39;nancumsum&#39;, &#39;nanmax&#39;, &#39;nanmean&#39;, &#39;nanmedian&#39;, &#39;nanmin&#39;, &#39;nanpercentile&#39;, &#39;nanprod&#39;, &#39;nanstd&#39;, &#39;nansum&#39;, &#39;nanvar&#39;, &#39;nbytes&#39;, &#39;ndarray&#39;, &#39;ndenumerate&#39;, &#39;ndfromtxt&#39;, &#39;ndim&#39;, &#39;ndindex&#39;, &#39;nditer&#39;, &#39;negative&#39;, &#39;nested_iters&#39;, &#39;newaxis&#39;, &#39;newbuffer&#39;, &#39;nextafter&#39;, &#39;nonzero&#39;, &#39;not_equal&#39;, &#39;nper&#39;, &#39;npv&#39;, &#39;numarray&#39;, &#39;number&#39;, &#39;obj2sctype&#39;, &#39;object&#39;, &#39;object0&#39;, &#39;object_&#39;, &#39;ogrid&#39;, &#39;oldnumeric&#39;, &#39;ones&#39;, &#39;ones_like&#39;, &#39;outer&#39;, &#39;packbits&#39;, &#39;pad&#39;, &#39;partition&#39;, &#39;percentile&#39;, &#39;pi&#39;, &#39;piecewise&#39;, &#39;pkgload&#39;, &#39;place&#39;, &#39;pmt&#39;, &#39;poly&#39;, &#39;poly1d&#39;, &#39;polyadd&#39;, &#39;polyder&#39;, &#39;polydiv&#39;, &#39;polyfit&#39;, &#39;polyint&#39;, &#39;polymul&#39;, &#39;polynomial&#39;, &#39;polysub&#39;, &#39;polyval&#39;, &#39;positive&#39;, &#39;power&#39;, &#39;ppmt&#39;, &#39;print_function&#39;, &#39;prod&#39;, &#39;product&#39;, &#39;promote_types&#39;, &#39;ptp&#39;, &#39;put&#39;, &#39;putmask&#39;, &#39;pv&#39;, &#39;r_&#39;, &#39;rad2deg&#39;, &#39;radians&#39;, &#39;random&#39;, &#39;rank&#39;, &#39;rate&#39;, &#39;ravel&#39;, &#39;ravel_multi_index&#39;, &#39;real&#39;, &#39;real_if_close&#39;, &#39;rec&#39;, &#39;recarray&#39;, &#39;recfromcsv&#39;, &#39;recfromtxt&#39;, &#39;reciprocal&#39;, &#39;record&#39;, &#39;remainder&#39;, &#39;repeat&#39;, &#39;require&#39;, &#39;reshape&#39;, &#39;resize&#39;, &#39;result_type&#39;, &#39;right_shift&#39;, &#39;rint&#39;, &#39;roll&#39;, &#39;rollaxis&#39;, &#39;roots&#39;, &#39;rot90&#39;, &#39;round&#39;, &#39;round_&#39;, &#39;row_stack&#39;, &#39;s_&#39;, &#39;safe_eval&#39;, &#39;save&#39;, &#39;savetxt&#39;, &#39;savez&#39;, &#39;savez_compressed&#39;, &#39;sctype2char&#39;, &#39;sctypeDict&#39;, &#39;sctypeNA&#39;, &#39;sctypes&#39;, &#39;searchsorted&#39;, &#39;select&#39;, &#39;set_numeric_ops&#39;, &#39;set_printoptions&#39;, &#39;set_string_function&#39;, &#39;setbufsize&#39;, &#39;setdiff1d&#39;, &#39;seterr&#39;, &#39;seterrcall&#39;, &#39;seterrobj&#39;, &#39;setxor1d&#39;, &#39;shape&#39;, &#39;shares_memory&#39;, &#39;short&#39;, &#39;show_config&#39;, &#39;sign&#39;, &#39;signbit&#39;, &#39;signedinteger&#39;, &#39;sin&#39;, &#39;sinc&#39;, &#39;single&#39;, &#39;singlecomplex&#39;, &#39;sinh&#39;, &#39;size&#39;, &#39;sometrue&#39;, &#39;sort&#39;, &#39;sort_complex&#39;, &#39;source&#39;, &#39;spacing&#39;, &#39;split&#39;, &#39;sqrt&#39;, &#39;square&#39;, &#39;squeeze&#39;, &#39;stack&#39;, &#39;std&#39;, &#39;str&#39;, &#39;str_&#39;, &#39;string0&#39;, &#39;string_&#39;, &#39;subtract&#39;, &#39;sum&#39;, &#39;swapaxes&#39;, &#39;sys&#39;, &#39;take&#39;, &#39;tan&#39;, &#39;tanh&#39;, &#39;tensordot&#39;, &#39;test&#39;, &#39;testing&#39;, &#39;tile&#39;, &#39;timedelta64&#39;, &#39;trace&#39;, &#39;tracemalloc_domain&#39;, &#39;transpose&#39;, &#39;trapz&#39;, &#39;tri&#39;, &#39;tril&#39;, &#39;tril_indices&#39;, &#39;tril_indices_from&#39;, &#39;trim_zeros&#39;, &#39;triu&#39;, &#39;triu_indices&#39;, &#39;triu_indices_from&#39;, &#39;true_divide&#39;, &#39;trunc&#39;, &#39;typeDict&#39;, &#39;typeNA&#39;, &#39;typecodes&#39;, &#39;typename&#39;, &#39;ubyte&#39;, &#39;ufunc&#39;, &#39;uint&#39;, &#39;uint0&#39;, &#39;uint16&#39;, &#39;uint32&#39;, &#39;uint64&#39;, &#39;uint8&#39;, &#39;uintc&#39;, &#39;uintp&#39;, &#39;ulonglong&#39;, &#39;unicode&#39;, &#39;unicode0&#39;, &#39;unicode_&#39;, &#39;union1d&#39;, &#39;unique&#39;, &#39;unpackbits&#39;, &#39;unravel_index&#39;, &#39;unsignedinteger&#39;, &#39;unwrap&#39;, &#39;ushort&#39;, &#39;vander&#39;, &#39;var&#39;, &#39;vdot&#39;, &#39;vectorize&#39;, &#39;version&#39;, &#39;void&#39;, &#39;void0&#39;, &#39;vsplit&#39;, &#39;vstack&#39;, &#39;warnings&#39;, &#39;where&#39;, &#39;who&#39;, &#39;zeros&#39;, &#39;zeros_like&#39;]
 </pre>
@@ -12037,9 +12004,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[&#39;In&#39;, &#39;Out&#39;, &#39;_&#39;, &#39;_2&#39;, &#39;_3&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;_dh&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i2&#39;, &#39;_i3&#39;, &#39;_i4&#39;, &#39;_i5&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;_sh&#39;, &#39;atexit&#39;, &#39;exit&#39;, &#39;get_ipython&#39;, &#39;historyPath&#39;, &#39;numpy&#39;, &#39;os&#39;, &#39;quit&#39;, &#39;readline&#39;, &#39;rlcompleter&#39;, &#39;save_history&#39;]
 </pre>
@@ -12118,9 +12083,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[&#39;In&#39;, &#39;Out&#39;, &#39;_&#39;, &#39;_2&#39;, &#39;_3&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;_dh&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i2&#39;, &#39;_i3&#39;, &#39;_i4&#39;, &#39;_i5&#39;, &#39;_i6&#39;, &#39;_i7&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;_sh&#39;, &#39;atexit&#39;, &#39;cos&#39;, &#39;exit&#39;, &#39;get_ipython&#39;, &#39;historyPath&#39;, &#39;numpy&#39;, &#39;os&#39;, &#39;pi&#39;, &#39;quit&#39;, &#39;readline&#39;, &#39;rlcompleter&#39;, &#39;save_history&#39;]
 </pre>
@@ -12147,9 +12110,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[8]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12221,9 +12182,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1.77245385091
 </pre>
@@ -12284,9 +12243,7 @@ Successfully installed allensdk-0.13.2
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12333,9 +12290,7 @@ Successfully installed allensdk-0.13.2
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12392,9 +12347,7 @@ Successfully installed allensdk-0.13.2
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -12509,9 +12462,7 @@ Successfully installed allensdk-0.13.2
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>users/me/desktop
 </pre>
@@ -12553,9 +12504,7 @@ Successfully installed allensdk-0.13.2
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>current directory:
 /home/luke/work/allen_inst/SWDB_2017/PythonBootcamp/solutions
@@ -12566,9 +12515,7 @@ files in current directory:
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
-
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12656,9 +12603,7 @@ files in current directory:
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>False
 True
@@ -12699,9 +12644,7 @@ True
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(&#39;some text&#39;, 2)
 </pre>
@@ -12741,9 +12684,7 @@ True
 <div class="output">
 
 
-<div class="output_area">
-<div class="prompt"></div>
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>some text 2
 </pre>
@@ -12821,8 +12762,4 @@ True
     </div>
   </div>
 </body>
-
- 
-
-
 </html>
