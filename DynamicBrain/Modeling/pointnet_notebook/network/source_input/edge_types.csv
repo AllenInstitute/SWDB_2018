@@ -1,0 +1,3 @@
+edge_type_id target_query source_query syn_weight dynamics_params distance_range delay target_sections model_template
+100 pop_name=='Scnn1a' * 100.0 ExcToExc.json "[0.0, 150.0]" 0.1 "['basal', 'apical']" static_synapse
+101 pop_name=='LIF_exc' * 50.0 instanteneousExc.json NULL 0.1 NULL static_synapse

@@ -1,77 +1,75 @@
 {
-  "run": {
-    "duration": 3000.0,
-	"dt": 0.1,
-	"overwrite_output_dir": true,
-	"save_state":false,
-	"start_from_state": false,
-	"block": false,
-	"connect_internal": true,
-	"connect_external": {"filter": true}
-  }, 
-
-  "external": {
-
-	"filter": {
-		"spike_trains":	"$NETWORK_DIR/source_input/poisson_input_spk_train.nwb",
-		"connections":		"$NETWORK_DIR/source_input/input_edges.h5",
-        "edge_types":   "$NETWORK_DIR/source_input/input_edge_types.csv",
-		"cell_models": 	"$NETWORK_DIR/source_input/input_node_types.csv",
-		"cells":		"$NETWORK_DIR/source_input/input_nodes.csv",
-      	"func_labels": 	["location"],
-		"trial":		"trial_1"
-	}
-      
-  }, 
-
-  "internal": {
-	"cells": 			"$NETWORK_DIR/recurrent_network/nodes.csv",
-	"cell_models": 		"$NETWORK_DIR/recurrent_network/node_types.csv",
-	"edge_types": 		"$NETWORK_DIR/recurrent_network/edge_types.csv",
-	"connections": 			"$NETWORK_DIR/recurrent_network/edges.h5",
-    "func_labels": 		["pop_name"],
-	"bio_morph_dir":	"$MODELS_DIR/biophysical/morphology",
-	"bio_ephys_dir": 	"$MODELS_DIR/biophysical/electrophysiology",
-	"lif_ephys_dir":	"$MODELS_DIR/intfire"
-
+  "manifest": {
+    "$BASE_DIR": "${configdir}",
+    "$OUTPUT_DIR": "$BASE_DIR/output",
+    "$INPUT_DIR": "$BASE_DIR/network/source_input",
+    "$NETWORK_DIR": "$BASE_DIR/network",
+    "$COMPONENT_DIR": "$BASE_DIR/components"
   },
 
-  "output": {
-	"log":	 			"$OUTPUT_DIR/log.txt",
-	"spikes_ascii": 	"$OUTPUT_DIR/spikes.txt",
-	"spikes_h5": 		"$OUTPUT_DIR/spikes.h5",
-	"cell_vars_dir":	"$OUTPUT_DIR/cellvars",
-	"extra_cell_vars":	"$OUTPUT_DIR/extra_cell_vars.h5",
-    "ecp_file":			"$OUTPUT_DIR/ecp.h5",
-	"state_dir":		"$OUTPUT_DIR/state",
-	"output_dir":	    "$OUTPUT_DIR"
+  "run": {
+    "tstop": 3000.0,
+    "dt": 0.001,
+    "dL": 20.0,
+    "spike_threshold": -15,
+    "nsteps_block": 5000,
+    "overwrite_output_dir": true
+  },
+
+  "target_simulator":"NEST",
+
+  "conditions": {
+    "celsius": 34.0,
+    "v_init": -80
+  },
+
+  "inputs": {
+    "spike_trains": {
+      "input_type": "spikes",
+      "module": "h5",
+      "input_file": "$INPUT_DIR/poission_input_spk_train.h5",
+      "node_set": "inputNetwork"
+    }
+  },
+
+  "output":{ 
+    "log_file": "$OUTPUT_DIR/log.txt",
+    "output_dir": "$OUTPUT_DIR",
+    "spikes_file": "$OUTPUT_DIR/spikes.h5",
+    "spikes_file_csv": "$OUTPUT_DIR/spikes.csv",
+    "spikes_sort_order": "time"
   },
 
   "components": {
-	"models_dir":		"$MODELS_DIR/cell_models",
-    "synapses_dir":     "$MODELS_DIR/synaptic_models"
+    "point_neuron_models_dir": "$COMPONENT_DIR/cell_models",
+	  "synaptic_models_dir": "$COMPONENT_DIR/synaptic_models"
   },
 
-
-  "recXelectrode": {
-	"positions": 		"$MODELS_DIR/recXelectrodes/linear_electrode.csv"
-	},
-
-  "manifest": {
-
-	"$BASE_DIR": 	    "${configdir}",
-    "$NETWORK_DIR":     "$BASE_DIR/network",
-    "$MODELS_DIR":      "$BASE_DIR/models",
-    "$OUTPUT_DIR":      "$BASE_DIR/point_output_001"
+  "node_sets": {
+  	"point_nodes": {"model_type": "point_process"}
   },
 
+  "networks": {
+    "nodes": [
+      {
+        "nodes_file": "$NETWORK_DIR/recurrent_network/nodes.h5",
+        "node_types_file": "$NETWORK_DIR/recurrent_network/node_types.csv"
+      },
+      {
+        "nodes_file": "$NETWORK_DIR/source_input/nodes.h5",
+        "node_types_file": "$NETWORK_DIR/source_input/node_types.csv"
+      }
+    ],
 
-  "conditions": {
-      "celsius": 34.0, 
-      "v_init": -80
-    },
-
-  "groups": {
-	"save_vars": [0, 1, 2, 3, 4, 5, 6, 7]
-	}
+    "edges": [
+      {
+        "edges_file": "$NETWORK_DIR/recurrent_network/edges.h5",
+        "edge_types_file": "$NETWORK_DIR/recurrent_network/edge_types.csv"
+      },
+      {
+        "edges_file": "$NETWORK_DIR/source_input/edges.h5",
+        "edge_types_file": "$NETWORK_DIR/source_input/edge_types.csv"
+      }
+    ]
+  }
 }
