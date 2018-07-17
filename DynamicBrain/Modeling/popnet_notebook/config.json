@@ -1,39 +1,54 @@
 {
 
   "run": {
-    "duration": 3.0,
+    "tstop": 3.0,
     "dt": 0.0002,
-	"overwrite_output_dir": true,
-	"connect_internal": true,
-	"connect_external": {"filter": true},
-    "block": false,
-    "blocksize": 1000.0
+	"overwrite_output_dir": true
   }, 
-
-  "external": {
-	"filter": {
-		"spike_trains":	"$NETWORK_DIR/source_input/poisson_input_spk_train.nwb",
-        "edge_types":   "$NETWORK_DIR/source_input/input_edge_types.csv",
-		"node_types": 	"$NETWORK_DIR/source_input/input_node_types.csv",
-		"trial":		"trial_1"
-	}
+    
+  "inputs": {
+    "Ext_pop_rates": {
+      "input_type": "csv",
+      "module": "pop_rates",
+      "rates": "${BASE_DIR}/input_rates.csv",
+      "node_set": "Ext_input"
+    }
   },
-
-  "internal": {
-	"node_types": 		"$NETWORK_DIR/recurrent_network/node_types.csv",
-	"edge_types":   	"$NETWORK_DIR/recurrent_network/edge_types.csv",
-	"edges": 		    "$NETWORK_DIR/recurrent_network/edges.h5"
-  },
-
+    
   "output": {
-    "show_plots":	false,
     "rates_file":   "$OUTPUT_DIR/spike_rates.txt",
     "log_file":		"$OUTPUT_DIR/logging.txt"	
   },
+    
+  "target_simulator": "DiPDE",
 
   "components": {
-    "models_dir":       "$MODELS_DIR/pop_models",
-	"synapses_dir":		"$MODELS_DIR/synaptic_models"
+    "population_models_dir": "$MODELS_DIR/pop_models",
+	"synaptic_models_dir": "$MODELS_DIR/synaptic_models"
+  },
+
+    
+  "networks": {
+    "nodes": [
+        {
+            "nodes_file": "$NETWORK_DIR/recurrent_network/nodes.h5",
+            "node_types_file": "$NETWORK_DIR/recurrent_network/node_types.csv"
+        },
+        {
+            "nodes_file": "$NETWORK_DIR/source_input/nodes.h5",
+            "node_types_file": "$NETWORK_DIR/source_input/node_types.csv"
+        }
+    ],
+    "edges": [
+        {
+            "edges_file": "$NETWORK_DIR/recurrent_network/edges.h5",
+            "edge_types_file": "$NETWORK_DIR/recurrent_network/edge_types.csv"
+        },
+        {
+            "edges_file": "$NETWORK_DIR/source_input/edges.h5",
+            "edge_types_file": "$NETWORK_DIR/source_input/edge_types.csv"
+        }
+    ]
   },
 
   "manifest": {
