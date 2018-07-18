@@ -1,8 +1,8 @@
 {
 
   "run": {
-    "tstop": 3.0,
-    "dt": 0.0002,
+    "tstop": 1.5,
+    "dt": 0.002,
 	"overwrite_output_dir": true
   }, 
     

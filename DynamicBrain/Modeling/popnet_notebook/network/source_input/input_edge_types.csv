@@ -1,2 +1,0 @@
-edge_type_id target_query source_query weight delay nsyns params_file
-0 pop_name=='excitatory' pop_name=='input_filter' 0.0025 0.002 10 InpToExc.json

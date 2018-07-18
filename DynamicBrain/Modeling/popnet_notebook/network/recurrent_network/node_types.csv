@@ -1,3 +1,0 @@
-node_type_id pop_name params_file
-0 excitatory excitatory_pop.json
-1 inhibitory inhibitory_pop.json
