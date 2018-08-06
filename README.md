@@ -1,7 +1,7 @@
 # SWDB_2018
 ![SWDB_2018](/resources/cropped-SummerWorkshop_Header.png)
 
-This is the repository for the course materials for the 2017 Summer Workshop on the Dynamic Brain.
+This is the repository for the course materials for the 2018 Summer Workshop on the Dynamic Brain.
 
 # Support Policy
 
