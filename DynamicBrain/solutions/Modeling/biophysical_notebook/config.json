@@ -4,7 +4,7 @@
     "$OUTPUT_DIR": "$BASE_DIR/output",
     "$INPUT_DIR": "$BASE_DIR/network/source_input",
     "$NETWORK_DIR": "$BASE_DIR/network",
-    "$COMPONENT_DIR": "${configdir}/../../Modeling/biophysical_notebook/components",
+    "$COMPONENT_DIR": "${configdir}/../../../Modeling/biophysical_notebook/components",
     "$MECHANISMS_DIR": "$COMPONENT_DIR/mechanisms"
   },
 
@@ -70,6 +70,16 @@
       "file_name": "$OUTPUT_DIR/cell_vars.h5",
       "sections": "soma",
       "enabled": true
+    },
+
+    "ecp": {
+      "cells": [0, 1, 2, 3],
+      "variable_name": "v",
+      "module": "extracellular",
+      "electrode_positions": "$COMPONENT_DIR/electrodes/single_electrode.csv",
+      "ecp_file": "$OUTPUT_DIR/ecp.h5",
+      "electrode_channels": "all",
+      "contributions_dir": "$OUTPUT_DIR/ecp_contributions"
     }
   },
 
