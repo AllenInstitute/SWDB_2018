@@ -32,19 +32,67 @@ As before, we will be using `GitKraken` when using `git` on your computer.  Now 
 5. Browse to your fork (`<user_name>/swdb_2018_tools`)
 6. Clone the repo!
 
-## Step 3: Pull in some cool new feature from someone else!
+## Step 3: Someone made changes -- bring them to your computer.
 
 Let's say someone has made some changes to the repository you forked and you would like to have those changes on your computer.  
 
 ### Step 3a: Tell GitKraken about AllenInstitute/swdb_2018_tools
 
-First we need our repository to know where these changes are coming from.  We only need to do this once.
+Right now your repository only knows about your fork (`user/swdb_2018_tools`).  We need our repository to know where these changes are coming from.  We only need to do this once.
 
 1. Click the "+" in the "Remote" section on the left.
 2. Paste in: https://github.com/alleninstitute/swdb_2018_tools
 3. Accept the default name ("AllenInstitute")
 
-Now the "AllenInstitute" remote appears above your fork in the list below.  
+Now the `AllenInstitute` remote appears above your fork in the list below with its default branch (`master`).
 
-### Step 3b: Pull changes from AllenInstitute
+### Step 3b: Pull changes from AllenInstitute to your computer
 
+Now we want to bring some changes from `AllenInstitute/master` down to your local master branch.  
+
+1. Right-click the `AllenInstitute` remote and click "Fetch AllenInstitute".  This just checks Github for changes.
+2. Right-click the `AllenInstitue/master` branch and choose "Fast-forward changes from AllenInstitute/master".
+
+That's it -- now you've incorporated changes from `AllenInstitute/master` to your local repository.  You can now update the Github's copy of your fork's master branch by clicking "Push".
+
+
+## Step 4: Make changes and push them to your fork on Github
+
+Now we want to make some changes to this repository.  Not the AllenInstitute copy, but just your fork on Github.
+
+### Step 4a: Create a topic branch and make a change
+
+Branches are great because they let you work on multiple things at the same time.  So let's make our changes in a branch!
+
+1. Click the 'Branch' icon at the top of the screen.  Give it a cool name.
+2. Make some changes that won't conflict.  For example: create a file in the repo directory named after your Github user name.
+3. Gitkracken will notice the change -- click "View Change" in the upper right panel.
+4. Mouse-over your new file and click "Stage File"
+5. Type a commit message.
+5. Click "Commit changes to 1 file"
+
+### Step 4b: Push your branch to your fork on Github
+
+Remember: we always want master to be consistent with `AllenInstitute/master`, so we aren't going to merge your topic branch back into `local/master`.  Instead, we are going to push it up to your fork.
+
+1. Right-click your branch, then click "push"
+2. Name your branch on Github (use the default, which is the same name)
+3. Click "Submit"
+
+
+## Step 5: Issue a pull request to AllenInstitute/master
+
+We have your topic branch up on Github with your fork.  Now we want to merge your changes into `AllenInstitute/master`.  We ask for this via a "Pull Request":
+
+1.   Open Github to http://github.com/user_name/SWDB_2018
+2.   Github will notice your new branch.  Click "Compare and Pull Request".
+
+## Step 6: Bring your own change back down to local/master
+
+Once your request has been approved, just bring your changes back down to `local/master` and we're done.
+
+1. Check out `local/master` by double clicking on it.
+2. Right-click the `AllenInstitute` remote and click "Fetch AllenInstitute".  This just checks Github for changes.
+3. Right-click the `AllenInstitue/master` branch and choose "Fast-forward changes from AllenInstitute/master".
+
+You can now update the Github's copy of your fork's master branch by clicking "Push".
