@@ -12,7 +12,7 @@ GitHub is an online code collaboration platform centered around `git`.  This les
 ## Create a repository and copy it to your compute (forking and cloning)
 
 <img src="tiles_00.png" height=300>
-
+ 
 The first thing you should do is create a repository on GitHub.  While you can always create an new repository, in this lesson we will be showing you how to collaborate with others on a single repository.  You will do this by creating a copy of an existing repository.  In `git` parlance, creating a copy of a repository is called `forking`.  
 
 #### Fork a repository
@@ -63,9 +63,9 @@ Now we want to bring some changes from `AllenInstitute/master` down to your loca
 1. Right-click the `AllenInstitute` remote and click "Fetch AllenInstitute".  This just checks Github for changes.
 2. Right-click the `AllenInstitute/master` branch and choose "Fast-forward changes from AllenInstitute/master".
 
-That's it -- now you've incorporated changes from `AllenInstitute/master` to your local repository.  You can now update the Github's copy of your fork's master branch by clicking "Push".
+That's it -- now you've incorporated changes from `AllenInstitute/master` to your local repository.  You can now update your GitHub fork's master branch by clicking "Push".
 
-Now we want to make some changes to this repository.  Not the AllenInstitute copy, but just your local copy and your fork on Github.
+Now we want to make some changes to this repository.  Not the AllenInstitute copy, but just your local copy and your fork on GitHub.
 
 #### Loop Step 2: Create a topic branch and make a change
 
