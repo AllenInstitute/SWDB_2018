@@ -40,7 +40,7 @@ As before, we will be using `GitKraken` when using `git` on your computer.  Now 
 
 You now have two copies of someone else's repository -- the one on GitHub and the one on your computer.  Those repositories all have a `master` branch.  An important principle to remember:
 
-> *Leave the `master` branch alone*.  It is a shared resource -- it should always reflect the state of the primary repository's `master` branch (in this case `AllenInstitute/swdb_2018_tools`).
+> **Leave the `master` branch alone**. It is a shared resource -- it should always reflect the state of the primary repository's `master` branch (in this case `AllenInstitute/swdb_2018_tools`).
 
 We'll now describe a process you can use to integrate others changes and make changes safely.  But first...
 
@@ -65,13 +65,13 @@ Now we want to bring some changes from `AllenInstitute/master` down to your loca
 
 That's it -- now you've incorporated changes from `AllenInstitute/master` to your local repository.  You can now update your GitHub fork's master branch by clicking "Push".
 
-Now we want to make some changes to this repository.  Not the AllenInstitute copy, but just your local copy and your fork on GitHub.
-
 #### Loop Step 2: Create a topic branch and make a change
 
 <img src="tiles_02.png" height=300>
 
-Branches are great because they let you work on multiple things at the same time.  So let's make our changes in a branch!
+Now we want to make some changes to this repository.  Not the AllenInstitute copy (yet) -- just your local copy.
+
+Topic branches are great because they let you work on multiple things at the same time.  In this case, they are necessary because remember: **don't touch the `master` branch**.  So let's make our changes in a topic branch!
 
 1. Click the 'Branch' icon at the top of the screen.  Give it a cool name.
 2. Make some changes that won't conflict.  For example: create a file in the repo directory named after your Github user name.
@@ -84,7 +84,7 @@ Branches are great because they let you work on multiple things at the same time
 
 <img src="tiles_03.png" height=300>
 
-Remember: we always want `master` to be consistent with `AllenInstitute/master`, so we aren't going to merge your topic branch back into `local/master`.  Instead, we are going to push your topic branch up to your fork and integrate it into `AllenInstitue/master` from there.
+Our topic branch is ready, and we'd like to get our changes integrated into `AllenInstitute/master`.  GitHub has a great facility for this, so we need to get your changes up to your GitHub fork.  Remember: we always want `master` to be consistent with `AllenInstitute/master`, so we aren't going to merge the topic branch back into `local/master`.  Instead, we are going to push your topic branch up to your fork and integrate it into `AllenInstitue/master` from there.
 
 1. Right-click your branch, then click "push"
 2. Name your branch on Github (use the default, which is the same name)
@@ -94,19 +94,21 @@ Remember: we always want `master` to be consistent with `AllenInstitute/master`,
 
 <img src="tiles_04.png" height=300>
 
-We have your topic branch up on Github with your fork.  Now we want to merge your changes into `AllenInstitute/master`.  We ask for this via a "Pull Request":
+We have your topic branch up on your GitHub fork.  Now we want to merge your changes into `AllenInstitute/master`.  We ask for this via a "Pull Request":
 
 1.   Open Github to http://github.com/user_name/SWDB_2018
 2.   Github will notice your new branch.  Click "Compare and Pull Request".
+
+Pull requests are great.  We are working on a shared repository, so we really want to make sure that your changes are ready to integrate before pulling the trigger.  Pull requests give everyone a mechanism to review and propose new changes before updating the `master` branch.
 
 #### Loop Step 5: Bring your own change back down to local/master
 
 <img src="tiles_05.png" height=300>
 
-Once your request has been approved, just bring your changes back down to `local/master` and we're done.
+Once your request has been approved, `AllenInstitute/master` is now has your cahnges in it.  Just bring your changes back down to `local/master` and we're done.
 
 1. Check out `local/master` by double clicking on it.
 2. Right-click the `AllenInstitute` remote and click "Fetch AllenInstitute".  This just checks Github for changes.
 3. Right-click the `AllenInstitue/master` branch and choose "Fast-forward changes from AllenInstitute/master".
 
-You can now update the Github's copy of your fork's master branch by clicking "Push".
+If you want to update your GitHub fork's master branch, just click "Push".
