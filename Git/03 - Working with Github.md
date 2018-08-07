@@ -109,6 +109,6 @@ Once your request has been approved, `AllenInstitute/master` is now has your cah
 
 1. Check out `local/master` by double clicking on it.
 2. Right-click the `AllenInstitute` remote and click "Fetch AllenInstitute".  This just checks Github for changes.
-3. Right-click the `AllenInstitue/master` branch and choose "Fast-forward changes from AllenInstitute/master".
+3. Right-click the `AllenInstitute/master` branch and choose "Fast-forward changes from AllenInstitute/master".
 
 If you want to update your GitHub fork's master branch, just click "Push".
