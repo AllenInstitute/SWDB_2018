@@ -51,7 +51,7 @@ You now have two copies of someone else's repository -- the one on GitHub and th
 
 We'll now describe a process you can use to integrate others changes and make changes safely.  But first...
 
-### Tell `git` about AllenInstitute/swdb_2018_tools
+#### Tell `git` about AllenInstitute/swdb_2018_tools
 
 Right now your repository only knows about your fork (`user/swdb_2018_tools`).  We need our repository to know where these changes are coming from.  We only need to do this once.
 
