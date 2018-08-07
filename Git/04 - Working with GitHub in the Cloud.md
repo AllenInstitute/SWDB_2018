@@ -8,29 +8,31 @@ This material assumes that you have worked through the previous lessons.  At thi
 * Merge topic branches back to your master branch
 * Work on a shared repository with forks and pull requests
 
+This lesson is identical to lesson 3, but it teaches you how to perform the same operations from the command line.
+
+GitHub is an online code collaboration platform centered around `git`.  This lesson shows you a particular way to use `git` and GitHub that is focused on collaboration.  The workflow may seem complex, but by the end you should know why it's what most folks do now.
+
 ## Oh no I don't have a GUI
 
 Don't panic.  These instructions replicate the exact workflow from lesson three, this time with the Jupyter terminal.
 
+## Create a repository and copy it to your compute (forking and cloning)
+
 <img src="tiles_00.png" height=300>
+ 
+The first thing you should do is create a repository on GitHub.  While you can always create an new repository, in this lesson we will be showing you how to collaborate with others on a single repository.  You will do this by creating a copy of an existing repository.  In `git` parlance, creating a copy of a repository is called `forking`.  
 
-## Create a repository
+#### Fork a repository
 
-(this one is the same as the previous section, since it just uses the GitHub browser interface)
-
-Github is an online code collaboration platform centered around git.  The first thing you should do is create a repository there.  While you can always create an new repository, in this lesson we will be showing you how to collaborate with others on a single repository.  You will do this by creating a copy of an existing repository.  
-
-In `git` parlance, creating a copy of a repository is called `forking`.  Do this:
+Do this:
 
 1. Go here: [https://github.com/alleninstitute/swdb_2018_tools](https://github.com/alleninstitute/swdb_2018_tools)
-
 2. Click the 'Fork' button. 
-
 3. If prompted, tell it to clone the repository to your profile.
 
 You now have a copy of the `swdb_2018_tools` repository all to yourself!
 
-## Clone your repository to your computer (in the cloud!)
+#### Clone your fork to your computer (in the cloud!)
  
 Now we want to make changes to the fork we just created, so let's bring it down to our computers.  Instead of GitKraken, we'll use the Jupyter Terminal.
 
@@ -41,9 +43,13 @@ Now we want to make changes to the fork we just created, so let's bring it down 
 $ git clone https://github.com/dyf/SWDB_2018.git
 ```
 
-## Someone made changes -- bring them to your computer.
+## The virtuous collaborative loop -- integrating changes and making your own
 
-Let's say someone has made some changes to the repository you forked and you would like to have those changes on your computer.  
+You now have two copies of someone else's repository -- the one on GitHub and the one on your computer.  Those repositories all have a `master` branch.  An important principle to remember:
+
+> **Leave the `master` branch alone**. It is a shared resource -- it should always reflect the state of the primary repository's `master` branch (in this case `AllenInstitute/swdb_2018_tools`).
+
+We'll now describe a process you can use to integrate others changes and make changes safely.  But first...
 
 ### Tell `git` about AllenInstitute/swdb_2018_tools
 
@@ -53,9 +59,9 @@ Right now your repository only knows about your fork (`user/swdb_2018_tools`).  
 $ git remote add AllenInstitute https://github.com/alleninstitute/swdb_2018_tools
 ```
 
-<img src="tiles_01.png" height=300>
+#### Loop Step 1: Pull changes from AllenInstitute to your computer
 
-### Pull changes from AllenInstitute to your computer
+<img src="tiles_01.png" height=300>
 
 Now we want to bring some changes from `AllenInstitute/master` down to your local master branch.  
 
@@ -70,15 +76,13 @@ That's it -- now you've incorporated changes from `AllenInstitute/master` to you
 $ git push origin master
 ```
 
-## Make changes and push them to your fork on GitHub
-
-Now we want to make some changes to this repository.  Not the AllenInstitute copy, but just your fork on GitHub.
+#### Loop Step 2: Create a topic branch and make a change
 
 <img src="tiles_02.png" height=300>
 
-### Create a topic branch and make a change
+Now we want to make some changes to this repository.  Not the AllenInstitute copy (yet) -- just your local copy.
 
-Branches are great because they let you work on multiple things at the same time.  So let's make our changes in a branch!
+Topic branches are great because they let you work on multiple things at the same time.  In this case, they are necessary because remember: **don't touch the `master` branch**.  So let's make our changes in a topic branch!
 
 ```bash
 $ git checkout -b dyf_branch # create a new branch and check it out
@@ -87,32 +91,32 @@ $ git add dyf.txt
 $ git commit -m "adding dyf.txt"
 ```
 
+#### Loop Step 3: Push your branch to your fork on Github
+
 <img src="tiles_03.png" height=300>
 
-### Push your branch to your fork on GitHub
-
-Remember: we always want master to be consistent with `AllenInstitute/master`, so we aren't going to merge your topic branch back into `local/master`.  Instead, we are going to push it up to your fork on GitHub.
+Our topic branch is ready, and we'd like to get our changes integrated into `AllenInstitute/master`.  GitHub has a great facility for this, so we need to get your changes up to your GitHub fork.  Remember: we always want `master` to be consistent with `AllenInstitute/master`, so we aren't going to merge the topic branch back into `local/master`.  Instead, we are going to push your topic branch up to your fork and integrate it into `AllenInstitue/master` from there.
 
 ```bash
 $ git push origin dyf_branch
 ```
 
+#### Loop Step 4: Issue a pull request to AllenInstitute/master
+
 <img src="tiles_04.png" height=300>
 
-## Issue a pull request to AllenInstitute/master
-
-(this is the same as before since it uses the GitHub browser interface)
-
-We have your topic branch up on Github with your fork.  Now we want to merge your changes into `AllenInstitute/master`.  We ask for this via a "Pull Request":
+We have your topic branch up on your GitHub fork.  Now we want to merge your changes into `AllenInstitute/master`.  We ask for this via a "Pull Request":
 
 1.   Open Github to http://github.com/user_name/SWDB_2018
 2.   Github will notice your new branch.  Click "Compare and Pull Request".
 
+Pull requests are great.  We are working on a shared repository, so we really want to make sure that your changes are ready to integrate before pulling the trigger.  Pull requests give everyone a mechanism to review and propose new changes before updating the `master` branch.
+
+#### Loop Step 5: Bring your own change back down to local/master
+
 <img src="tiles_05.png" height=300>
 
-## Bring your own change back down to local/master
-
-Once your request has been approved, just bring your changes back down to `local/master` and we're done.
+Once your request has been approved, `AllenInstitute/master` is now has your cahnges in it.  Just bring your changes back down to `local/master` and we're done.
 
 ```bash
 $ git checkout master # just to be safe
