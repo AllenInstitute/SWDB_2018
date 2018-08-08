@@ -9,7 +9,7 @@ This material assumes that you have worked through the previous lessons.  At thi
 
 GitHub is an online code collaboration platform centered around `git`.  This lesson shows you a particular way to use `git` and GitHub that is focused on collaboration.  The workflow may seem complex, but by the end you should know why it's what most folks do now.
 
-## Create a repository and copy it to your compute (forking and cloning)
+## Create a repository and copy it to your computer (forking and cloning)
 
 <img src="tiles_00.png" height=300>
  
@@ -46,7 +46,7 @@ We'll now describe a process you can use to integrate others changes and make ch
 
 #### Tell GitKraken about AllenInstitute/swdb_2018_tools
 
-Right now your repository only knows about your fork on GitHub (`user_name/swdb_2018_tools`, AKA `origin`).  In order to make changes, we need our repository to know where these changes are coming from.  We only need to do this once.
+Right now your repository only knows about your fork on GitHub (`user_name/swdb_2018_tools`, AKA `origin`).  In order to make changes from others, we need our repository to know where these changes are coming from.  We only need to do this once.
 
 1. Click the "+" in the "Remote" section on the left.
 2. Paste in: https://github.com/alleninstitute/swdb_2018_tools
@@ -112,3 +112,7 @@ Once your request has been approved, `AllenInstitute/master` is now has your cah
 3. Right-click the `AllenInstitute/master` branch and choose "Fast-forward changes from AllenInstitute/master".
 
 If you want to update your GitHub fork's master branch, just click "Push".
+
+#### All together now
+
+<img src="gh_anim.gif" height=300>
