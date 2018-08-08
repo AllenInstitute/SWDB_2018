@@ -16,7 +16,7 @@ GitHub is an online code collaboration platform centered around `git`.  This les
 
 Don't panic.  These instructions replicate the exact workflow from lesson three, this time with the Jupyter terminal.
 
-## Create a repository and copy it to your compute (forking and cloning)
+## Create a repository and copy it to your computer (forking and cloning)
 
 <img src="tiles_00.png" height=300>
  
@@ -53,7 +53,7 @@ We'll now describe a process you can use to integrate others changes and make ch
 
 #### Tell `git` about AllenInstitute/swdb_2018_tools
 
-Right now your repository only knows about your fork (`user/swdb_2018_tools`).  We need our repository to know where these changes are coming from.  We only need to do this once.
+Right now your repository only knows about your fork (`user/swdb_2018_tools`).  In order to incorporate changes from others, we need our repository to know where these changes are coming from.  We only need to do this once.
 
 ```bash
 $ git remote add AllenInstitute https://github.com/alleninstitute/swdb_2018_tools
@@ -129,3 +129,7 @@ You can now update the Github's copy of your fork's master branch by pushing it:
 ```bash
 $ git push origin master
 ```
+
+#### All together now
+
+<img src="gh_anim.gif" height=300>
