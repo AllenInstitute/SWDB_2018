@@ -95,7 +95,7 @@ Now we want to make some changes to this repository.  Not the AllenInstitute cop
 Topic branches are great because they let you work on multiple things at the same time.  In this case, they are necessary because remember: **don't touch the `master` branch**.  So let's make our changes in a topic branch!
 
 1. Click the 'Branch' icon at the top of the screen.  Give it a cool name.
-2. Make some changes that won't conflict.  For example: create a file in the repo directory named after your Github user name.
+2. Make some changes that won't conflict.  Leave GitKraken and create a file in the repo directory named after your Github user name.
 3. Gitkracken will notice the change -- click "View Change" in the upper right panel.
 4. Mouse-over your new file and click "Stage File"
 5. Type a commit message.
