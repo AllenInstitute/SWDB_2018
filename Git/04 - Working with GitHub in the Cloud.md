@@ -62,6 +62,7 @@ $ git clone https://github.com/dyf/SWDB_2018.git
 You now have two copies of someone else's repository -- the one on GitHub and the one on your computer.  Those repositories all have a `master` branch.  An important principle to remember:
 
 > **Leave the `master` branch alone**. 
+
 > `master` is a shared resource, and it should always reflect the state of the primary repository's `master` branch
 
 Of course it's possible to work in the master branch directly, but you should prefer topic branches for two reasons:
