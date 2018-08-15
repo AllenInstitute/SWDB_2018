@@ -127,8 +127,12 @@ $ git push origin dyf_branch
 
 We have your topic branch up on your GitHub fork.  Now we want to merge your changes into `AllenInstitute/master`.  We ask for this via a "Pull Request":
 
-1.   Open Github to http://github.com/user_name/SWDB_2018
-2.   Github will notice your new branch.  Click "Compare and Pull Request".
+1. Open Github to http://github.com/user_name/swdb_2018_tools
+2. Github will notice your new branch.  Click "Compare and Pull Request".
+3. Write a short description.
+4. Click "Create pull request"
+5. **wait for the instructor to accept the pull request** 
+6. Click "delete branch" to delete your topic branch.
 
 Pull requests are great.  We are working on a shared repository, so we really want to make sure that your changes are ready to integrate before pulling the trigger.  Pull requests give everyone a mechanism to review and propose new changes before updating the `master` branch.
 
