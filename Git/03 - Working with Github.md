@@ -134,11 +134,12 @@ Pull requests are great.  We are working on a shared repository, so we really wa
 
 <img src="tiles_05.png" height=300>
 
-Once your request has been approved, `AllenInstitute/master` is now has your cahnges in it.  Just bring your changes back down to `local/master` and we're done.
+Once your request has been approved, `AllenInstitute/master` is now has your changes in it.  Just bring your changes back down to `local/master` and we're done.
 
 1. Check out `local/master` by double clicking on it.
 2. Right-click the `AllenInstitute` remote and click "Fetch AllenInstitute".  This just checks Github for changes.
 3. Right-click the `AllenInstitute/master` branch and choose "Fast-forward changes from AllenInstitute/master".
+4. Delete your topic branch: Right-click `cool_named_branch`, choose `Delete`.
 
 If you want to update your GitHub fork's master branch, just click "Push".
 
