@@ -7,7 +7,21 @@ This material assumes that you have worked through the previous lessons.  At thi
 * Create topic branches
 * Merge topic branches back to your master branch
 
-GitHub is an online code collaboration platform centered around `git`.  This lesson shows you a particular way to use `git` and GitHub that is focused on collaboration.  The workflow may seem complex, but by the end you should know why it's what most folks do now.
+## Overview: Why this (relatively complex) workflow?
+
+GitHub is an online code collaboration platform centered around `git`.  This lesson shows you a particular way to use `git` and GitHub that is focused on collaboration.  We are trying to solve a few problems here.
+
+1. We want to contribute changes to a repository owned by someone else
+2. We want to control when to use changes from that repository
+3. We want to minimize nasty merge conflicts 
+
+The rest of these instructions boil down to a few practices:
+
+1. Work in a fork
+2. Work in topic branches, not the master branch
+2. Use pull requests
+
+Let's get started.
 
 ## Create a repository and copy it to your computer (forking and cloning)
 
