@@ -61,8 +61,13 @@ $ git clone https://github.com/dyf/SWDB_2018.git
 
 You now have two copies of someone else's repository -- the one on GitHub and the one on your computer.  Those repositories all have a `master` branch.  An important principle to remember:
 
-> **Leave the `master` branch alone**. It is a shared resource -- it should always reflect the state of the primary repository's `master` branch (in this case `AllenInstitute/swdb_2018_tools`).
+> **Leave the `master` branch alone**. 
+> `master` is a shared resource, and it should always reflect the state of the primary repository's `master` branch
 
+Of course it's possible to work in the master branch directly, but you should prefer topic branches for two reasons:
+
+1. What if you want to work on two different things at once?
+2. Editing master directly creates a parallel history that is inconsistent with the primary repository.  
 We'll now describe a process you can use to integrate others changes and make changes safely.  But first...
 
 #### Tell `git` about AllenInstitute/swdb_2018_tools
