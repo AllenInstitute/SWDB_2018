@@ -54,6 +54,7 @@ Now we want to make changes to the fork we just created, so let's bring it down 
 2. Copy the URL of the GitHub repository you want to clone to your clipboard.  (e.g. https://github.com/your_user_name/swdb_2018_tools.git)
 3. Clone the repo!
 ```bash
+$ cd ~/SageMaker/your_user_name/ # this is just for our AWS instances
 $ git clone https://github.com/your_user_name/swdb_2018_tools.git
 ```
 
@@ -76,6 +77,7 @@ We'll now describe a process you can use to integrate others changes and make ch
 Right now your repository only knows about your fork (`your_user_name/swdb_2018_tools`).  In order to incorporate changes from others, we need our repository to know where these changes are coming from.  We only need to do this once.
 
 ```bash
+$ cd swdb_2018_tools # this is where your repo was cloned
 $ git remote add AllenInstitute https://github.com/alleninstitute/swdb_2018_tools
 ```
 
