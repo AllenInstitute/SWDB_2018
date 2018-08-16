@@ -159,3 +159,18 @@ $ git push origin master
 #### All together now
 
 <img src="gh_anim.gif" height=300>
+
+## Bonus Material:  How do I install this package and use it in my AWS instance?
+
+You've successfully cloned and made changes to the repo, but it would be nice if you could import it and use it like a normal python package.  
+
+```bash
+$ source activate python2 # this is the "conda_python2" kernel in Jupyter
+$ pip install --user -e swdb_2018_tools/ 
+```
+
+Now you can open up a Jupyter notebook, choose the `conda_python2` kernel, and import the repo!
+
+```python
+>>> import swdb_2018_tools as stools
+```
