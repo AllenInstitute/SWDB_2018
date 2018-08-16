@@ -51,7 +51,7 @@ You now have a copy of the `swdb_2018_tools` repository all to yourself!
 Now we want to make changes to the fork we just created, so let's bring it down to our computers.  Instead of GitKraken, we'll use the Jupyter Terminal.
 
 1. Open the Jupyter Terminal ("new" => "terminal")
-2. Copy the URL of the GitHub repository you want to clone to your clipboard.  (e.g. https://github.com/dyf/SWDB_2018.git)
+2. Copy the URL of the GitHub repository you want to clone to your clipboard.  (e.g. https://github.com/your_user_name/SWDB_2018.git)
 3. Clone the repo!
 ```bash
 $ git clone https://github.com/dyf/SWDB_2018.git
@@ -73,7 +73,7 @@ We'll now describe a process you can use to integrate others changes and make ch
 
 #### Tell `git` about AllenInstitute/swdb_2018_tools
 
-Right now your repository only knows about your fork (`user/swdb_2018_tools`).  In order to incorporate changes from others, we need our repository to know where these changes are coming from.  We only need to do this once.
+Right now your repository only knows about your fork (`your_user_name/swdb_2018_tools`).  In order to incorporate changes from others, we need our repository to know where these changes are coming from.  We only need to do this once.
 
 ```bash
 $ git remote add AllenInstitute https://github.com/alleninstitute/swdb_2018_tools
@@ -127,7 +127,7 @@ $ git push origin dyf_branch
 
 We have your topic branch up on your GitHub fork.  Now we want to merge your changes into `AllenInstitute/master`.  We ask for this via a "Pull Request":
 
-1. Open Github to http://github.com/user_name/swdb_2018_tools
+1. Open Github to http://github.com/your_user_name/swdb_2018_tools
 2. Github will notice your new branch.  Click "Compare and Pull Request".
 3. Write a short description.
 4. Click "Create pull request"
