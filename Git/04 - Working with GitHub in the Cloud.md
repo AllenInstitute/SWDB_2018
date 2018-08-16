@@ -51,10 +51,10 @@ You now have a copy of the `swdb_2018_tools` repository all to yourself!
 Now we want to make changes to the fork we just created, so let's bring it down to our computers.  Instead of GitKraken, we'll use the Jupyter Terminal.
 
 1. Open the Jupyter Terminal ("new" => "terminal")
-2. Copy the URL of the GitHub repository you want to clone to your clipboard.  (e.g. https://github.com/your_user_name/SWDB_2018.git)
+2. Copy the URL of the GitHub repository you want to clone to your clipboard.  (e.g. https://github.com/your_user_name/swdb_2018_tools.git)
 3. Clone the repo!
 ```bash
-$ git clone https://github.com/dyf/SWDB_2018.git
+$ git clone https://github.com/your_user_name/swdb_2018_tools.git
 ```
 
 ## The virtuous collaborative loop -- integrating changes and making your own
