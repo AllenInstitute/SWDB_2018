@@ -142,7 +142,7 @@ Pull requests are great.  We are working on a shared repository, so we really wa
 
 <img src="tiles_05.png" height=300>
 
-Once your request has been approved, `AllenInstitute/master` is now has your cahnges in it.  Just bring your changes back down to `local/master` and we're done.
+Once your request has been approved, `AllenInstitute/master` is now has your changes in it.  Just bring your changes back down to `local/master` and we're done.
 
 ```bash
 $ git checkout master # just to be safe
